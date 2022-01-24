@@ -1,0 +1,429 @@
+\href{https://github.com/kike-canaries/canairio_sensorlib/actions/}{\tt } \href{https://travis-ci.com/kike-canaries/canairio_sensorlib.svg?branch=master}{\tt } 
+
+\section*{Air Quality \hyperlink{classSensors}{Sensors} Library}
+
+Generic sensor manager, abstractions and bindings of multiple sensors libraries\+: Honeywell, Plantower, Panasonic, Sensirion, etc. and C\+O2 sensors. Also it\textquotesingle{}s handling others environment sensors. This library is for general purpose, but also is the sensors library base of \href{https://canair.io/docs}{\tt Can\+Air\+IO project}.
+
+\section*{Supported sensors}
+
+\subsubsection*{PM sensors}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Sensor model }&\PBS\centering \textbf{ U\+A\+RT }&\PBS\centering \textbf{ I2C }&\PBS\centering \textbf{ Detection mode }&\PBS\centering \textbf{ Status  }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Sensor model }&\PBS\centering \textbf{ U\+A\+RT }&\PBS\centering \textbf{ I2C }&\PBS\centering \textbf{ Detection mode }&\PBS\centering \textbf{ Status  }\\\cline{1-5}
+\endhead
+Honeywell H\+P\+M\+A115\+S0 &\PBS\centering Yes &\PBS\centering --- &\PBS\centering Auto &\PBS\centering D\+E\+P\+R\+E\+C\+A\+T\+ED \\\cline{1-5}
+Panasonic S\+N-\/\+G\+C\+J\+A5L &\PBS\centering Yes &\PBS\centering Yes &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+Plantower models &\PBS\centering Yes &\PBS\centering --- &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+Nova S\+D\+S011 &\PBS\centering Yes &\PBS\centering --- &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+Sensirion S\+P\+S30 &\PBS\centering Yes &\PBS\centering Yes &\PBS\centering Select / Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+\end{longtabu}
+N\+O\+TE\+: Panasonic via U\+A\+RT in E\+S\+P8266 maybe needs select in detection
+
+\subsubsection*{C\+O2 sensors}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Sensor model }&\PBS\centering \textbf{ U\+A\+RT }&\PBS\centering \textbf{ I2C }&\PBS\centering \textbf{ Detection mode }&\PBS\centering \textbf{ Status  }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Sensor model }&\PBS\centering \textbf{ U\+A\+RT }&\PBS\centering \textbf{ I2C }&\PBS\centering \textbf{ Detection mode }&\PBS\centering \textbf{ Status  }\\\cline{1-5}
+\endhead
+Sensirion S\+C\+D30 &\PBS\centering --- &\PBS\centering Yes &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+Sensirion S\+C\+D4x &\PBS\centering --- &\PBS\centering Yes &\PBS\centering Auto &\PBS\centering T\+E\+S\+T\+I\+NG \\\cline{1-5}
+M\+H\+Z19 &\PBS\centering Yes &\PBS\centering --- &\PBS\centering Select &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+C\+M1106 &\PBS\centering Yes &\PBS\centering --- &\PBS\centering Select &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+Sense\+Air S8 &\PBS\centering Yes &\PBS\centering --- &\PBS\centering Select &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-5}
+\end{longtabu}
+
+
+\subsubsection*{Environmental sensors}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Sensor model }&\PBS\centering \textbf{ Protocol }&\PBS\centering \textbf{ Detection mode }&\PBS\centering \textbf{ Status  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Sensor model }&\PBS\centering \textbf{ Protocol }&\PBS\centering \textbf{ Detection mode }&\PBS\centering \textbf{ Status  }\\\cline{1-4}
+\endhead
+A\+M2320 &\PBS\centering i2c &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-4}
+S\+H\+T31 &\PBS\centering i2c &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-4}
+A\+H\+T10 &\PBS\centering i2c &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-4}
+B\+M\+E280 &\PBS\centering i2c &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-4}
+B\+M\+P280 &\PBS\centering i2c &\PBS\centering Auto &\PBS\centering T\+E\+S\+T\+I\+NG \\\cline{1-4}
+B\+M\+E680 &\PBS\centering i2c &\PBS\centering Auto &\PBS\centering S\+T\+A\+B\+LE \\\cline{1-4}
+D\+H\+Txx &\PBS\centering Two\+Wire &\PBS\centering Auto &\PBS\centering D\+E\+P\+R\+E\+C\+A\+T\+ED \\\cline{1-4}
+\end{longtabu}
+N\+O\+TE\+: D\+H\+T22 is supported but is not recommended
+
+\section*{Features}
+
+
+\begin{DoxyItemize}
+\item Unified variables and getters for all sensors
+\item Auto U\+A\+RT port selection (Hw, Sw, U\+A\+R\+T1, U\+A\+R\+T2, etc)
+\item Multiple i2c reads and one U\+A\+RT sensor read support
+\item Two I2C channel supported (Wire and Wire1)
+\item Real time registry of sensors unit registered (see multivariable)
+\item Get vendor names of all devices detected
+\item Preselected main stream U\+A\+RT pins from popular boards
+\item Auto config U\+A\+RT port for Plantower, Honeywell and Panasonic sensors
+\item Unified calibration trigger for all C\+O2 sensors
+\item Unified C\+O2 Altitude compensation
+\item Unified temperature offset for C\+O2 and environment sensors
+\item Public access to main objects of each library (full methods access)
+\item Get unit symbol and name and each sub-\/sensor
+\item Get the main group type\+: N\+O\+NE, PM, C\+O2 and E\+NV.
+\item Basic debug mode support toggle in execution
+\item Basic power saving management with sample time $>$ 30s on S\+P\+S30
+\end{DoxyItemize}
+
+Full list of all sub libraries supported \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/library.json#L72-L89}{\tt here}
+
+\section*{Quick implementation}
+
+
+\begin{DoxyCode}
+sensors.\hyperlink{classSensors_a729f911e0508cc8814a2276ff519b219}{setOnDataCallBack}(&onSensorDataOk);   \textcolor{comment}{// all data read callback}
+sensors.\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}();                               \textcolor{comment}{// start all sensors and}
+\end{DoxyCode}
+
+
+\section*{Full implementation}
+
+You can review a full implementation on \href{https://github.com/kike-canaries/canairio_firmware/blob/master/src/main.cpp}{\tt Can\+Air\+IO project firmware}, but a little brief is the next\+:
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} onSensorDataOk() \{
+    Serial.print(\textcolor{stringliteral}{"PM2.5: "} + String(sensors.\hyperlink{classSensors_adc3ad26b8a9be10b2100e3b023fdefc4}{getPM25}()));
+    Serial.print(\textcolor{stringliteral}{" CO2: "}  + String(sensors.\hyperlink{classSensors_ad953d4564cc20d8134cccd962435dd81}{getCO2}()));
+    Serial.print(\textcolor{stringliteral}{" CO2H: "} + String(sensors.\hyperlink{classSensors_a7fa1fe8f4f3469bce9311be880c243df}{getCO2humi}()));
+    Serial.print(\textcolor{stringliteral}{" CO2T: "} + String(sensors.\hyperlink{classSensors_a7afb5c201c4e1933c96719e632181f71}{getCO2temp}()));
+    Serial.print(\textcolor{stringliteral}{" H: "}    + String(sensors.\hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{getHumidity}()));
+    Serial.println(\textcolor{stringliteral}{" T: "}  + String(sensors.\hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{getTemperature}()));
+\}
+
+\textcolor{keywordtype}{void} onSensorDataError(\textcolor{keyword}{const} \textcolor{keywordtype}{char} * msg)\{
+    Serial.println(\textcolor{stringliteral}{"Sensor read error: "}+String(msg));
+\}
+
+\textcolor{keywordtype}{void} setup() \{
+
+    sensors.\hyperlink{classSensors_a729f911e0508cc8814a2276ff519b219}{setOnDataCallBack}(&onSensorDataOk);     \textcolor{comment}{// all data read callback}
+    sensors.\hyperlink{classSensors_aba1b7a633d1d89514c891220b603351f}{setOnErrorCallBack}(&onSensorDataError); \textcolor{comment}{// [optional] error callback}
+    sensors.\hyperlink{classSensors_ac723c0d9cf5af5daa0fa8d041f41f3d8}{setSampleTime}(15);                      \textcolor{comment}{// [optional] sensors sample time (default
+       5s)}
+    sensors.\hyperlink{classSensors_a122c0d2922d2a80984e8a3ac21b883c3}{setTempOffset}(cfg.toffset);             \textcolor{comment}{// [optional] temperature compensation}
+    sensors.\hyperlink{classSensors_a27eec756609a421b3927c0dc132ae7c6}{setCO2AltitudeOffset}(cfg.altoffset);    \textcolor{comment}{// [optional] CO2 altitude
+       compensation}
+    sensors.\hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{setDebugMode}(\textcolor{keyword}{false});                    \textcolor{comment}{// [optional] debug mode to get detailed
+       msgs}
+    sensors.\hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detectI2COnly}(\textcolor{keyword}{true});                    \textcolor{comment}{// [optional] force to only i2c sensors}
+    sensors.\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}();                                 \textcolor{comment}{// Auto detection to UART and i2c sensors}
+
+    \textcolor{comment}{// Alternatives only for UART sensors (TX/RX):}
+
+    \textcolor{comment}{// sensors.init(sensors.Auto);                  // Auto detection to UART sensors (Honeywell,
+       Plantower, Panasonic)}
+    \textcolor{comment}{// sensors.init(sensors.Panasonic);             // Force UART detection to Panasonic sensor}
+    \textcolor{comment}{// sensors.init(sensors.Sensirion);             // Force UART detection to Sensirion sensor}
+    \textcolor{comment}{// sensors.init(sensors.Mhz19);                 // Force UART detection to Mhz14 or Mhz19 CO2 sensor}
+    \textcolor{comment}{// sensors.init(sensors.SDS011);                // Force UART detection to SDS011 sensor}
+    \textcolor{comment}{// sensors.init(sensors.CM1106);                // Force UART detection to CM1106 CO2 sensor}
+    \textcolor{comment}{// sensors.init(sensors.SENSEAIRS8);            // Force UART detection to SenseAirS8 CO2 sensor}
+    \textcolor{comment}{// sensors.init(sensors.Auto,PMS\_RX,PMS\_TX);    // Auto detection on custom RX,TX}
+
+
+    \textcolor{comment}{// Also you can access to sub library objects, and perform for example calls like next:}
+
+    \textcolor{comment}{// sensors.sps30.sleep()}
+    \textcolor{comment}{// sensors.bme.readPressure();}
+    \textcolor{comment}{// sensors.mhz19.getRange();}
+    \textcolor{comment}{// sensors.scd30.getTemperatureOffset();}
+    \textcolor{comment}{// sensors.aht10.readRawData();}
+    \textcolor{comment}{// sensors.s8.set\_ABC\_period(period)}
+    \textcolor{comment}{// ...}
+
+    delay(500);
+\}
+
+\textcolor{keywordtype}{void} loop() \{
+    sensors.\hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop}();  \textcolor{comment}{// read sensor data and showed it}
+\}
+\end{DoxyCode}
+
+
+\subsection*{Output}
+
+On your serial monitor you should have something like that\+:
+
+
+\begin{DoxyCode}
+-->[SETUP] Detecting sensors..
+-->[SETUP] Sensor configured: SENSIRION
+-->[MAIN] PM1.0: 002 PM2.5: 004 PM10: 006
+-->[MAIN] PM1.0: 002 PM2.5: 002 PM10: 002
+-->[MAIN] PM1.0: 002 PM2.5: 002 PM10: 002
+\end{DoxyCode}
+
+
+\subsection*{Multivariable demo}
+
+In this \href{https://www.youtube.com/watch?v=-5Va47Bap48}{\tt demo} with two devices and multiple sensors, you can choose the possible sub sensors units\+:
+
+\href{https://www.youtube.com/watch?v=-5Va47Bap48}{\tt }
+
+\subsection*{Multivariable alternative implementation}
+
+The last version added new getters to have the current status of each unit of each sensor connected to the device in real time. Also you can retrieve the list of device names and other stuff\+:
+
+For example\+:
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <Arduino.h>}
+\textcolor{preprocessor}{#include <Sensors.hpp>}
+
+\textcolor{keywordtype}{void} printSensorsDetected() \{
+    uint16\_t sensors\_count =  sensors.\hyperlink{classSensors_ad8395e69cf5dcc68d0a8049ec7372a81}{getSensorsRegisteredCount}();
+    uint16\_t units\_count   =  sensors.\hyperlink{classSensors_a1d723cdb619b2d61d3e4080182a12cbb}{getUnitsRegisteredCount}();
+    Serial.println(\textcolor{stringliteral}{"-->[MAIN] Sensors detected count\(\backslash\)t: "} + String(sensors\_count));
+    Serial.println(\textcolor{stringliteral}{"-->[MAIN] Sensors units count  \(\backslash\)t: "}  + String(units\_count));
+    Serial.print(  \textcolor{stringliteral}{"-->[MAIN] Sensors devices names\(\backslash\)t: "});
+    \textcolor{keywordtype}{int} i = 0;
+    \textcolor{keywordflow}{while} (sensors.\hyperlink{classSensors_af9ee8f89e81d76a4c2b41ed6dc38f2f3}{getSensorsRegistered}()[i++] != 0) \{
+        Serial.print(sensors.\hyperlink{classSensors_aa7ca70f31838cba52b96f76aa4a0d4a2}{getSensorName}((SENSORS)sensors.
+      \hyperlink{classSensors_af9ee8f89e81d76a4c2b41ed6dc38f2f3}{getSensorsRegistered}()[i - 1]));
+        Serial.print(\textcolor{stringliteral}{","});
+    \}
+    Serial.println();
+\}
+
+\textcolor{keywordtype}{void} printSensorsValues() \{
+    Serial.println(\textcolor{stringliteral}{"\(\backslash\)n-->[MAIN] Preview sensor values:"});
+    UNIT unit = sensors.\hyperlink{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}{getNextUnit}();
+    \textcolor{keywordflow}{while}(unit != UNIT::NUNIT) \{
+        String uName = sensors.\hyperlink{classSensors_a4abb5d2a00d31a407e32cbdabe00b6eb}{getUnitName}(unit);
+        \textcolor{keywordtype}{float} uValue = sensors.\hyperlink{classSensors_a7e75dd4e3f2e655a9961f57650cbf749}{getUnitValue}(unit);
+        String uSymb = sensors.\hyperlink{classSensors_a365a45dc5c9ab598cfc206368579b94a}{getUnitSymbol}(unit);
+        Serial.print(\textcolor{stringliteral}{"-->[MAIN] "} + uName + \textcolor{stringliteral}{": "} + String(uValue) + \textcolor{stringliteral}{" "} + uSymb);
+        unit = sensors.\hyperlink{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}{getNextUnit}();
+    \}
+\}
+
+\textcolor{keywordtype}{void} onSensorDataOk() \{
+    Serial.println(\textcolor{stringliteral}{"======= E X A M P L E   T E S T ========="});
+    printSensorsDetected();
+    printSensorsValues(); 
+    Serial.println(\textcolor{stringliteral}{"========================================="});
+\}
+
+\textcolor{comment}{/******************************************************************************}
+\textcolor{comment}{*  M A I N}
+\textcolor{comment}{******************************************************************************/}
+
+\textcolor{keywordtype}{void} setup() \{
+    Serial.begin(115200);
+    delay(100);
+    sensors.\hyperlink{classSensors_ac723c0d9cf5af5daa0fa8d041f41f3d8}{setSampleTime}(5);                       \textcolor{comment}{// config sensors sample time interval}
+    sensors.\hyperlink{classSensors_a729f911e0508cc8814a2276ff519b219}{setOnDataCallBack}(&onSensorDataOk);     \textcolor{comment}{// all data read callback}
+    sensors.\hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{setDebugMode}(\textcolor{keyword}{true});                     \textcolor{comment}{// [optional] debug mode}
+    sensors.\hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detectI2COnly}(\textcolor{keyword}{false});                   \textcolor{comment}{// disable force to only i2c sensors}
+    sensors.\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}();                                 \textcolor{comment}{// Auto detection to UART and i2c sensors}
+\}
+
+\textcolor{keywordtype}{void} loop() \{
+    sensors.\hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop}();  \textcolor{comment}{// read sensor data and showed it}
+\}
+\end{DoxyCode}
+
+
+\subsection*{U\+A\+RT detection demo}
+
+\href{https://www.youtube.com/watch?v=hmukAmG5Eec}{\tt }
+
+Can\+Air\+IO sensorlib auto configuration demo on \href{https://www.youtube.com/watch?v=hmukAmG5Eec}{\tt Youtube}
+
+\section*{Wiring}
+
+The current version of library supports 3 kinds of wiring connection, U\+A\+RT, i2c and Two\+Wire, in the main boards the library using the defaults pins of each board, but in some special cases the pins are\+:
+
+\subsection*{U\+A\+RT}
+
+\subsubsection*{Predefined U\+A\+RT}
+
+The library has \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/src/Sensors.hpp#L19-L52}{\tt pre-\/defined some U\+A\+RT pin configs}, these are selected on compiling time. Maybe you don\textquotesingle{}t need change anything with your board, and maybe the nexts alternatives works for you\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Board model }&\PBS\centering \textbf{ TX }&\PBS\centering \textbf{ RX }&\PBS\centering \textbf{ Notes  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Board model }&\PBS\centering \textbf{ TX }&\PBS\centering \textbf{ RX }&\PBS\centering \textbf{ Notes  }\\\cline{1-4}
+\endhead
+E\+S\+P32\+G\+E\+N\+E\+R\+IC &\PBS\centering 1 &\PBS\centering 3 &\PBS\centering E\+S\+P32 Pio defaults \\\cline{1-4}
+T\+T\+G\+O\+T7 / E\+S\+P32\+D\+E\+V\+K\+IT / D1\+M\+I\+NI / N\+O\+D\+E\+F\+I\+N\+ED &\PBS\centering 16 &\PBS\centering 17 &\PBS\centering Can\+Air\+IO devices $\ast$$\ast$ \\\cline{1-4}
+T\+T\+G\+O\+\_\+\+T\+D\+I\+S\+P\+L\+AY &\PBS\centering 12 &\PBS\centering 13 &\PBS\centering \\\cline{1-4}
+M5\+C\+O\+R\+E\+I\+NK &\PBS\centering 14 &\PBS\centering 13 &\PBS\centering \\\cline{1-4}
+T\+T\+GO TQ &\PBS\centering 18 &\PBS\centering 13 &\PBS\centering \\\cline{1-4}
+H\+E\+L\+T\+EC &\PBS\centering 18 &\PBS\centering 17 &\PBS\centering \\\cline{1-4}
+W\+E\+M\+O\+S\+O\+L\+ED &\PBS\centering 15 &\PBS\centering 13 &\PBS\centering \\\cline{1-4}
+E\+S\+P32\+P\+I\+C\+O\+D4 &\PBS\centering 3 &\PBS\centering 1 &\PBS\centering \\\cline{1-4}
+\end{longtabu}
+$\ast$$\ast$ This pines are when you compile your project without specific any build variable or you board isn\textquotesingle{}t in the list.
+
+\subsubsection*{Custom U\+A\+RT\+:}
+
+Also you could define a custom U\+A\+RT pins in the init() method if it isn\textquotesingle{}t autodected\+:
+
+
+\begin{DoxyCode}
+sensors.\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}(sensors.Auto,RX,TX); \textcolor{comment}{// custom RX, custom TX pines.}
+\end{DoxyCode}
+
+
+\subsection*{I2C (recommended)}
+
+We are using the default pins for each board, some times it\textquotesingle{}s pins are 21,22, please check your board schematic.
+
+\subsection*{Two\+Wire (deprecated soon)}
+
+For now we are using it only for D\+HT sensors in P\+IN 23. For more info please review the next lines \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/src/Sensors.hpp#L19-L52}{\tt here}.
+
+\section*{Examples}
+
+\subsubsection*{Platform\+IO (recommended)}
+
+\paragraph*{Compiling and Installing}
+
+We recommended Platform\+IO because is more easy than Arduino I\+DE. For this, please install first \href{http://platformio.org/}{\tt Platform\+IO} and its command line tools (Windows, Mac\+Os and Linux), {\bfseries pio} command, then connect your compatible board to the U\+SB and run the next command\+:
+
+
+\begin{DoxyCode}
+pio run --target upload
+\end{DoxyCode}
+
+
+\subsubsection*{Arduino I\+DE}
+
+Only import the {\ttfamily ino} file of the sample and install the libraries listed on {\ttfamily library.\+json} and this library.
+
+\subsubsection*{Arduino C\+LI}
+
+\paragraph*{Prerequisites}
+
+For run the examples, you first need to install {\bfseries arduino-\/cli} or the {\bfseries Arduino I\+DE} with the libraries referenced in {\bfseries lib\+\_\+deps} on the file \href{https://github.com/kike-canaries/canairio_sensorlib/blob/fix_ondataready_cb/platformio.ini}{\tt platformio.\+ini}, becuase {\bfseries Arduino don\textquotesingle{}t install it automatically} like Platform\+IO. Then put Can\+Air\+IO sensor library in your library directory, you can download it from \href{https://github.com/kike-canaries/canairio_sensorlib/releases}{\tt releases} section.
+
+Also you need to add the {\bfseries alternative links} for supporting the E\+S\+P32 boards\+:
+
+
+\begin{DoxyCode}
+arduino-cli config init
+\end{DoxyCode}
+
+
+in the {\ttfamily .arduino15/arduino-\/cli.\+yaml} file add\+:
+
+
+\begin{DoxyCode}
+board\_manager:
+  additional\_urls:
+    - https://arduino.esp8266.com/stable/package\_esp8266com\_index.json
+    - https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package\_esp32\_index.json
+\end{DoxyCode}
+
+
+\paragraph*{Compiling and Installing}
+
+From {\ttfamily arduino-\/cli} you can run the basic example in a E\+S\+P32 board following these steps\+:
+
+
+\begin{DoxyCode}
+arduino-cli core update-index
+arduino-cli core install esp32:esp32:lolin32
+arduino-cli compile --fqbn esp32:esp32:lolin32 basic
+arduino-cli upload --fqbn esp32:esp32:lolin32:UploadSpeed=115200 -p /dev/ttyUSB0 basic
+\end{DoxyCode}
+
+
+where {\ttfamily basic} is the basic example on examples directory.
+
+\section*{Supporting the project}
+
+If you want to contribute to the code or documentation, consider posting a bug report, feature request or a pull request.
+
+When creating a pull request, we recommend that you do the following\+:
+
+
+\begin{DoxyItemize}
+\item Clone the repository
+\item Create a new branch for your fix or feature. For example, git checkout -\/b fix/my-\/fix or git checkout -\/b feat/my-\/feature.
+\item Run to any clang formatter if it is a code, for example using the {\ttfamily vscode} formatter. We are using Google style. More info \href{https://clang.llvm.org/docs/ClangFormatStyleOptions.html}{\tt here}
+\item Document the PR description or code will be great
+\item Target your pull request to be merged with {\ttfamily devel} branch
+\end{DoxyItemize}
+
+Also you can make a donation, be a patreon or buy a device\+:
+
+\href{https://raw.githubusercontent.com/kike-canaries/canairio_firmware/master/images/ethereum_donation_address.png}{\tt }
+
+
+\begin{DoxyItemize}
+\item Via {\bfseries Ethereum}\+: {\ttfamily 0x1779c\+D3b85b6\+D8\+Cf1\+A5886\+B2\+C\+F5\+C53a0\+E072\+C108}
+\item Via {\bfseries Liberapay}\+: \href{https://liberapay.com/CanAirIO}{\tt Can\+Air\+IO in Libera\+Pay}
+\item {\bfseries Buy a device}\+: \href{https://www.tindie.com/products/hpsaturn/canairio-bike/}{\tt Can\+Air\+IO Bike in Tindie}
+\item \href{https://www.buymeacoffee.com/hpsaturn}{\tt Inviting us {\bfseries a coffee}}
+\end{DoxyItemize}
+
+\section*{T\+O\+DO}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}x\mbox{]} Auto detection for U\+A\+RT sensors (Honeywell, Panasonic and Plantower)
+\item \mbox{[}x\mbox{]} Added S\+P\+S30 library with auto U\+A\+RT detection
+\item \mbox{[}x\mbox{]} Disable/enable logs (debug mode flag)
+\item \mbox{[}x\mbox{]} Added bme280, bmp280, aht10, sht31, am2320 i2c sensors
+\item \mbox{[}x\mbox{]} Exposed public sub-\/libraries objects, sps30, aht10, etc.
+\item \mbox{[}x\mbox{]} Added old D\+HT sensors
+\item \mbox{[}x\mbox{]} Added C\+O2 sensors\+: M\+H\+Z19, S\+C\+D30, C\+M1106 via U\+A\+RT
+\item \mbox{[}x\mbox{]} Added S\+D\+S011 particle metter
+\item \mbox{[}x\mbox{]} B\+M\+E680 support
+\item \mbox{[}x\mbox{]} Added Sensirion S\+P\+S30 and Panasonic S\+N-\/\+G\+C\+J\+A5 via i2c
+\item \mbox{[}x\mbox{]} Enable/\+Disable U\+A\+RT detection for force only i2c
+\item \mbox{[}x\mbox{]} Temperature and Altitude compensation
+\item \mbox{[}x\mbox{]} Sense\+Air S8 via U\+A\+RT support
+\item \mbox{[}x\mbox{]} Multivariable selection (get\+Next\+Unit(),get\+Unit\+Name(),etc)
+\item \mbox{[}x\mbox{]} Two I2C channel supported for M5\+Stack Devices (M5\+StickC tested)
+\item \mbox{[} \mbox{]} Sea level setting for Pressure sensors and others
+\item \mbox{[} \mbox{]} Support to second U\+A\+RT port
+\end{DoxyItemize}
+
+\section*{Projects using this Library}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/kike-canaries/canairio_firmware}{\tt Can\+Air\+IO Device}\+: E\+S\+P32 Air quality device for mobile and fixed stations. (P\+M2.\+5 and C\+O2)
+\item \href{https://emariete.com/medidor-co2-display-tft-color-ttgo-t-display-sensirion-scd30}{\tt Medidor de C\+O2}\+: Un medidor de C\+O2 de alta calidad con pantalla en color. (C\+O2)
+\end{DoxyItemize}
+
+\section*{Credits}
+
+Thanks to all collaborators and \href{https://canair.io}{\tt Can\+Air\+IO} community for testing and reports. 
+
+ 
