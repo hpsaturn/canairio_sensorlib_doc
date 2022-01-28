@@ -23,7 +23,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CanAirIO Sensors Library
-   &#160;<span id="projectnumber">0.5.0</span>
+   &#160;<span id="projectnumber">0.5.1</span>
    </div>
    <div id="projectbrief">Generic sensor manager, abstratctions and bindings of multiple air sensors libraries</div>
   </td>
@@ -79,10 +79,10 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">loop</a> ()</td></tr>
 <tr class="memdesc:a255ece4e475221edb8ba7a8983014a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main sensors loop. All sensors are read here, please call it on main loop. <br /></td></tr>
 <tr class="separator:a255ece4e475221edb8ba7a8983014a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cd0c5e7d7c7230b32e8313e5f652a9d"><td class="memItemLeft" align="right" valign="top"><a id="a4cd0c5e7d7c7230b32e8313e5f652a9d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a4cd0c5e7d7c7230b32e8313e5f652a9d">readAllSensors</a> ()</td></tr>
-<tr class="memdesc:a4cd0c5e7d7c7230b32e8313e5f652a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all sensors but use only one time or use <a class="el" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76" title="Main sensors loop. All sensors are read here, please call it on main loop. ">loop()</a> instead. All sensors are read here. Use it carefully, better use sensors.loop() <br /></td></tr>
-<tr class="separator:a4cd0c5e7d7c7230b32e8313e5f652a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f531daf0233f48c3c4e5e91688f90ea"><td class="memItemLeft" align="right" valign="top"><a id="a4f531daf0233f48c3c4e5e91688f90ea"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a4f531daf0233f48c3c4e5e91688f90ea">readAllSensors</a> ()</td></tr>
+<tr class="memdesc:a4f531daf0233f48c3c4e5e91688f90ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all sensors but use only one time or use <a class="el" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76" title="Main sensors loop. All sensors are read here, please call it on main loop. ">loop()</a> instead. All sensors are read here. Use it carefully, better use sensors.loop() <br /></td></tr>
+<tr class="separator:a4f531daf0233f48c3c4e5e91688f90ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63ec661795621129a831a6f837c7f560"><td class="memItemLeft" align="right" valign="top"><a id="a63ec661795621129a831a6f837c7f560"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a63ec661795621129a831a6f837c7f560">isDataReady</a> ()</td></tr>
 <tr class="memdesc:a63ec661795621129a831a6f837c7f560"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the sensor status <br /></td></tr>
@@ -238,10 +238,18 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:ad33c76f341c86ac1900c5953fca9c0d1"><td class="memItemLeft" align="right" valign="top">UNIT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">getNextUnit</a> ()</td></tr>
 <tr class="memdesc:ad33c76f341c86ac1900c5953fca9c0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the next sensor unit available  <a href="#ad33c76f341c86ac1900c5953fca9c0d1">More...</a><br /></td></tr>
 <tr class="separator:ad33c76f341c86ac1900c5953fca9c0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6ac6080b6ad79ba9cd441646826058d"><td class="memItemLeft" align="right" valign="top"><a id="ae6ac6080b6ad79ba9cd441646826058d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">resetNextUnit</a> ()</td></tr>
-<tr class="memdesc:ae6ac6080b6ad79ba9cd441646826058d"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the next sensor unit counter <br /></td></tr>
+<tr class="memitem:a47635ad00b96b1175c96c6ead2c4a514"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">resetUnitsRegister</a> ()</td></tr>
+<tr class="memdesc:a47635ad00b96b1175c96c6ead2c4a514"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the sensor units registry  <a href="#a47635ad00b96b1175c96c6ead2c4a514">More...</a><br /></td></tr>
+<tr class="separator:a47635ad00b96b1175c96c6ead2c4a514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86190ba0e2fce178aaf936d2c926f7fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">resetSensorsRegister</a> ()</td></tr>
+<tr class="memdesc:a86190ba0e2fce178aaf936d2c926f7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the sensor registry  <a href="#a86190ba0e2fce178aaf936d2c926f7fe">More...</a><br /></td></tr>
+<tr class="separator:a86190ba0e2fce178aaf936d2c926f7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ac6080b6ad79ba9cd441646826058d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">resetNextUnit</a> ()</td></tr>
+<tr class="memdesc:ae6ac6080b6ad79ba9cd441646826058d"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the next sensor unit counter  <a href="#ae6ac6080b6ad79ba9cd441646826058d">More...</a><br /></td></tr>
 <tr class="separator:ae6ac6080b6ad79ba9cd441646826058d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a296d40a89de2b405c19f1982d6083545"><td class="memItemLeft" align="right" valign="top"><a id="a296d40a89de2b405c19f1982d6083545"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>resetAllVariables</b> ()</td></tr>
+<tr class="separator:a296d40a89de2b405c19f1982d6083545"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e75dd4e3f2e655a9961f57650cbf749"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">getUnitValue</a> (UNIT unit)</td></tr>
 <tr class="memdesc:a7e75dd4e3f2e655a9961f57650cbf749"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the sensor unit value (float)  <a href="#a7e75dd4e3f2e655a9961f57650cbf749">More...</a><br /></td></tr>
 <tr class="separator:a7e75dd4e3f2e655a9961f57650cbf749"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -614,7 +622,8 @@ SensirionI2CScd4x&#160;</td><td class="memItemRight" valign="bottom"><b>scd4x</b
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>float value of the each unit (RAW) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>float value of the each unit (RAW)</dd></dl>
+<p>Also you can use the specific primitive like <a class="el" href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c" title="get temperature °C value of environment sensor ">getTemperature()</a>, <a class="el" href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1" title="get humidity % value of environment sensor ">getHumidity()</a>, <a class="el" href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90" title="get Gas resistance value of BMP680 sensor ">getGas()</a>, <a class="el" href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8" title="get Altitude value in meters ">getAltitude()</a>, <a class="el" href="classSensors.html#a3db568a0fb294fd02cc1f95943db4f55" title="get Pressure value in hPa ">getPressure()</a> </p>
 
 </div>
 </div>
@@ -779,6 +788,66 @@ SensirionI2CScd4x&#160;</td><td class="memItemRight" valign="bottom"><b>scd4x</b
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ae6ac6080b6ad79ba9cd441646826058d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ac6080b6ad79ba9cd441646826058d">&#9670;&nbsp;</a></span>resetNextUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sensors::resetNextUnit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>reset the next sensor unit counter </p>
+<p>This function is useful to reset the counter to review the sensor units again. but it is not necessary to call this function. </p>
+
+</div>
+</div>
+<a id="a86190ba0e2fce178aaf936d2c926f7fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86190ba0e2fce178aaf936d2c926f7fe">&#9670;&nbsp;</a></span>resetSensorsRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sensors::resetSensorsRegister </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>reset the sensor registry </p>
+<p>This function is useful to reset the sensors registry after a sensor is removed. It should be called before the initialization of the sensors but it is <b>Not necessary</b> to call this function. </p>
+
+</div>
+</div>
+<a id="a47635ad00b96b1175c96c6ead2c4a514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47635ad00b96b1175c96c6ead2c4a514">&#9670;&nbsp;</a></span>resetUnitsRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sensors::resetUnitsRegister </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>reset the sensor units registry </p>
+<p>This function is useful to reset the units registry after a sensor unit is removed. but it is <b>Not necessary</b> to call this function. </p>
 
 </div>
 </div>

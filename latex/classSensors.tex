@@ -8,8 +8,8 @@ void \hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init} (int pms\+
 \mbox{\Hypertarget{classSensors_a255ece4e475221edb8ba7a8983014a76}\label{classSensors_a255ece4e475221edb8ba7a8983014a76}} 
 void \hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop} ()
 \begin{DoxyCompactList}\small\item\em Main sensors loop. All sensors are read here, please call it on main loop. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSensors_a4cd0c5e7d7c7230b32e8313e5f652a9d}\label{classSensors_a4cd0c5e7d7c7230b32e8313e5f652a9d}} 
-void \hyperlink{classSensors_a4cd0c5e7d7c7230b32e8313e5f652a9d}{read\+All\+Sensors} ()
+\mbox{\Hypertarget{classSensors_a4f531daf0233f48c3c4e5e91688f90ea}\label{classSensors_a4f531daf0233f48c3c4e5e91688f90ea}} 
+bool \hyperlink{classSensors_a4f531daf0233f48c3c4e5e91688f90ea}{read\+All\+Sensors} ()
 \begin{DoxyCompactList}\small\item\em Read all sensors but use only one time or use \hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop()} instead. All sensors are read here. Use it carefully, better use sensors.\+loop() \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a63ec661795621129a831a6f837c7f560}\label{classSensors_a63ec661795621129a831a6f837c7f560}} 
 bool \hyperlink{classSensors_a63ec661795621129a831a6f837c7f560}{is\+Data\+Ready} ()
@@ -133,9 +133,15 @@ String \hyperlink{classSensors_a365a45dc5c9ab598cfc206368579b94a}{get\+Unit\+Sym
 \begin{DoxyCompactList}\small\item\em get the sensor unit symbol \end{DoxyCompactList}\item 
 U\+N\+IT \hyperlink{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}{get\+Next\+Unit} ()
 \begin{DoxyCompactList}\small\item\em get the next sensor unit available \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSensors_ae6ac6080b6ad79ba9cd441646826058d}\label{classSensors_ae6ac6080b6ad79ba9cd441646826058d}} 
+void \hyperlink{classSensors_a47635ad00b96b1175c96c6ead2c4a514}{reset\+Units\+Register} ()
+\begin{DoxyCompactList}\small\item\em reset the sensor units registry \end{DoxyCompactList}\item 
+void \hyperlink{classSensors_a86190ba0e2fce178aaf936d2c926f7fe}{reset\+Sensors\+Register} ()
+\begin{DoxyCompactList}\small\item\em reset the sensor registry \end{DoxyCompactList}\item 
 void \hyperlink{classSensors_ae6ac6080b6ad79ba9cd441646826058d}{reset\+Next\+Unit} ()
 \begin{DoxyCompactList}\small\item\em reset the next sensor unit counter \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSensors_a296d40a89de2b405c19f1982d6083545}\label{classSensors_a296d40a89de2b405c19f1982d6083545}} 
+void {\bfseries reset\+All\+Variables} ()
+\item 
 float \hyperlink{classSensors_a7e75dd4e3f2e655a9961f57650cbf749}{get\+Unit\+Value} (U\+N\+IT unit)
 \begin{DoxyCompactList}\small\item\em get the sensor unit value (float) \end{DoxyCompactList}\item 
 void \hyperlink{classSensors_a0e9516d728256efd1eba97ef834cd385}{print\+Units\+Registered} (bool debug=false)
@@ -390,9 +396,9 @@ get the sensor unit value (float)
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-float value of the each unit (R\+AW) 
+float value of the each unit (R\+AW)
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSensors_a019efdf3e65081e9ace94e1f05338e4b}\label{classSensors_a019efdf3e65081e9ace94e1f05338e4b}} 
+Also you can use the specific primitive like \hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{get\+Temperature()}, \hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{get\+Humidity()}, \hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas()}, \hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Altitude()}, \hyperlink{classSensors_a3db568a0fb294fd02cc1f95943db4f55}{get\+Pressure()} \mbox{\Hypertarget{classSensors_a019efdf3e65081e9ace94e1f05338e4b}\label{classSensors_a019efdf3e65081e9ace94e1f05338e4b}} 
 \index{Sensors@{Sensors}!init@{init}}
 \index{init@{init}!Sensors@{Sensors}}
 \subsubsection{\texorpdfstring{init()}{init()}}
@@ -485,7 +491,37 @@ print the sensor units names available
 {\em debug} & optional boolean to set the debug mode flag \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSensors_ac749e2c2618a177afa7d72ce68573fa5}\label{classSensors_ac749e2c2618a177afa7d72ce68573fa5}} 
+\mbox{\Hypertarget{classSensors_ae6ac6080b6ad79ba9cd441646826058d}\label{classSensors_ae6ac6080b6ad79ba9cd441646826058d}} 
+\index{Sensors@{Sensors}!reset\+Next\+Unit@{reset\+Next\+Unit}}
+\index{reset\+Next\+Unit@{reset\+Next\+Unit}!Sensors@{Sensors}}
+\subsubsection{\texorpdfstring{reset\+Next\+Unit()}{resetNextUnit()}}
+{\footnotesize\ttfamily void Sensors\+::reset\+Next\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reset the next sensor unit counter 
+
+This function is useful to reset the counter to review the sensor units again. but it is not necessary to call this function. \mbox{\Hypertarget{classSensors_a86190ba0e2fce178aaf936d2c926f7fe}\label{classSensors_a86190ba0e2fce178aaf936d2c926f7fe}} 
+\index{Sensors@{Sensors}!reset\+Sensors\+Register@{reset\+Sensors\+Register}}
+\index{reset\+Sensors\+Register@{reset\+Sensors\+Register}!Sensors@{Sensors}}
+\subsubsection{\texorpdfstring{reset\+Sensors\+Register()}{resetSensorsRegister()}}
+{\footnotesize\ttfamily void Sensors\+::reset\+Sensors\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reset the sensor registry 
+
+This function is useful to reset the sensors registry after a sensor is removed. It should be called before the initialization of the sensors but it is {\bfseries Not necessary} to call this function. \mbox{\Hypertarget{classSensors_a47635ad00b96b1175c96c6ead2c4a514}\label{classSensors_a47635ad00b96b1175c96c6ead2c4a514}} 
+\index{Sensors@{Sensors}!reset\+Units\+Register@{reset\+Units\+Register}}
+\index{reset\+Units\+Register@{reset\+Units\+Register}!Sensors@{Sensors}}
+\subsubsection{\texorpdfstring{reset\+Units\+Register()}{resetUnitsRegister()}}
+{\footnotesize\ttfamily void Sensors\+::reset\+Units\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reset the sensor units registry 
+
+This function is useful to reset the units registry after a sensor unit is removed. but it is {\bfseries Not necessary} to call this function. \mbox{\Hypertarget{classSensors_ac749e2c2618a177afa7d72ce68573fa5}\label{classSensors_ac749e2c2618a177afa7d72ce68573fa5}} 
 \index{Sensors@{Sensors}!set\+Debug\+Mode@{set\+Debug\+Mode}}
 \index{set\+Debug\+Mode@{set\+Debug\+Mode}!Sensors@{Sensors}}
 \subsubsection{\texorpdfstring{set\+Debug\+Mode()}{setDebugMode()}}
