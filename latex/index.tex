@@ -131,6 +131,8 @@ You can review a full implementation on \href{https://github.com/kike-canaries/c
     sensors.\hyperlink{classSensors_a122c0d2922d2a80984e8a3ac21b883c3}{setTempOffset}(cfg.toffset);             \textcolor{comment}{// [optional] temperature compensation}
     sensors.\hyperlink{classSensors_a27eec756609a421b3927c0dc132ae7c6}{setCO2AltitudeOffset}(cfg.altoffset);    \textcolor{comment}{// [optional] CO2 altitude
        compensation}
+    sensors.\hyperlink{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}{setSeaLevelPressure}(1036.25);           \textcolor{comment}{// [optional] Set sea level pressure
+       in hpa}
     sensors.\hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{setDebugMode}(\textcolor{keyword}{false});                    \textcolor{comment}{// [optional] debug mode to get detailed
        msgs}
     sensors.\hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detectI2COnly}(\textcolor{keyword}{true});                    \textcolor{comment}{// [optional] force to only i2c sensors}
@@ -184,9 +186,13 @@ On your serial monitor you should have something like that\+:
 
 \subsection*{Multivariable demo}
 
-In this \href{https://www.youtube.com/watch?v=-5Va47Bap48}{\tt demo} with two devices and multiple sensors, you can choose the possible sub sensors units\+:
+In this \href{https://www.youtube.com/watch?v=-5Va47Bap48}{\tt demo} on two different devices with multiple sensors, you can choose the possible sub sensors units or variables\+:
 
 \href{https://www.youtube.com/watch?v=-5Va47Bap48}{\tt }
+
+In this \href{https://www.youtube.com/watch?v=uxlmP905-FE}{\tt demo} on a simple sketch you could have a dinamyc list of variables of multiple sensors brands\+:
+
+\href{https://youtu.be/i15iEF47CbY}{\tt }
 
 \subsection*{Multivariable alternative implementation}
 
