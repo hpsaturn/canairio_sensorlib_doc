@@ -1,76 +1,76 @@
-\hypertarget{classSensors}{}\section{Sensors Class Reference}
+\hypertarget{classSensors}{}\doxysection{Sensors Class Reference}
 \label{classSensors}\index{Sensors@{Sensors}}
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init} (int pms\+\_\+type=0, int pms\+\_\+rx=P\+M\+S\+\_\+\+RX, int pms\+\_\+tx=P\+M\+S\+\_\+\+TX)
+void \mbox{\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}} (int pms\+\_\+type=0, int pms\+\_\+rx=PMS\+\_\+\+RX, int pms\+\_\+tx=PMS\+\_\+\+TX)
 \begin{DoxyCompactList}\small\item\em All sensors init. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a255ece4e475221edb8ba7a8983014a76}\label{classSensors_a255ece4e475221edb8ba7a8983014a76}} 
-void \hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop} ()
+void \mbox{\hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop}} ()
 \begin{DoxyCompactList}\small\item\em Main sensors loop. All sensors are read here, please call it on main loop. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a4f531daf0233f48c3c4e5e91688f90ea}\label{classSensors_a4f531daf0233f48c3c4e5e91688f90ea}} 
-bool \hyperlink{classSensors_a4f531daf0233f48c3c4e5e91688f90ea}{read\+All\+Sensors} ()
-\begin{DoxyCompactList}\small\item\em Read all sensors but use only one time or use \hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop()} instead. All sensors are read here. Use it carefully, better use sensors.\+loop() \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSensors_a4f531daf0233f48c3c4e5e91688f90ea}{read\+All\+Sensors}} ()
+\begin{DoxyCompactList}\small\item\em Read all sensors but use only one time or use \mbox{\hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop()}} instead. All sensors are read here. Use it carefully, better use sensors.\+loop() \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a63ec661795621129a831a6f837c7f560}\label{classSensors_a63ec661795621129a831a6f837c7f560}} 
-bool \hyperlink{classSensors_a63ec661795621129a831a6f837c7f560}{is\+Data\+Ready} ()
+bool \mbox{\hyperlink{classSensors_a63ec661795621129a831a6f837c7f560}{is\+Data\+Ready}} ()
 \begin{DoxyCompactList}\small\item\em get the sensor status \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_ac723c0d9cf5af5daa0fa8d041f41f3d8}\label{classSensors_ac723c0d9cf5af5daa0fa8d041f41f3d8}} 
-void \hyperlink{classSensors_ac723c0d9cf5af5daa0fa8d041f41f3d8}{set\+Sample\+Time} (int seconds)
+void \mbox{\hyperlink{classSensors_ac723c0d9cf5af5daa0fa8d041f41f3d8}{set\+Sample\+Time}} (int seconds)
 \begin{DoxyCompactList}\small\item\em set loop time interval for each sensor sample \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_a729f911e0508cc8814a2276ff519b219}{set\+On\+Data\+Call\+Back} (void\+Cb\+Fn cb)
+void \mbox{\hyperlink{classSensors_a729f911e0508cc8814a2276ff519b219}{set\+On\+Data\+Call\+Back}} (void\+Cb\+Fn cb)
 \begin{DoxyCompactList}\small\item\em Get sensor data. \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_aba1b7a633d1d89514c891220b603351f}{set\+On\+Error\+Call\+Back} (error\+Cb\+Fn cb)
+void \mbox{\hyperlink{classSensors_aba1b7a633d1d89514c891220b603351f}{set\+On\+Error\+Call\+Back}} (error\+Cb\+Fn cb)
 \begin{DoxyCompactList}\small\item\em Optional callback for get the sensors errors. \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{set\+Debug\+Mode} (bool enable)
+void \mbox{\hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{set\+Debug\+Mode}} (bool enable)
 \begin{DoxyCompactList}\small\item\em Optional for increase the debug level. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a01bcf5b93e803442624669101878b8f9}\label{classSensors_a01bcf5b93e803442624669101878b8f9}} 
-void {\bfseries set\+D\+H\+Tparameters} (int dht\+\_\+sensor\+\_\+pin=D\+H\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+P\+IN, int dht\+\_\+sensor\+\_\+type=D\+H\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+PE)
+void {\bfseries set\+DHTparameters} (int dht\+\_\+sensor\+\_\+pin=DHT\+\_\+\+SENSOR\+\_\+\+PIN, int dht\+\_\+sensor\+\_\+type=DHT\+\_\+\+SENSOR\+\_\+\+TYPE)
 \item 
-bool \hyperlink{classSensors_aa99811f9bb9778253e4d0476fab7b86c}{is\+U\+A\+R\+T\+Sensor\+Configured} ()
-\begin{DoxyCompactList}\small\item\em U\+A\+RT only\+: check if the U\+A\+RT sensor is registered. \end{DoxyCompactList}\item 
-int \hyperlink{classSensors_aaca8ec4ae2c64c366c33622d3332ffb1}{get\+U\+A\+R\+T\+Device\+Type\+Selected} ()
-\begin{DoxyCompactList}\small\item\em U\+A\+RT only\+: get the U\+A\+RT sensor type. See S\+E\+N\+S\+O\+RS enum. Also get\+Device\+Name() \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSensors_aa99811f9bb9778253e4d0476fab7b86c}{is\+UARTSensor\+Configured}} ()
+\begin{DoxyCompactList}\small\item\em UART only\+: check if the UART sensor is registered. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSensors_aaca8ec4ae2c64c366c33622d3332ffb1}{get\+UARTDevice\+Type\+Selected}} ()
+\begin{DoxyCompactList}\small\item\em UART only\+: get the UART sensor type. See SENSORS enum. Also get\+Device\+Name() \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a515884007d9b5239c2321ec0695f69e8}\label{classSensors_a515884007d9b5239c2321ec0695f69e8}} 
-uint16\+\_\+t \hyperlink{classSensors_a515884007d9b5239c2321ec0695f69e8}{get\+P\+M1} ()
-\begin{DoxyCompactList}\small\item\em get P\+M1.\+0 ug/m3 value \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classSensors_a515884007d9b5239c2321ec0695f69e8}{get\+PM1}} ()
+\begin{DoxyCompactList}\small\item\em get PM1.\+0 ug/m3 value \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_adc3ad26b8a9be10b2100e3b023fdefc4}\label{classSensors_adc3ad26b8a9be10b2100e3b023fdefc4}} 
-uint16\+\_\+t \hyperlink{classSensors_adc3ad26b8a9be10b2100e3b023fdefc4}{get\+P\+M25} ()
-\begin{DoxyCompactList}\small\item\em get P\+M2.\+5 ug/m3 value \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classSensors_adc3ad26b8a9be10b2100e3b023fdefc4}{get\+PM25}} ()
+\begin{DoxyCompactList}\small\item\em get PM2.\+5 ug/m3 value \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_aca9b394c691568c7bd3499cba0b67403}\label{classSensors_aca9b394c691568c7bd3499cba0b67403}} 
-uint16\+\_\+t \hyperlink{classSensors_aca9b394c691568c7bd3499cba0b67403}{get\+P\+M4} ()
-\begin{DoxyCompactList}\small\item\em get P\+M4 ug/m3 value \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classSensors_aca9b394c691568c7bd3499cba0b67403}{get\+PM4}} ()
+\begin{DoxyCompactList}\small\item\em get PM4 ug/m3 value \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a8165734cd6b82243549ba6bd1c7a837a}\label{classSensors_a8165734cd6b82243549ba6bd1c7a837a}} 
-uint16\+\_\+t \hyperlink{classSensors_a8165734cd6b82243549ba6bd1c7a837a}{get\+P\+M10} ()
-\begin{DoxyCompactList}\small\item\em get P\+M10 ug/m3 value \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classSensors_a8165734cd6b82243549ba6bd1c7a837a}{get\+PM10}} ()
+\begin{DoxyCompactList}\small\item\em get PM10 ug/m3 value \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_ad953d4564cc20d8134cccd962435dd81}\label{classSensors_ad953d4564cc20d8134cccd962435dd81}} 
-uint16\+\_\+t \hyperlink{classSensors_ad953d4564cc20d8134cccd962435dd81}{get\+C\+O2} ()
-\begin{DoxyCompactList}\small\item\em get C\+O2 ppm value \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classSensors_ad953d4564cc20d8134cccd962435dd81}{get\+CO2}} ()
+\begin{DoxyCompactList}\small\item\em get CO2 ppm value \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a7fa1fe8f4f3469bce9311be880c243df}\label{classSensors_a7fa1fe8f4f3469bce9311be880c243df}} 
-float \hyperlink{classSensors_a7fa1fe8f4f3469bce9311be880c243df}{get\+C\+O2humi} ()
-\begin{DoxyCompactList}\small\item\em get humidity \% value of C\+O2 sensor device \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classSensors_a7fa1fe8f4f3469bce9311be880c243df}{get\+CO2humi}} ()
+\begin{DoxyCompactList}\small\item\em get humidity \% value of CO2 sensor device \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a7afb5c201c4e1933c96719e632181f71}\label{classSensors_a7afb5c201c4e1933c96719e632181f71}} 
-float \hyperlink{classSensors_a7afb5c201c4e1933c96719e632181f71}{get\+C\+O2temp} ()
-\begin{DoxyCompactList}\small\item\em get temperature °C value of C\+O2 sensor device \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classSensors_a7afb5c201c4e1933c96719e632181f71}{get\+CO2temp}} ()
+\begin{DoxyCompactList}\small\item\em get temperature °C value of CO2 sensor device \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}\label{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}} 
-float \hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{get\+Temperature} ()
+float \mbox{\hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{get\+Temperature}} ()
 \begin{DoxyCompactList}\small\item\em get temperature °C value of environment sensor \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}\label{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}} 
-float \hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{get\+Humidity} ()
+float \mbox{\hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{get\+Humidity}} ()
 \begin{DoxyCompactList}\small\item\em get humidity \% value of environment sensor \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a3db568a0fb294fd02cc1f95943db4f55}\label{classSensors_a3db568a0fb294fd02cc1f95943db4f55}} 
-float \hyperlink{classSensors_a3db568a0fb294fd02cc1f95943db4f55}{get\+Pressure} ()
+float \mbox{\hyperlink{classSensors_a3db568a0fb294fd02cc1f95943db4f55}{get\+Pressure}} ()
 \begin{DoxyCompactList}\small\item\em get Pressure value in h\+Pa \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}\label{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}} 
-float \hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Altitude} ()
+float \mbox{\hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Altitude}} ()
 \begin{DoxyCompactList}\small\item\em get Altitude value in meters \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a6051b0aa681611fe040ea0cc7417ef90}\label{classSensors_a6051b0aa681611fe040ea0cc7417ef90}} 
-float \hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas} ()
-\begin{DoxyCompactList}\small\item\em get Gas resistance value of B\+M\+P680 sensor \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_a122c0d2922d2a80984e8a3ac21b883c3}{set\+Temp\+Offset} (float offset)
+float \mbox{\hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas}} ()
+\begin{DoxyCompactList}\small\item\em get Gas resistance value of BMP680 sensor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSensors_a122c0d2922d2a80984e8a3ac21b883c3}{set\+Temp\+Offset}} (float offset)
 \begin{DoxyCompactList}\small\item\em Set temperature offset for all temperature sensors. \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_a27eec756609a421b3927c0dc132ae7c6}{set\+C\+O2\+Altitude\+Offset} (float altitude)
-\begin{DoxyCompactList}\small\item\em set C\+O2 altitude offset (m) \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}{set\+Sea\+Level\+Pressure} (float hpa)
+void \mbox{\hyperlink{classSensors_a27eec756609a421b3927c0dc132ae7c6}{set\+CO2\+Altitude\+Offset}} (float altitude)
+\begin{DoxyCompactList}\small\item\em set CO2 altitude offset (m) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}{set\+Sea\+Level\+Pressure}} (float hpa)
 \begin{DoxyCompactList}\small\item\em set the sea level pressure (h\+Pa) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a38f2ebcfa7900fe80972f43fbc70a84b}\label{classSensors_a38f2ebcfa7900fe80972f43fbc70a84b}} 
 String {\bfseries get\+Format\+Temp} ()
@@ -87,23 +87,23 @@ String {\bfseries get\+Format\+Gas} ()
 \mbox{\Hypertarget{classSensors_ab56838d386d6d71043d3ad0b97244d73}\label{classSensors_ab56838d386d6d71043d3ad0b97244d73}} 
 String {\bfseries get\+Format\+Alt} ()
 \item 
-String \hyperlink{classSensors_a427616fc30b3d9e63ce6be5032b614c2}{get\+String\+P\+M1} ()
+String \mbox{\hyperlink{classSensors_a427616fc30b3d9e63ce6be5032b614c2}{get\+String\+PM1}} ()
 \item 
-String \hyperlink{classSensors_ab07001101683393a4cc3609ac6449b3c}{get\+String\+P\+M25} ()
+String \mbox{\hyperlink{classSensors_ab07001101683393a4cc3609ac6449b3c}{get\+String\+PM25}} ()
 \item 
-String \hyperlink{classSensors_ab4eb2c9e8cd83823dfedb2c72aa2b405}{get\+String\+P\+M4} ()
+String \mbox{\hyperlink{classSensors_ab4eb2c9e8cd83823dfedb2c72aa2b405}{get\+String\+PM4}} ()
 \item 
-String \hyperlink{classSensors_ab5eb58786c893bd552ef14516489c50d}{get\+String\+P\+M10} ()
+String \mbox{\hyperlink{classSensors_ab5eb58786c893bd552ef14516489c50d}{get\+String\+PM10}} ()
 \item 
-String \hyperlink{classSensors_a64c1c667d899309fdbc08e88b8e9f2fc}{get\+String\+C\+O2} ()
+String \mbox{\hyperlink{classSensors_a64c1c667d899309fdbc08e88b8e9f2fc}{get\+String\+CO2}} ()
 \item 
 \mbox{\Hypertarget{classSensors_a613010a0ffd5fef1ac4942d0187b8d4a}\label{classSensors_a613010a0ffd5fef1ac4942d0187b8d4a}} 
-String {\bfseries get\+String\+C\+O2temp} ()
+String {\bfseries get\+String\+CO2temp} ()
 \item 
-void \hyperlink{classSensors_a47f337a24231440b661d57ed8e873a64}{set\+C\+O2\+Recalibration\+Factor} (int ppm\+Value)
-\begin{DoxyCompactList}\small\item\em set C\+O2 recalibration P\+PM value (400 to 2000) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSensors_a47f337a24231440b661d57ed8e873a64}{set\+CO2\+Recalibration\+Factor}} (int ppm\+Value)
+\begin{DoxyCompactList}\small\item\em set CO2 recalibration PPM value (400 to 2000) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}\label{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}} 
-void \hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detect\+I2\+C\+Only} (bool enable)
+void \mbox{\hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detect\+I2\+COnly}} (bool enable)
 \begin{DoxyCompactList}\small\item\em Forced to enable I2C sensors only Recommended to use only if you are using a I2C sensor and improve the performance. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_af8c24cdf4179bf5bf7e799844e626b43}\label{classSensors_af8c24cdf4179bf5bf7e799844e626b43}} 
 String {\bfseries get\+Library\+Version} ()
@@ -111,44 +111,44 @@ String {\bfseries get\+Library\+Version} ()
 \mbox{\Hypertarget{classSensors_adb026d51c7801930b26730371244bb5e}\label{classSensors_adb026d51c7801930b26730371244bb5e}} 
 int16\+\_\+t {\bfseries get\+Library\+Revision} ()
 \item 
-bool \hyperlink{classSensors_ac1cf4e90258eb2fcbdc8cf7c1f75a1c1}{is\+Sensor\+Registered} (S\+E\+N\+S\+O\+RS sensor)
+bool \mbox{\hyperlink{classSensors_ac1cf4e90258eb2fcbdc8cf7c1f75a1c1}{is\+Sensor\+Registered}} (SENSORS sensor)
 \begin{DoxyCompactList}\small\item\em Read and check the sensors status on initialization. \end{DoxyCompactList}\item 
-uint8\+\_\+t $\ast$ \hyperlink{classSensors_af9ee8f89e81d76a4c2b41ed6dc38f2f3}{get\+Sensors\+Registered} ()
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{classSensors_af9ee8f89e81d76a4c2b41ed6dc38f2f3}{get\+Sensors\+Registered}} ()
 \begin{DoxyCompactList}\small\item\em get the sensor registry for retrieve the sensor names \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_ad8395e69cf5dcc68d0a8049ec7372a81}\label{classSensors_ad8395e69cf5dcc68d0a8049ec7372a81}} 
-uint8\+\_\+t \hyperlink{classSensors_ad8395e69cf5dcc68d0a8049ec7372a81}{get\+Sensors\+Registered\+Count} ()
+uint8\+\_\+t \mbox{\hyperlink{classSensors_ad8395e69cf5dcc68d0a8049ec7372a81}{get\+Sensors\+Registered\+Count}} ()
 \begin{DoxyCompactList}\small\item\em get device sensors detected count \end{DoxyCompactList}\item 
-String \hyperlink{classSensors_aa7ca70f31838cba52b96f76aa4a0d4a2}{get\+Sensor\+Name} (S\+E\+N\+S\+O\+RS sensor)
+String \mbox{\hyperlink{classSensors_aa7ca70f31838cba52b96f76aa4a0d4a2}{get\+Sensor\+Name}} (SENSORS sensor)
 \begin{DoxyCompactList}\small\item\em get the sensor name \end{DoxyCompactList}\item 
-Sensor\+Group \hyperlink{classSensors_abd4b900acd33f41c7fd184e0dad90aeb}{get\+Sensor\+Group} (S\+E\+N\+S\+O\+RS sensor)
+Sensor\+Group \mbox{\hyperlink{classSensors_abd4b900acd33f41c7fd184e0dad90aeb}{get\+Sensor\+Group}} (SENSORS sensor)
 \begin{DoxyCompactList}\small\item\em get the sensor group type \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a1d723cdb619b2d61d3e4080182a12cbb}\label{classSensors_a1d723cdb619b2d61d3e4080182a12cbb}} 
-uint8\+\_\+t \hyperlink{classSensors_a1d723cdb619b2d61d3e4080182a12cbb}{get\+Units\+Registered\+Count} ()
+uint8\+\_\+t \mbox{\hyperlink{classSensors_a1d723cdb619b2d61d3e4080182a12cbb}{get\+Units\+Registered\+Count}} ()
 \begin{DoxyCompactList}\small\item\em get device sensors units detected count \end{DoxyCompactList}\item 
-bool \hyperlink{classSensors_ac1acd7bf32bda39fdfde1753af3ceef2}{is\+Unit\+Registered} (U\+N\+IT unit)
+bool \mbox{\hyperlink{classSensors_ac1acd7bf32bda39fdfde1753af3ceef2}{is\+Unit\+Registered}} (UNIT unit)
 \begin{DoxyCompactList}\small\item\em get the sensor unit status on the registry \end{DoxyCompactList}\item 
-String \hyperlink{classSensors_a4abb5d2a00d31a407e32cbdabe00b6eb}{get\+Unit\+Name} (U\+N\+IT unit)
+String \mbox{\hyperlink{classSensors_a4abb5d2a00d31a407e32cbdabe00b6eb}{get\+Unit\+Name}} (UNIT unit)
 \begin{DoxyCompactList}\small\item\em get the sensor unit name \end{DoxyCompactList}\item 
-String \hyperlink{classSensors_a365a45dc5c9ab598cfc206368579b94a}{get\+Unit\+Symbol} (U\+N\+IT unit)
+String \mbox{\hyperlink{classSensors_a365a45dc5c9ab598cfc206368579b94a}{get\+Unit\+Symbol}} (UNIT unit)
 \begin{DoxyCompactList}\small\item\em get the sensor unit symbol \end{DoxyCompactList}\item 
-U\+N\+IT \hyperlink{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}{get\+Next\+Unit} ()
+UNIT \mbox{\hyperlink{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}{get\+Next\+Unit}} ()
 \begin{DoxyCompactList}\small\item\em get the next sensor unit available \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_a47635ad00b96b1175c96c6ead2c4a514}{reset\+Units\+Register} ()
+void \mbox{\hyperlink{classSensors_a47635ad00b96b1175c96c6ead2c4a514}{reset\+Units\+Register}} ()
 \begin{DoxyCompactList}\small\item\em reset the sensor units registry \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_a86190ba0e2fce178aaf936d2c926f7fe}{reset\+Sensors\+Register} ()
+void \mbox{\hyperlink{classSensors_a86190ba0e2fce178aaf936d2c926f7fe}{reset\+Sensors\+Register}} ()
 \begin{DoxyCompactList}\small\item\em reset the sensor registry \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_ae6ac6080b6ad79ba9cd441646826058d}{reset\+Next\+Unit} ()
+void \mbox{\hyperlink{classSensors_ae6ac6080b6ad79ba9cd441646826058d}{reset\+Next\+Unit}} ()
 \begin{DoxyCompactList}\small\item\em reset the next sensor unit counter \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a296d40a89de2b405c19f1982d6083545}\label{classSensors_a296d40a89de2b405c19f1982d6083545}} 
 void {\bfseries reset\+All\+Variables} ()
 \item 
-float \hyperlink{classSensors_a7e75dd4e3f2e655a9961f57650cbf749}{get\+Unit\+Value} (U\+N\+IT unit)
+float \mbox{\hyperlink{classSensors_a7e75dd4e3f2e655a9961f57650cbf749}{get\+Unit\+Value}} (UNIT unit)
 \begin{DoxyCompactList}\small\item\em get the sensor unit value (float) \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_a0e9516d728256efd1eba97ef834cd385}{print\+Units\+Registered} (bool debug=false)
+void \mbox{\hyperlink{classSensors_a0e9516d728256efd1eba97ef834cd385}{print\+Units\+Registered}} (bool debug=false)
 \begin{DoxyCompactList}\small\item\em print the sensor units names available \end{DoxyCompactList}\item 
-void \hyperlink{classSensors_aed05af978baed0801ff4de5f1c367cf0}{print\+Sensors\+Registered} (bool debug=false)
+void \mbox{\hyperlink{classSensors_aed05af978baed0801ff4de5f1c367cf0}{print\+Sensors\+Registered}} (bool debug=false)
 \begin{DoxyCompactList}\small\item\em print the sensor names detected \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classSensors_a5b541f807d8fa5fd77ef92c06c63a45c}\label{classSensors_a5b541f807d8fa5fd77ef92c06c63a45c}} 
@@ -173,28 +173,28 @@ float {\bfseries sealevel} = 1013.\+25
 float {\bfseries hpa} = 0.\+0
 \item 
 \mbox{\Hypertarget{classSensors_afac2f108c62157d4d63baee21c1d2564}\label{classSensors_afac2f108c62157d4d63baee21c1d2564}} 
-S\+P\+S30 \hyperlink{classSensors_afac2f108c62157d4d63baee21c1d2564}{sps30}
+SPS30 \mbox{\hyperlink{classSensors_afac2f108c62157d4d63baee21c1d2564}{sps30}}
 \begin{DoxyCompactList}\small\item\em Sensirion library. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a16174075dbfcc011ae3130ffd4c6605f}\label{classSensors_a16174075dbfcc011ae3130ffd4c6605f}} 
 bool {\bfseries i2conly}
 \item 
 \mbox{\Hypertarget{classSensors_a78c6800deaf6b89fc6719a936345bef5}\label{classSensors_a78c6800deaf6b89fc6719a936345bef5}} 
-A\+M232X {\bfseries am2320}
+AM232X {\bfseries am2320}
 \item 
 \mbox{\Hypertarget{classSensors_a655dd7b6cd1864ecba724161213b1222}\label{classSensors_a655dd7b6cd1864ecba724161213b1222}} 
-Adafruit\+\_\+\+B\+M\+E280 {\bfseries bme280}
+Adafruit\+\_\+\+BME280 {\bfseries bme280}
 \item 
 \mbox{\Hypertarget{classSensors_a5af169078d14a1272bdf390109041df0}\label{classSensors_a5af169078d14a1272bdf390109041df0}} 
-Adafruit\+\_\+\+B\+M\+P280 {\bfseries bmp280}
+Adafruit\+\_\+\+BMP280 {\bfseries bmp280}
 \item 
 \mbox{\Hypertarget{classSensors_a9c16019668f5e0e883211d1259331af3}\label{classSensors_a9c16019668f5e0e883211d1259331af3}} 
-Adafruit\+\_\+\+B\+M\+E680 {\bfseries bme680}
+Adafruit\+\_\+\+BME680 {\bfseries bme680}
 \item 
 \mbox{\Hypertarget{classSensors_a62d8160f55965ccee5a12d9431c1918f}\label{classSensors_a62d8160f55965ccee5a12d9431c1918f}} 
-A\+H\+T10 {\bfseries aht10}
+AHT10 {\bfseries aht10}
 \item 
 \mbox{\Hypertarget{classSensors_a8b5bcd2158f4ed4eb1674cc483cfab1d}\label{classSensors_a8b5bcd2158f4ed4eb1674cc483cfab1d}} 
-Adafruit\+\_\+\+S\+H\+T31 {\bfseries sht31}
+Adafruit\+\_\+\+SHT31 {\bfseries sht31}
 \item 
 \mbox{\Hypertarget{classSensors_a5edc17132cf264dd930732d04ee6b93b}\label{classSensors_a5edc17132cf264dd930732d04ee6b93b}} 
 float {\bfseries dhthumi}
@@ -203,53 +203,56 @@ float {\bfseries dhthumi}
 float {\bfseries dhttemp}
 \item 
 \mbox{\Hypertarget{classSensors_ad6156b78908fd064761301339e54c8af}\label{classSensors_ad6156b78908fd064761301339e54c8af}} 
-M\+H\+Z19 {\bfseries mhz19}
+MHZ19 {\bfseries mhz19}
 \item 
-\mbox{\Hypertarget{classSensors_a23eda1a35572934dab10cfca3635abde}\label{classSensors_a23eda1a35572934dab10cfca3635abde}} 
-S\+C\+D30 {\bfseries scd30}
+\mbox{\Hypertarget{classSensors_a7b69b0360b3ec5a2a08d2591be8a92b7}\label{classSensors_a7b69b0360b3ec5a2a08d2591be8a92b7}} 
+Adafruit\+\_\+\+SCD30 {\bfseries scd30}
 \item 
 \mbox{\Hypertarget{classSensors_a3f92336ae7ee535c6417111075949ad1}\label{classSensors_a3f92336ae7ee535c6417111075949ad1}} 
-C\+M1106\+\_\+\+U\+A\+RT $\ast$ {\bfseries cm1106}
+CM1106\+\_\+\+UART $\ast$ {\bfseries cm1106}
 \item 
 \mbox{\Hypertarget{classSensors_a8b00eb1d005ea6634307c236d6a39a70}\label{classSensors_a8b00eb1d005ea6634307c236d6a39a70}} 
-C\+M1106\+\_\+sensor {\bfseries cm1106sensor}
+CM1106\+\_\+sensor {\bfseries cm1106sensor}
 \item 
 \mbox{\Hypertarget{classSensors_ace9ca82dcea1486bdf395cacdb7d2620}\label{classSensors_ace9ca82dcea1486bdf395cacdb7d2620}} 
-C\+M1106\+\_\+\+A\+BC {\bfseries abc}
+CM1106\+\_\+\+ABC {\bfseries abc}
 \item 
 \mbox{\Hypertarget{classSensors_a98fa1dc37540b4c3c11609c7840ada8b}\label{classSensors_a98fa1dc37540b4c3c11609c7840ada8b}} 
-S\+F\+E\+\_\+\+P\+A\+R\+T\+I\+C\+L\+E\+\_\+\+S\+E\+N\+S\+OR {\bfseries pm\+G\+C\+J\+A5}
+SFE\+\_\+\+PARTICLE\+\_\+\+SENSOR {\bfseries pm\+GCJA5}
 \item 
 \mbox{\Hypertarget{classSensors_ad5b958024787912f4ab413034a3a0a75}\label{classSensors_ad5b958024787912f4ab413034a3a0a75}} 
-S8\+\_\+\+U\+A\+RT $\ast$ {\bfseries s8}
+S8\+\_\+\+UART $\ast$ {\bfseries s8}
 \item 
 \mbox{\Hypertarget{classSensors_adfac0bef57dc49feb0de18a3a8492ca0}\label{classSensors_adfac0bef57dc49feb0de18a3a8492ca0}} 
 S8\+\_\+sensor {\bfseries s8sensor}
 \item 
 \mbox{\Hypertarget{classSensors_a15b986d752487db6a9a61948f255eb84}\label{classSensors_a15b986d752487db6a9a61948f255eb84}} 
-Sensirion\+I2\+C\+Scd4x {\bfseries scd4x}
+Sensirion\+I2\+CScd4x {\bfseries scd4x}
+\item 
+\mbox{\Hypertarget{classSensors_aaab17888bad6c8c60c5a2f8e2501bfc8}\label{classSensors_aaab17888bad6c8c60c5a2f8e2501bfc8}} 
+PM1006 $\ast$ {\bfseries pm1006}
 \end{DoxyCompactItemize}
 
 
-\subsection{Member Function Documentation}
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}\label{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}} 
-\index{Sensors@{Sensors}!get\+Next\+Unit@{get\+Next\+Unit}}
-\index{get\+Next\+Unit@{get\+Next\+Unit}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+Next\+Unit()}{getNextUnit()}}
-{\footnotesize\ttfamily U\+N\+IT Sensors\+::get\+Next\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getNextUnit@{getNextUnit}}
+\index{getNextUnit@{getNextUnit}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getNextUnit()}{getNextUnit()}}
+{\footnotesize\ttfamily UNIT Sensors\+::get\+Next\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 get the next sensor unit available 
 
 \begin{DoxyReturn}{Returns}
-U\+N\+IT enum value. 
+UNIT enum value. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_abd4b900acd33f41c7fd184e0dad90aeb}\label{classSensors_abd4b900acd33f41c7fd184e0dad90aeb}} 
-\index{Sensors@{Sensors}!get\+Sensor\+Group@{get\+Sensor\+Group}}
-\index{get\+Sensor\+Group@{get\+Sensor\+Group}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+Sensor\+Group()}{getSensorGroup()}}
-{\footnotesize\ttfamily Sensor\+Group Sensors\+::get\+Sensor\+Group (\begin{DoxyParamCaption}\item[{S\+E\+N\+S\+O\+RS}]{sensor }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getSensorGroup@{getSensorGroup}}
+\index{getSensorGroup@{getSensorGroup}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getSensorGroup()}{getSensorGroup()}}
+{\footnotesize\ttfamily Sensor\+Group Sensors\+::get\+Sensor\+Group (\begin{DoxyParamCaption}\item[{SENSORS}]{sensor }\end{DoxyParamCaption})}
 
 
 
@@ -257,17 +260,17 @@ get the sensor group type
 
 
 \begin{DoxyParams}{Parameters}
-{\em sensor} & (mandatory) S\+E\+N\+S\+O\+RS enum value. \\
+{\em sensor} & (mandatory) SENSORS enum value. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Sensor group int with the sensor type.
 \end{DoxyReturn}
-if the sensor is not in a group, return 0. if the sensor is in a group, return 1 (PM), 2 (C\+O2), 3 (E\+NV). \mbox{\Hypertarget{classSensors_aa7ca70f31838cba52b96f76aa4a0d4a2}\label{classSensors_aa7ca70f31838cba52b96f76aa4a0d4a2}} 
-\index{Sensors@{Sensors}!get\+Sensor\+Name@{get\+Sensor\+Name}}
-\index{get\+Sensor\+Name@{get\+Sensor\+Name}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+Sensor\+Name()}{getSensorName()}}
-{\footnotesize\ttfamily String Sensors\+::get\+Sensor\+Name (\begin{DoxyParamCaption}\item[{S\+E\+N\+S\+O\+RS}]{sensor }\end{DoxyParamCaption})}
+if the sensor is not in a group, return 0. if the sensor is in a group, return 1 (PM), 2 (CO2), 3 (ENV). \mbox{\Hypertarget{classSensors_aa7ca70f31838cba52b96f76aa4a0d4a2}\label{classSensors_aa7ca70f31838cba52b96f76aa4a0d4a2}} 
+\index{Sensors@{Sensors}!getSensorName@{getSensorName}}
+\index{getSensorName@{getSensorName}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getSensorName()}{getSensorName()}}
+{\footnotesize\ttfamily String Sensors\+::get\+Sensor\+Name (\begin{DoxyParamCaption}\item[{SENSORS}]{sensor }\end{DoxyParamCaption})}
 
 
 
@@ -275,16 +278,16 @@ get the sensor name
 
 
 \begin{DoxyParams}{Parameters}
-{\em sensor} & (mandatory) S\+E\+N\+S\+O\+RS enum value. \\
+{\em sensor} & (mandatory) SENSORS enum value. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 String with the sensor name. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_af9ee8f89e81d76a4c2b41ed6dc38f2f3}\label{classSensors_af9ee8f89e81d76a4c2b41ed6dc38f2f3}} 
-\index{Sensors@{Sensors}!get\+Sensors\+Registered@{get\+Sensors\+Registered}}
-\index{get\+Sensors\+Registered@{get\+Sensors\+Registered}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+Sensors\+Registered()}{getSensorsRegistered()}}
+\index{Sensors@{Sensors}!getSensorsRegistered@{getSensorsRegistered}}
+\index{getSensorsRegistered@{getSensorsRegistered}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getSensorsRegistered()}{getSensorsRegistered()}}
 {\footnotesize\ttfamily uint8\+\_\+t $\ast$ Sensors\+::get\+Sensors\+Registered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -292,66 +295,66 @@ String with the sensor name.
 get the sensor registry for retrieve the sensor names 
 
 \begin{DoxyReturn}{Returns}
-pointer to the sensor registry \hyperlink{}{See the multivariable example\+: \href{https://bit.ly/2XzZ9yw}{\tt https\+://bit.\+ly/2\+Xz\+Z9yw} }
+pointer to the sensor registry \mbox{\hyperlink{}{See the multivariable example\+: \href{https://bit.ly/2XzZ9yw}{\texttt{ https\+://bit.\+ly/2\+Xz\+Z9yw}} }}
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_a64c1c667d899309fdbc08e88b8e9f2fc}\label{classSensors_a64c1c667d899309fdbc08e88b8e9f2fc}} 
-\index{Sensors@{Sensors}!get\+String\+C\+O2@{get\+String\+C\+O2}}
-\index{get\+String\+C\+O2@{get\+String\+C\+O2}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+String\+C\+O2()}{getStringCO2()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+C\+O2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getStringCO2@{getStringCO2}}
+\index{getStringCO2@{getStringCO2}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getStringCO2()}{getStringCO2()}}
+{\footnotesize\ttfamily String Sensors\+::get\+String\+CO2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyRefDesc}{Deprecated}
-\item[\hyperlink{deprecated__deprecated000005}{Deprecated}]get C\+O2 ppm formated value \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{deprecated__deprecated000005}{Deprecated}}]get CO2 ppm formated value \end{DoxyRefDesc}
 \mbox{\Hypertarget{classSensors_a427616fc30b3d9e63ce6be5032b614c2}\label{classSensors_a427616fc30b3d9e63ce6be5032b614c2}} 
-\index{Sensors@{Sensors}!get\+String\+P\+M1@{get\+String\+P\+M1}}
-\index{get\+String\+P\+M1@{get\+String\+P\+M1}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+String\+P\+M1()}{getStringPM1()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+P\+M1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getStringPM1@{getStringPM1}}
+\index{getStringPM1@{getStringPM1}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getStringPM1()}{getStringPM1()}}
+{\footnotesize\ttfamily String Sensors\+::get\+String\+PM1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyRefDesc}{Deprecated}
-\item[\hyperlink{deprecated__deprecated000001}{Deprecated}]get P\+M1.\+0 ug/m3 formated value \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{deprecated__deprecated000001}{Deprecated}}]get PM1.\+0 ug/m3 formated value \end{DoxyRefDesc}
 \mbox{\Hypertarget{classSensors_ab5eb58786c893bd552ef14516489c50d}\label{classSensors_ab5eb58786c893bd552ef14516489c50d}} 
-\index{Sensors@{Sensors}!get\+String\+P\+M10@{get\+String\+P\+M10}}
-\index{get\+String\+P\+M10@{get\+String\+P\+M10}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+String\+P\+M10()}{getStringPM10()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+P\+M10 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getStringPM10@{getStringPM10}}
+\index{getStringPM10@{getStringPM10}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getStringPM10()}{getStringPM10()}}
+{\footnotesize\ttfamily String Sensors\+::get\+String\+PM10 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyRefDesc}{Deprecated}
-\item[\hyperlink{deprecated__deprecated000004}{Deprecated}]get P\+M10 ug/m3 formated value \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{deprecated__deprecated000004}{Deprecated}}]get PM10 ug/m3 formated value \end{DoxyRefDesc}
 \mbox{\Hypertarget{classSensors_ab07001101683393a4cc3609ac6449b3c}\label{classSensors_ab07001101683393a4cc3609ac6449b3c}} 
-\index{Sensors@{Sensors}!get\+String\+P\+M25@{get\+String\+P\+M25}}
-\index{get\+String\+P\+M25@{get\+String\+P\+M25}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+String\+P\+M25()}{getStringPM25()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+P\+M25 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getStringPM25@{getStringPM25}}
+\index{getStringPM25@{getStringPM25}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getStringPM25()}{getStringPM25()}}
+{\footnotesize\ttfamily String Sensors\+::get\+String\+PM25 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyRefDesc}{Deprecated}
-\item[\hyperlink{deprecated__deprecated000002}{Deprecated}]get P\+M2.\+5 ug/m3 formated value \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{deprecated__deprecated000002}{Deprecated}}]get PM2.\+5 ug/m3 formated value \end{DoxyRefDesc}
 \mbox{\Hypertarget{classSensors_ab4eb2c9e8cd83823dfedb2c72aa2b405}\label{classSensors_ab4eb2c9e8cd83823dfedb2c72aa2b405}} 
-\index{Sensors@{Sensors}!get\+String\+P\+M4@{get\+String\+P\+M4}}
-\index{get\+String\+P\+M4@{get\+String\+P\+M4}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+String\+P\+M4()}{getStringPM4()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+P\+M4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getStringPM4@{getStringPM4}}
+\index{getStringPM4@{getStringPM4}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getStringPM4()}{getStringPM4()}}
+{\footnotesize\ttfamily String Sensors\+::get\+String\+PM4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyRefDesc}{Deprecated}
-\item[\hyperlink{deprecated__deprecated000003}{Deprecated}]get P\+M4 ug/m3 formated value \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{deprecated__deprecated000003}{Deprecated}}]get PM4 ug/m3 formated value \end{DoxyRefDesc}
 \mbox{\Hypertarget{classSensors_aaca8ec4ae2c64c366c33622d3332ffb1}\label{classSensors_aaca8ec4ae2c64c366c33622d3332ffb1}} 
-\index{Sensors@{Sensors}!get\+U\+A\+R\+T\+Device\+Type\+Selected@{get\+U\+A\+R\+T\+Device\+Type\+Selected}}
-\index{get\+U\+A\+R\+T\+Device\+Type\+Selected@{get\+U\+A\+R\+T\+Device\+Type\+Selected}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+U\+A\+R\+T\+Device\+Type\+Selected()}{getUARTDeviceTypeSelected()}}
-{\footnotesize\ttfamily int Sensors\+::get\+U\+A\+R\+T\+Device\+Type\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getUARTDeviceTypeSelected@{getUARTDeviceTypeSelected}}
+\index{getUARTDeviceTypeSelected@{getUARTDeviceTypeSelected}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getUARTDeviceTypeSelected()}{getUARTDeviceTypeSelected()}}
+{\footnotesize\ttfamily int Sensors\+::get\+UARTDevice\+Type\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-U\+A\+RT only\+: get the U\+A\+RT sensor type. See S\+E\+N\+S\+O\+RS enum. Also get\+Device\+Name() 
+UART only\+: get the UART sensor type. See SENSORS enum. Also get\+Device\+Name() 
 
 \begin{DoxyReturn}{Returns}
-S\+E\+N\+S\+O\+RS enum value. 
+SENSORS enum value. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_a4abb5d2a00d31a407e32cbdabe00b6eb}\label{classSensors_a4abb5d2a00d31a407e32cbdabe00b6eb}} 
-\index{Sensors@{Sensors}!get\+Unit\+Name@{get\+Unit\+Name}}
-\index{get\+Unit\+Name@{get\+Unit\+Name}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+Unit\+Name()}{getUnitName()}}
-{\footnotesize\ttfamily String Sensors\+::get\+Unit\+Name (\begin{DoxyParamCaption}\item[{U\+N\+IT}]{unit }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getUnitName@{getUnitName}}
+\index{getUnitName@{getUnitName}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getUnitName()}{getUnitName()}}
+{\footnotesize\ttfamily String Sensors\+::get\+Unit\+Name (\begin{DoxyParamCaption}\item[{UNIT}]{unit }\end{DoxyParamCaption})}
 
 
 
@@ -359,17 +362,17 @@ get the sensor unit name
 
 
 \begin{DoxyParams}{Parameters}
-{\em unit} & (mandatory) U\+N\+IT enum value. \\
+{\em unit} & (mandatory) UNIT enum value. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 String with the unit name. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_a365a45dc5c9ab598cfc206368579b94a}\label{classSensors_a365a45dc5c9ab598cfc206368579b94a}} 
-\index{Sensors@{Sensors}!get\+Unit\+Symbol@{get\+Unit\+Symbol}}
-\index{get\+Unit\+Symbol@{get\+Unit\+Symbol}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+Unit\+Symbol()}{getUnitSymbol()}}
-{\footnotesize\ttfamily String Sensors\+::get\+Unit\+Symbol (\begin{DoxyParamCaption}\item[{U\+N\+IT}]{unit }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getUnitSymbol@{getUnitSymbol}}
+\index{getUnitSymbol@{getUnitSymbol}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getUnitSymbol()}{getUnitSymbol()}}
+{\footnotesize\ttfamily String Sensors\+::get\+Unit\+Symbol (\begin{DoxyParamCaption}\item[{UNIT}]{unit }\end{DoxyParamCaption})}
 
 
 
@@ -377,17 +380,17 @@ get the sensor unit symbol
 
 
 \begin{DoxyParams}{Parameters}
-{\em unit} & (mandatory) U\+N\+IT enum value. \\
+{\em unit} & (mandatory) UNIT enum value. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 String with the unit symbol. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_a7e75dd4e3f2e655a9961f57650cbf749}\label{classSensors_a7e75dd4e3f2e655a9961f57650cbf749}} 
-\index{Sensors@{Sensors}!get\+Unit\+Value@{get\+Unit\+Value}}
-\index{get\+Unit\+Value@{get\+Unit\+Value}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{get\+Unit\+Value()}{getUnitValue()}}
-{\footnotesize\ttfamily float Sensors\+::get\+Unit\+Value (\begin{DoxyParamCaption}\item[{U\+N\+IT}]{unit }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!getUnitValue@{getUnitValue}}
+\index{getUnitValue@{getUnitValue}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{getUnitValue()}{getUnitValue()}}
+{\footnotesize\ttfamily float Sensors\+::get\+Unit\+Value (\begin{DoxyParamCaption}\item[{UNIT}]{unit }\end{DoxyParamCaption})}
 
 
 
@@ -395,16 +398,16 @@ get the sensor unit value (float)
 
 
 \begin{DoxyParams}{Parameters}
-{\em unit} & (mandatory) U\+N\+IT enum value. \\
+{\em unit} & (mandatory) UNIT enum value. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-float value of the each unit (R\+AW)
+float value of the each unit (RAW)
 \end{DoxyReturn}
-Also you can use the specific primitive like \hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{get\+Temperature()}, \hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{get\+Humidity()}, \hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas()}, \hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Altitude()}, \hyperlink{classSensors_a3db568a0fb294fd02cc1f95943db4f55}{get\+Pressure()} \mbox{\Hypertarget{classSensors_a019efdf3e65081e9ace94e1f05338e4b}\label{classSensors_a019efdf3e65081e9ace94e1f05338e4b}} 
+Also you can use the specific primitive like \mbox{\hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{get\+Temperature()}}, \mbox{\hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{get\+Humidity()}}, \mbox{\hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas()}}, \mbox{\hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Altitude()}}, \mbox{\hyperlink{classSensors_a3db568a0fb294fd02cc1f95943db4f55}{get\+Pressure()}} \mbox{\Hypertarget{classSensors_a019efdf3e65081e9ace94e1f05338e4b}\label{classSensors_a019efdf3e65081e9ace94e1f05338e4b}} 
 \index{Sensors@{Sensors}!init@{init}}
 \index{init@{init}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{init()}{init()}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
 {\footnotesize\ttfamily void Sensors\+::init (\begin{DoxyParamCaption}\item[{int}]{pms\+\_\+type = {\ttfamily 0},  }\item[{int}]{pms\+\_\+rx = {\ttfamily PMS\+\_\+RX},  }\item[{int}]{pms\+\_\+tx = {\ttfamily PMS\+\_\+TX} }\end{DoxyParamCaption})}
 
 
@@ -413,18 +416,18 @@ All sensors init.
 
 
 \begin{DoxyParams}{Parameters}
-{\em pms\+\_\+type} & (optional) U\+A\+RT P\+MS type, please see D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+PE enum. \\
+{\em pms\+\_\+type} & (optional) UART PMS type, please see DEVICE\+\_\+\+TYPE enum. \\
 \hline
-{\em pms\+\_\+rx} & (optional) U\+A\+RT P\+MS RX pin. \\
+{\em pms\+\_\+rx} & (optional) UART PMS RX pin. \\
 \hline
-{\em pms\+\_\+tx} & (optional) U\+A\+RT P\+MS TX pin. \\
+{\em pms\+\_\+tx} & (optional) UART PMS TX pin. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classSensors_ac1cf4e90258eb2fcbdc8cf7c1f75a1c1}\label{classSensors_ac1cf4e90258eb2fcbdc8cf7c1f75a1c1}} 
-\index{Sensors@{Sensors}!is\+Sensor\+Registered@{is\+Sensor\+Registered}}
-\index{is\+Sensor\+Registered@{is\+Sensor\+Registered}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{is\+Sensor\+Registered()}{isSensorRegistered()}}
-{\footnotesize\ttfamily bool Sensors\+::is\+Sensor\+Registered (\begin{DoxyParamCaption}\item[{S\+E\+N\+S\+O\+RS}]{sensor }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!isSensorRegistered@{isSensorRegistered}}
+\index{isSensorRegistered@{isSensorRegistered}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{isSensorRegistered()}{isSensorRegistered()}}
+{\footnotesize\ttfamily bool Sensors\+::is\+Sensor\+Registered (\begin{DoxyParamCaption}\item[{SENSORS}]{sensor }\end{DoxyParamCaption})}
 
 
 
@@ -432,42 +435,42 @@ Read and check the sensors status on initialization.
 
 
 \begin{DoxyParams}{Parameters}
-{\em sensor} & (mandatory) S\+E\+N\+S\+O\+RS enum value. \\
+{\em sensor} & (mandatory) SENSORS enum value. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the sensor is registered, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_aa99811f9bb9778253e4d0476fab7b86c}\label{classSensors_aa99811f9bb9778253e4d0476fab7b86c}} 
-\index{Sensors@{Sensors}!is\+U\+A\+R\+T\+Sensor\+Configured@{is\+U\+A\+R\+T\+Sensor\+Configured}}
-\index{is\+U\+A\+R\+T\+Sensor\+Configured@{is\+U\+A\+R\+T\+Sensor\+Configured}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{is\+U\+A\+R\+T\+Sensor\+Configured()}{isUARTSensorConfigured()}}
-{\footnotesize\ttfamily bool Sensors\+::is\+U\+A\+R\+T\+Sensor\+Configured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!isUARTSensorConfigured@{isUARTSensorConfigured}}
+\index{isUARTSensorConfigured@{isUARTSensorConfigured}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{isUARTSensorConfigured()}{isUARTSensorConfigured()}}
+{\footnotesize\ttfamily bool Sensors\+::is\+UARTSensor\+Configured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-U\+A\+RT only\+: check if the U\+A\+RT sensor is registered. 
+UART only\+: check if the UART sensor is registered. 
 
 \begin{DoxyReturn}{Returns}
-bool true if the U\+A\+RT sensor is registered, false otherwise. 
+bool true if the UART sensor is registered, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_ac1acd7bf32bda39fdfde1753af3ceef2}\label{classSensors_ac1acd7bf32bda39fdfde1753af3ceef2}} 
-\index{Sensors@{Sensors}!is\+Unit\+Registered@{is\+Unit\+Registered}}
-\index{is\+Unit\+Registered@{is\+Unit\+Registered}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{is\+Unit\+Registered()}{isUnitRegistered()}}
-{\footnotesize\ttfamily bool Sensors\+::is\+Unit\+Registered (\begin{DoxyParamCaption}\item[{U\+N\+IT}]{unit }\end{DoxyParamCaption})}
+\index{Sensors@{Sensors}!isUnitRegistered@{isUnitRegistered}}
+\index{isUnitRegistered@{isUnitRegistered}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{isUnitRegistered()}{isUnitRegistered()}}
+{\footnotesize\ttfamily bool Sensors\+::is\+Unit\+Registered (\begin{DoxyParamCaption}\item[{UNIT}]{unit }\end{DoxyParamCaption})}
 
 
 
 get the sensor unit status on the registry 
 
 \begin{DoxyReturn}{Returns}
-True if the sensor unit is available, false otherwise. \hyperlink{}{See the multivariable example\+: \href{https://bit.ly/2XzZ9yw}{\tt https\+://bit.\+ly/2\+Xz\+Z9yw} }
+True if the sensor unit is available, false otherwise. \mbox{\hyperlink{}{See the multivariable example\+: \href{https://bit.ly/2XzZ9yw}{\texttt{ https\+://bit.\+ly/2\+Xz\+Z9yw}} }}
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSensors_aed05af978baed0801ff4de5f1c367cf0}\label{classSensors_aed05af978baed0801ff4de5f1c367cf0}} 
-\index{Sensors@{Sensors}!print\+Sensors\+Registered@{print\+Sensors\+Registered}}
-\index{print\+Sensors\+Registered@{print\+Sensors\+Registered}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{print\+Sensors\+Registered()}{printSensorsRegistered()}}
+\index{Sensors@{Sensors}!printSensorsRegistered@{printSensorsRegistered}}
+\index{printSensorsRegistered@{printSensorsRegistered}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{printSensorsRegistered()}{printSensorsRegistered()}}
 {\footnotesize\ttfamily void Sensors\+::print\+Sensors\+Registered (\begin{DoxyParamCaption}\item[{bool}]{debug = {\ttfamily false} }\end{DoxyParamCaption})}
 
 
@@ -480,9 +483,9 @@ print the sensor names detected
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classSensors_a0e9516d728256efd1eba97ef834cd385}\label{classSensors_a0e9516d728256efd1eba97ef834cd385}} 
-\index{Sensors@{Sensors}!print\+Units\+Registered@{print\+Units\+Registered}}
-\index{print\+Units\+Registered@{print\+Units\+Registered}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{print\+Units\+Registered()}{printUnitsRegistered()}}
+\index{Sensors@{Sensors}!printUnitsRegistered@{printUnitsRegistered}}
+\index{printUnitsRegistered@{printUnitsRegistered}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{printUnitsRegistered()}{printUnitsRegistered()}}
 {\footnotesize\ttfamily void Sensors\+::print\+Units\+Registered (\begin{DoxyParamCaption}\item[{bool}]{debug = {\ttfamily false} }\end{DoxyParamCaption})}
 
 
@@ -495,9 +498,9 @@ print the sensor units names available
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classSensors_ae6ac6080b6ad79ba9cd441646826058d}\label{classSensors_ae6ac6080b6ad79ba9cd441646826058d}} 
-\index{Sensors@{Sensors}!reset\+Next\+Unit@{reset\+Next\+Unit}}
-\index{reset\+Next\+Unit@{reset\+Next\+Unit}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{reset\+Next\+Unit()}{resetNextUnit()}}
+\index{Sensors@{Sensors}!resetNextUnit@{resetNextUnit}}
+\index{resetNextUnit@{resetNextUnit}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{resetNextUnit()}{resetNextUnit()}}
 {\footnotesize\ttfamily void Sensors\+::reset\+Next\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -505,59 +508,59 @@ print the sensor units names available
 reset the next sensor unit counter 
 
 This function is useful to reset the counter to review the sensor units again. but it is not necessary to call this function. \mbox{\Hypertarget{classSensors_a86190ba0e2fce178aaf936d2c926f7fe}\label{classSensors_a86190ba0e2fce178aaf936d2c926f7fe}} 
-\index{Sensors@{Sensors}!reset\+Sensors\+Register@{reset\+Sensors\+Register}}
-\index{reset\+Sensors\+Register@{reset\+Sensors\+Register}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{reset\+Sensors\+Register()}{resetSensorsRegister()}}
+\index{Sensors@{Sensors}!resetSensorsRegister@{resetSensorsRegister}}
+\index{resetSensorsRegister@{resetSensorsRegister}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{resetSensorsRegister()}{resetSensorsRegister()}}
 {\footnotesize\ttfamily void Sensors\+::reset\+Sensors\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 reset the sensor registry 
 
-This function is useful to reset the sensors registry after a sensor is removed. It should be called before the initialization of the sensors but it is {\bfseries Not necessary} to call this function. \mbox{\Hypertarget{classSensors_a47635ad00b96b1175c96c6ead2c4a514}\label{classSensors_a47635ad00b96b1175c96c6ead2c4a514}} 
-\index{Sensors@{Sensors}!reset\+Units\+Register@{reset\+Units\+Register}}
-\index{reset\+Units\+Register@{reset\+Units\+Register}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{reset\+Units\+Register()}{resetUnitsRegister()}}
+This function is useful to reset the sensors registry after a sensor is removed. It should be called before the initialization of the sensors but it is {\bfseries{Not necessary}} to call this function. \mbox{\Hypertarget{classSensors_a47635ad00b96b1175c96c6ead2c4a514}\label{classSensors_a47635ad00b96b1175c96c6ead2c4a514}} 
+\index{Sensors@{Sensors}!resetUnitsRegister@{resetUnitsRegister}}
+\index{resetUnitsRegister@{resetUnitsRegister}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{resetUnitsRegister()}{resetUnitsRegister()}}
 {\footnotesize\ttfamily void Sensors\+::reset\+Units\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 reset the sensor units registry 
 
-This function is useful to reset the units registry after a sensor unit is removed. but it is {\bfseries Not necessary} to call this function. \mbox{\Hypertarget{classSensors_a27eec756609a421b3927c0dc132ae7c6}\label{classSensors_a27eec756609a421b3927c0dc132ae7c6}} 
-\index{Sensors@{Sensors}!set\+C\+O2\+Altitude\+Offset@{set\+C\+O2\+Altitude\+Offset}}
-\index{set\+C\+O2\+Altitude\+Offset@{set\+C\+O2\+Altitude\+Offset}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{set\+C\+O2\+Altitude\+Offset()}{setCO2AltitudeOffset()}}
-{\footnotesize\ttfamily void Sensors\+::set\+C\+O2\+Altitude\+Offset (\begin{DoxyParamCaption}\item[{float}]{altitude }\end{DoxyParamCaption})}
+This function is useful to reset the units registry after a sensor unit is removed. but it is {\bfseries{Not necessary}} to call this function. \mbox{\Hypertarget{classSensors_a27eec756609a421b3927c0dc132ae7c6}\label{classSensors_a27eec756609a421b3927c0dc132ae7c6}} 
+\index{Sensors@{Sensors}!setCO2AltitudeOffset@{setCO2AltitudeOffset}}
+\index{setCO2AltitudeOffset@{setCO2AltitudeOffset}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{setCO2AltitudeOffset()}{setCO2AltitudeOffset()}}
+{\footnotesize\ttfamily void Sensors\+::set\+CO2\+Altitude\+Offset (\begin{DoxyParamCaption}\item[{float}]{altitude }\end{DoxyParamCaption})}
 
 
 
-set C\+O2 altitude offset (m) 
+set CO2 altitude offset (m) 
 
 
 \begin{DoxyParams}{Parameters}
 {\em altitude} & (m)\\
 \hline
 \end{DoxyParams}
-This method is used to compensate the C\+O2 value with the altitude. Recommended on high altitude. \mbox{\Hypertarget{classSensors_a47f337a24231440b661d57ed8e873a64}\label{classSensors_a47f337a24231440b661d57ed8e873a64}} 
-\index{Sensors@{Sensors}!set\+C\+O2\+Recalibration\+Factor@{set\+C\+O2\+Recalibration\+Factor}}
-\index{set\+C\+O2\+Recalibration\+Factor@{set\+C\+O2\+Recalibration\+Factor}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{set\+C\+O2\+Recalibration\+Factor()}{setCO2RecalibrationFactor()}}
-{\footnotesize\ttfamily void Sensors\+::set\+C\+O2\+Recalibration\+Factor (\begin{DoxyParamCaption}\item[{int}]{ppm\+Value }\end{DoxyParamCaption})}
+This method is used to compensate the CO2 value with the altitude. Recommended on high altitude. \mbox{\Hypertarget{classSensors_a47f337a24231440b661d57ed8e873a64}\label{classSensors_a47f337a24231440b661d57ed8e873a64}} 
+\index{Sensors@{Sensors}!setCO2RecalibrationFactor@{setCO2RecalibrationFactor}}
+\index{setCO2RecalibrationFactor@{setCO2RecalibrationFactor}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{setCO2RecalibrationFactor()}{setCO2RecalibrationFactor()}}
+{\footnotesize\ttfamily void Sensors\+::set\+CO2\+Recalibration\+Factor (\begin{DoxyParamCaption}\item[{int}]{ppm\+Value }\end{DoxyParamCaption})}
 
 
 
-set C\+O2 recalibration P\+PM value (400 to 2000) 
+set CO2 recalibration PPM value (400 to 2000) 
 
 
 \begin{DoxyParams}{Parameters}
 {\em ppm\+Value} & the ppm value to set, normally 400.\\
 \hline
 \end{DoxyParams}
-This method is used to set the C\+O2 recalibration value, please use it only on outdoor conditions. Please see the documentation of each sensor for more information. \mbox{\Hypertarget{classSensors_ac749e2c2618a177afa7d72ce68573fa5}\label{classSensors_ac749e2c2618a177afa7d72ce68573fa5}} 
-\index{Sensors@{Sensors}!set\+Debug\+Mode@{set\+Debug\+Mode}}
-\index{set\+Debug\+Mode@{set\+Debug\+Mode}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{set\+Debug\+Mode()}{setDebugMode()}}
+This method is used to set the CO2 recalibration value, please use it only on outdoor conditions. Please see the documentation of each sensor for more information. \mbox{\Hypertarget{classSensors_ac749e2c2618a177afa7d72ce68573fa5}\label{classSensors_ac749e2c2618a177afa7d72ce68573fa5}} 
+\index{Sensors@{Sensors}!setDebugMode@{setDebugMode}}
+\index{setDebugMode@{setDebugMode}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{setDebugMode()}{setDebugMode()}}
 {\footnotesize\ttfamily void Sensors\+::set\+Debug\+Mode (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
 
 
@@ -570,9 +573,9 @@ Optional for increase the debug level.
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classSensors_a729f911e0508cc8814a2276ff519b219}\label{classSensors_a729f911e0508cc8814a2276ff519b219}} 
-\index{Sensors@{Sensors}!set\+On\+Data\+Call\+Back@{set\+On\+Data\+Call\+Back}}
-\index{set\+On\+Data\+Call\+Back@{set\+On\+Data\+Call\+Back}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{set\+On\+Data\+Call\+Back()}{setOnDataCallBack()}}
+\index{Sensors@{Sensors}!setOnDataCallBack@{setOnDataCallBack}}
+\index{setOnDataCallBack@{setOnDataCallBack}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{setOnDataCallBack()}{setOnDataCallBack()}}
 {\footnotesize\ttfamily void Sensors\+::set\+On\+Data\+Call\+Back (\begin{DoxyParamCaption}\item[{void\+Cb\+Fn}]{cb }\end{DoxyParamCaption})}
 
 
@@ -585,9 +588,9 @@ Get sensor data.
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classSensors_aba1b7a633d1d89514c891220b603351f}\label{classSensors_aba1b7a633d1d89514c891220b603351f}} 
-\index{Sensors@{Sensors}!set\+On\+Error\+Call\+Back@{set\+On\+Error\+Call\+Back}}
-\index{set\+On\+Error\+Call\+Back@{set\+On\+Error\+Call\+Back}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{set\+On\+Error\+Call\+Back()}{setOnErrorCallBack()}}
+\index{Sensors@{Sensors}!setOnErrorCallBack@{setOnErrorCallBack}}
+\index{setOnErrorCallBack@{setOnErrorCallBack}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{setOnErrorCallBack()}{setOnErrorCallBack()}}
 {\footnotesize\ttfamily void Sensors\+::set\+On\+Error\+Call\+Back (\begin{DoxyParamCaption}\item[{error\+Cb\+Fn}]{cb }\end{DoxyParamCaption})}
 
 
@@ -600,9 +603,9 @@ Optional callback for get the sensors errors.
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}\label{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}} 
-\index{Sensors@{Sensors}!set\+Sea\+Level\+Pressure@{set\+Sea\+Level\+Pressure}}
-\index{set\+Sea\+Level\+Pressure@{set\+Sea\+Level\+Pressure}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{set\+Sea\+Level\+Pressure()}{setSeaLevelPressure()}}
+\index{Sensors@{Sensors}!setSeaLevelPressure@{setSeaLevelPressure}}
+\index{setSeaLevelPressure@{setSeaLevelPressure}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{setSeaLevelPressure()}{setSeaLevelPressure()}}
 {\footnotesize\ttfamily void Sensors\+::set\+Sea\+Level\+Pressure (\begin{DoxyParamCaption}\item[{float}]{hpa }\end{DoxyParamCaption})}
 
 
@@ -615,9 +618,9 @@ set the sea level pressure (h\+Pa)
 \hline
 \end{DoxyParams}
 This method is used to set the sea level pressure for some sensors that need it. \mbox{\Hypertarget{classSensors_a122c0d2922d2a80984e8a3ac21b883c3}\label{classSensors_a122c0d2922d2a80984e8a3ac21b883c3}} 
-\index{Sensors@{Sensors}!set\+Temp\+Offset@{set\+Temp\+Offset}}
-\index{set\+Temp\+Offset@{set\+Temp\+Offset}!Sensors@{Sensors}}
-\subsubsection{\texorpdfstring{set\+Temp\+Offset()}{setTempOffset()}}
+\index{Sensors@{Sensors}!setTempOffset@{setTempOffset}}
+\index{setTempOffset@{setTempOffset}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{setTempOffset()}{setTempOffset()}}
 {\footnotesize\ttfamily void Sensors\+::set\+Temp\+Offset (\begin{DoxyParamCaption}\item[{float}]{offset }\end{DoxyParamCaption})}
 
 

@@ -1,2 +1,3 @@
-# canairio_sensorlib_doc
+# CanAirIO Sensorlib documentation
+
 Devoper documentation of CanAirIO Sensors Library
