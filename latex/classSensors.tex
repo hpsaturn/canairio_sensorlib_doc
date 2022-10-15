@@ -3,7 +3,7 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}} (int pms\+\_\+type=0, int pms\+\_\+rx=PMS\+\_\+\+RX, int pms\+\_\+tx=PMS\+\_\+\+TX)
+void \mbox{\hyperlink{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}{init}} (u\+\_\+int pms\+\_\+type=0, int pms\+\_\+rx=PMS\+\_\+\+RX, int pms\+\_\+tx=PMS\+\_\+\+TX)
 \begin{DoxyCompactList}\small\item\em All sensors init. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_a255ece4e475221edb8ba7a8983014a76}\label{classSensors_a255ece4e475221edb8ba7a8983014a76}} 
 void \mbox{\hyperlink{classSensors_a255ece4e475221edb8ba7a8983014a76}{loop}} ()
@@ -72,34 +72,6 @@ void \mbox{\hyperlink{classSensors_a27eec756609a421b3927c0dc132ae7c6}{set\+CO2\+
 \begin{DoxyCompactList}\small\item\em set CO2 altitude offset (m) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}{set\+Sea\+Level\+Pressure}} (float hpa)
 \begin{DoxyCompactList}\small\item\em set the sea level pressure (h\+Pa) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSensors_a38f2ebcfa7900fe80972f43fbc70a84b}\label{classSensors_a38f2ebcfa7900fe80972f43fbc70a84b}} 
-String {\bfseries get\+Format\+Temp} ()
-\item 
-\mbox{\Hypertarget{classSensors_ab163bc178118ee3ab5656792a6757254}\label{classSensors_ab163bc178118ee3ab5656792a6757254}} 
-String {\bfseries get\+Format\+Press} ()
-\item 
-\mbox{\Hypertarget{classSensors_a92a6d7a37877d373d9653d2327189238}\label{classSensors_a92a6d7a37877d373d9653d2327189238}} 
-String {\bfseries get\+Format\+Hum} ()
-\item 
-\mbox{\Hypertarget{classSensors_af4a5c493e024e724e0009bb95f588be8}\label{classSensors_af4a5c493e024e724e0009bb95f588be8}} 
-String {\bfseries get\+Format\+Gas} ()
-\item 
-\mbox{\Hypertarget{classSensors_ab56838d386d6d71043d3ad0b97244d73}\label{classSensors_ab56838d386d6d71043d3ad0b97244d73}} 
-String {\bfseries get\+Format\+Alt} ()
-\item 
-String \mbox{\hyperlink{classSensors_a427616fc30b3d9e63ce6be5032b614c2}{get\+String\+PM1}} ()
-\item 
-String \mbox{\hyperlink{classSensors_ab07001101683393a4cc3609ac6449b3c}{get\+String\+PM25}} ()
-\item 
-String \mbox{\hyperlink{classSensors_ab4eb2c9e8cd83823dfedb2c72aa2b405}{get\+String\+PM4}} ()
-\item 
-String \mbox{\hyperlink{classSensors_ab5eb58786c893bd552ef14516489c50d}{get\+String\+PM10}} ()
-\item 
-String \mbox{\hyperlink{classSensors_a64c1c667d899309fdbc08e88b8e9f2fc}{get\+String\+CO2}} ()
-\item 
-\mbox{\Hypertarget{classSensors_a613010a0ffd5fef1ac4942d0187b8d4a}\label{classSensors_a613010a0ffd5fef1ac4942d0187b8d4a}} 
-String {\bfseries get\+String\+CO2temp} ()
-\item 
 void \mbox{\hyperlink{classSensors_a47f337a24231440b661d57ed8e873a64}{set\+CO2\+Recalibration\+Factor}} (int ppm\+Value)
 \begin{DoxyCompactList}\small\item\em set CO2 recalibration PPM value (400 to 2000) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}\label{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}} 
@@ -190,8 +162,8 @@ Adafruit\+\_\+\+BMP280 {\bfseries bmp280}
 \mbox{\Hypertarget{classSensors_a9c16019668f5e0e883211d1259331af3}\label{classSensors_a9c16019668f5e0e883211d1259331af3}} 
 Adafruit\+\_\+\+BME680 {\bfseries bme680}
 \item 
-\mbox{\Hypertarget{classSensors_a62d8160f55965ccee5a12d9431c1918f}\label{classSensors_a62d8160f55965ccee5a12d9431c1918f}} 
-AHT10 {\bfseries aht10}
+\mbox{\Hypertarget{classSensors_a4e919d953ced2916be669a69a41fc098}\label{classSensors_a4e919d953ced2916be669a69a41fc098}} 
+AHTxx {\bfseries aht10}
 \item 
 \mbox{\Hypertarget{classSensors_a8b5bcd2158f4ed4eb1674cc483cfab1d}\label{classSensors_a8b5bcd2158f4ed4eb1674cc483cfab1d}} 
 Adafruit\+\_\+\+SHT31 {\bfseries sht31}
@@ -297,46 +269,6 @@ get the sensor registry for retrieve the sensor names
 \begin{DoxyReturn}{Returns}
 pointer to the sensor registry \mbox{\hyperlink{}{See the multivariable example\+: \href{https://bit.ly/2XzZ9yw}{\texttt{ https\+://bit.\+ly/2\+Xz\+Z9yw}} }}
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSensors_a64c1c667d899309fdbc08e88b8e9f2fc}\label{classSensors_a64c1c667d899309fdbc08e88b8e9f2fc}} 
-\index{Sensors@{Sensors}!getStringCO2@{getStringCO2}}
-\index{getStringCO2@{getStringCO2}!Sensors@{Sensors}}
-\doxysubsubsection{\texorpdfstring{getStringCO2()}{getStringCO2()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+CO2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Deprecated}
-\item[\mbox{\hyperlink{deprecated__deprecated000005}{Deprecated}}]get CO2 ppm formated value \end{DoxyRefDesc}
-\mbox{\Hypertarget{classSensors_a427616fc30b3d9e63ce6be5032b614c2}\label{classSensors_a427616fc30b3d9e63ce6be5032b614c2}} 
-\index{Sensors@{Sensors}!getStringPM1@{getStringPM1}}
-\index{getStringPM1@{getStringPM1}!Sensors@{Sensors}}
-\doxysubsubsection{\texorpdfstring{getStringPM1()}{getStringPM1()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+PM1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Deprecated}
-\item[\mbox{\hyperlink{deprecated__deprecated000001}{Deprecated}}]get PM1.\+0 ug/m3 formated value \end{DoxyRefDesc}
-\mbox{\Hypertarget{classSensors_ab5eb58786c893bd552ef14516489c50d}\label{classSensors_ab5eb58786c893bd552ef14516489c50d}} 
-\index{Sensors@{Sensors}!getStringPM10@{getStringPM10}}
-\index{getStringPM10@{getStringPM10}!Sensors@{Sensors}}
-\doxysubsubsection{\texorpdfstring{getStringPM10()}{getStringPM10()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+PM10 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Deprecated}
-\item[\mbox{\hyperlink{deprecated__deprecated000004}{Deprecated}}]get PM10 ug/m3 formated value \end{DoxyRefDesc}
-\mbox{\Hypertarget{classSensors_ab07001101683393a4cc3609ac6449b3c}\label{classSensors_ab07001101683393a4cc3609ac6449b3c}} 
-\index{Sensors@{Sensors}!getStringPM25@{getStringPM25}}
-\index{getStringPM25@{getStringPM25}!Sensors@{Sensors}}
-\doxysubsubsection{\texorpdfstring{getStringPM25()}{getStringPM25()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+PM25 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Deprecated}
-\item[\mbox{\hyperlink{deprecated__deprecated000002}{Deprecated}}]get PM2.\+5 ug/m3 formated value \end{DoxyRefDesc}
-\mbox{\Hypertarget{classSensors_ab4eb2c9e8cd83823dfedb2c72aa2b405}\label{classSensors_ab4eb2c9e8cd83823dfedb2c72aa2b405}} 
-\index{Sensors@{Sensors}!getStringPM4@{getStringPM4}}
-\index{getStringPM4@{getStringPM4}!Sensors@{Sensors}}
-\doxysubsubsection{\texorpdfstring{getStringPM4()}{getStringPM4()}}
-{\footnotesize\ttfamily String Sensors\+::get\+String\+PM4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Deprecated}
-\item[\mbox{\hyperlink{deprecated__deprecated000003}{Deprecated}}]get PM4 ug/m3 formated value \end{DoxyRefDesc}
 \mbox{\Hypertarget{classSensors_aaca8ec4ae2c64c366c33622d3332ffb1}\label{classSensors_aaca8ec4ae2c64c366c33622d3332ffb1}} 
 \index{Sensors@{Sensors}!getUARTDeviceTypeSelected@{getUARTDeviceTypeSelected}}
 \index{getUARTDeviceTypeSelected@{getUARTDeviceTypeSelected}!Sensors@{Sensors}}
@@ -404,11 +336,11 @@ get the sensor unit value (float)
 \begin{DoxyReturn}{Returns}
 float value of the each unit (RAW)
 \end{DoxyReturn}
-Also you can use the specific primitive like \mbox{\hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{get\+Temperature()}}, \mbox{\hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{get\+Humidity()}}, \mbox{\hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas()}}, \mbox{\hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Altitude()}}, \mbox{\hyperlink{classSensors_a3db568a0fb294fd02cc1f95943db4f55}{get\+Pressure()}} \mbox{\Hypertarget{classSensors_a019efdf3e65081e9ace94e1f05338e4b}\label{classSensors_a019efdf3e65081e9ace94e1f05338e4b}} 
+Also you can use the specific primitive like \mbox{\hyperlink{classSensors_ac4c22766994b94a2a28158ed72dc4a0c}{get\+Temperature()}}, \mbox{\hyperlink{classSensors_a255bf73cd4afaf6c656dbbcabb1a8bb1}{get\+Humidity()}}, \mbox{\hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas()}}, \mbox{\hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Altitude()}}, \mbox{\hyperlink{classSensors_a3db568a0fb294fd02cc1f95943db4f55}{get\+Pressure()}} \mbox{\Hypertarget{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}\label{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}} 
 \index{Sensors@{Sensors}!init@{init}}
 \index{init@{init}!Sensors@{Sensors}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily void Sensors\+::init (\begin{DoxyParamCaption}\item[{int}]{pms\+\_\+type = {\ttfamily 0},  }\item[{int}]{pms\+\_\+rx = {\ttfamily PMS\+\_\+RX},  }\item[{int}]{pms\+\_\+tx = {\ttfamily PMS\+\_\+TX} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Sensors\+::init (\begin{DoxyParamCaption}\item[{u\+\_\+int}]{pms\+\_\+type = {\ttfamily 0},  }\item[{int}]{pms\+\_\+rx = {\ttfamily PMS\+\_\+RX},  }\item[{int}]{pms\+\_\+tx = {\ttfamily PMS\+\_\+TX} }\end{DoxyParamCaption})}
 
 
 

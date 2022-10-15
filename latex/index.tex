@@ -114,7 +114,7 @@ Full list of all sub libraries supported \href{https://github.com/kike-canaries/
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{sensors.\mbox{\hyperlink{classSensors_a729f911e0508cc8814a2276ff519b219}{setOnDataCallBack}}(\&onSensorDataOk);   \textcolor{comment}{// all data read callback}}
-\DoxyCodeLine{sensors.\mbox{\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}}();                               \textcolor{comment}{// start all sensors and}}
+\DoxyCodeLine{sensors.\mbox{\hyperlink{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}{init}}();                               \textcolor{comment}{// start all sensors and}}
 
 \end{DoxyCode}
 
@@ -148,7 +148,7 @@ You can review a full implementation on \href{https://github.com/kike-canaries/c
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}{setSeaLevelPressure}}(1036.25);           \textcolor{comment}{// [optional] Set sea level pressure in hpa}}
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{setDebugMode}}(\textcolor{keyword}{false});                    \textcolor{comment}{// [optional] debug mode to get detailed msgs}}
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detectI2COnly}}(\textcolor{keyword}{true});                    \textcolor{comment}{// [optional] force to only i2c sensors}}
-\DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}}();                                 \textcolor{comment}{// Auto detection to UART and i2c sensors}}
+\DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}{init}}();                                 \textcolor{comment}{// Auto detection to UART and i2c sensors}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Alternatives only for UART sensors (TX/RX):}}
 \DoxyCodeLine{}
@@ -265,7 +265,7 @@ For example\+:
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_a729f911e0508cc8814a2276ff519b219}{setOnDataCallBack}}(\&onSensorDataOk);     \textcolor{comment}{// all data read callback}}
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{setDebugMode}}(\textcolor{keyword}{true});                     \textcolor{comment}{// [optional] debug mode}}
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detectI2COnly}}(\textcolor{keyword}{false});                   \textcolor{comment}{// disable force to only i2c sensors}}
-\DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}}();                                 \textcolor{comment}{// Auto detection to UART and i2c sensors}}
+\DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}{init}}();                                 \textcolor{comment}{// Auto detection to UART and i2c sensors}}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{void} loop() \{}
@@ -317,11 +317,11 @@ $\ast$$\ast$ This pines are when you compile your project without specific any b
 
 \doxysubsubsection*{Custom UART\+:}
 
-Also you could define a custom UART pins in the init() method if it isn\textquotesingle{}t autodected\+:
+Also you could define a custom UART pins in the init() method and select specific sensors model, like this\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{sensors.\mbox{\hyperlink{classSensors_a019efdf3e65081e9ace94e1f05338e4b}{init}}(sensors.Auto,RX,TX); \textcolor{comment}{// custom RX, custom TX pines.}}
+\DoxyCodeLine{sensors.\mbox{\hyperlink{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}{init}}(SENSORS::SDS011,yourRX,yourTX); \textcolor{comment}{// custom RX, custom TX pines.}}
 
 \end{DoxyCode}
 
