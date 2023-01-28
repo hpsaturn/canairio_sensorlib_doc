@@ -78,11 +78,32 @@ AHT10   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \
 BME280   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
 BMP280   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
 BME680   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
-DHTxx   &\PBS\centering Two\+Wire   &\PBS\centering Auto   &\PBS\centering DEPRECATED   \\\cline{1-4}
+DHTxx   &\PBS\centering Two\+Wire   &\PBS\centering Auto   &\PBS\centering DISABLED   \\\cline{1-4}
 \end{longtabu}
 
 
-NOTE\+: DHT22 is supported but is not recommended
+NOTE\+: DHT22 is supported but is not recommended. Please see the documentation.
+
+\doxysubsubsection*{Platforms supported}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Platform   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Variants   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Platform   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Variants   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status    }\\\cline{1-4}
+\endhead
+ESP32   &\PBS\centering WROVER$\ast$   &\PBS\centering ESP32\+Devkit and similar (recommended)   &\PBS\centering STABLE    \\\cline{1-4}
+ESP32\+S3   &\PBS\centering Lily\+Go TDisplay   &\PBS\centering In testing   &\PBS\centering UNSTABLE    \\\cline{1-4}
+ESP32\+C3   &\PBS\centering Devkit v3   &\PBS\centering In testing   &\PBS\centering UNSTABLE    \\\cline{1-4}
+ESP8266   &\PBS\centering 12   &\PBS\centering D1\+MINI tested and similar (old)   &\PBS\centering STABLE    \\\cline{1-4}
+Atmelsam   &\PBS\centering seeed\+\_\+wio\+\_\+terminal   &\PBS\centering Only works via i2c on left port   &\PBS\centering STABLE    \\\cline{1-4}
+Arduino   &\PBS\centering Atmel   &\PBS\centering Some third party libraries fails   &\PBS\centering IN PROGRESS   \\\cline{1-4}
+\end{longtabu}
+
 
 \doxysection*{Features}
 
