@@ -4,7 +4,7 @@
 
 \doxysection*{Air Quality \mbox{\hyperlink{classSensors}{Sensors}} Library}
 
-Generic sensor manager, abstractions and bindings of multiple sensors \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/platformio.ini\#L18-L34}{\texttt{ libraries}}\+: Honeywell, Plantower, Panasonic, Sensirion, etc. and CO2 sensors. Also it\textquotesingle{}s handling others environment sensors. This library is for general purpose, but also is the sensors library base of \href{https://canair.io/docs}{\texttt{ Can\+Air\+IO project}}.
+Generic sensor manager, abstractions and bindings of multiple sensors \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/unified-lib-deps.ini}{\texttt{ libraries}}\+: Honeywell, Plantower, Panasonic, Sensirion, etc. and CO2 sensors. Also it\textquotesingle{}s handling others environment sensors. This library is for general purpose, but also is the sensors library base of \href{https://canair.io/docs}{\texttt{ Can\+Air\+IO project}}.
 
 For developers also you can check the complete library documentation \href{http://hpsaturn.com/canairio_sensorlib_doc/html/index.html}{\texttt{ here}}
 
@@ -33,7 +33,7 @@ Honeywell HPMA115\+S0   &\PBS\centering Yes   &\PBS\centering ---   &\PBS\center
 Panasonic SN-\/\+GCJA5L   &\PBS\centering Yes   &\PBS\centering Yes   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-5}
 Plantower models   &\PBS\centering Yes   &\PBS\centering ---   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-5}
 Nova SDS011   &\PBS\centering Yes   &\PBS\centering ---   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-5}
-IKEA Vindriktning   &\PBS\centering Yes   &\PBS\centering ---   &\PBS\centering Select   &\PBS\centering TESTING    \\\cline{1-5}
+IKEA Vindriktning   &\PBS\centering Yes   &\PBS\centering ---   &\PBS\centering Select   &\PBS\centering STABLE    \\\cline{1-5}
 Sensirion SPS30   &\PBS\centering Yes   &\PBS\centering Yes   &\PBS\centering Select / Auto   &\PBS\centering STABLE   \\\cline{1-5}
 \end{longtabu}
 
@@ -76,8 +76,10 @@ AM2320   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    
 SHT31   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
 AHT10   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
 BME280   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
-BMP280   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
+BMP280   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
 BME680   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
+Df\+Robot SEN0469 NH3   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
+DFRobot SEN0466 CO   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
 DHTxx   &\PBS\centering Two\+Wire   &\PBS\centering Auto   &\PBS\centering DISABLED   \\\cline{1-4}
 \end{longtabu}
 
@@ -97,8 +99,8 @@ NOTE\+: DHT22 is supported but is not recommended. Please see the documentation.
 \cellcolor{\tableheadbgcolor}\textbf{ Platform   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Variants   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status    }\\\cline{1-4}
 \endhead
 ESP32   &\PBS\centering WROVER$\ast$   &\PBS\centering ESP32\+Devkit and similar (recommended)   &\PBS\centering STABLE    \\\cline{1-4}
-ESP32\+S3   &\PBS\centering Lily\+Go TDisplay   &\PBS\centering In testing   &\PBS\centering UNSTABLE    \\\cline{1-4}
-ESP32\+C3   &\PBS\centering Devkit v3   &\PBS\centering In testing   &\PBS\centering UNSTABLE    \\\cline{1-4}
+ESP32\+S3   &\PBS\centering Lily\+Go TDisplay   &\PBS\centering In testing   &\PBS\centering STABLE    \\\cline{1-4}
+ESP32\+C3   &\PBS\centering Devkit v3   &\PBS\centering In testing   &\PBS\centering STABLE    \\\cline{1-4}
 ESP8266   &\PBS\centering 12   &\PBS\centering D1\+MINI tested and similar (old)   &\PBS\centering STABLE    \\\cline{1-4}
 Atmelsam   &\PBS\centering seeed\+\_\+wio\+\_\+terminal   &\PBS\centering Only works via i2c on left port   &\PBS\centering STABLE    \\\cline{1-4}
 Arduino   &\PBS\centering Atmel   &\PBS\centering Some third party libraries fails   &\PBS\centering IN PROGRESS   \\\cline{1-4}
@@ -111,9 +113,9 @@ Arduino   &\PBS\centering Atmel   &\PBS\centering Some third party libraries fai
 \begin{DoxyItemize}
 \item Unified variables and getters for all sensors
 \item Auto UART port selection (Hw, Sw, UART1, UART2, etc)
-\item Multiple i2c reads and one UART sensor read support
+\item Multiple i2c sensors and one UART sensor supported at the same time
 \item Two I2C channel supported (Wire and Wire1)
-\item Real time registry of sensors unit registered (see multivariable)
+\item Real time registry of sensor units (see multivariable)
 \item Get vendor names of all devices detected
 \item Preselected main stream UART pins from popular boards
 \item Auto config UART port for Plantower, Honeywell and Panasonic sensors
@@ -124,11 +126,9 @@ Arduino   &\PBS\centering Atmel   &\PBS\centering Some third party libraries fai
 \item Get unit symbol and name and each sub-\/sensor
 \item Get the main group type\+: NONE, PM, CO2 and ENV.
 \item Basic debug mode support toggle in execution
-\item Basic power saving management with sample time $>$ 30s on SPS30 ~\newline
-
 \end{DoxyItemize}
 
-Full list of all sub libraries supported \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/library.json\#L72-L89}{\texttt{ here}}
+Full list of all sub libraries supported \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/unified-lib-deps.ini}{\texttt{ here}}
 
 \doxysection*{Quick implementation}
 
@@ -321,7 +321,7 @@ ESP32\+PICOD4   &\PBS\centering 3   &\PBS\centering 1   &\PBS\centering \\\cline
 $\ast$$\ast$ This pines are when you compile your project without specific any build variable or you board isn\textquotesingle{}t in the list. ~\newline
 
 
-\doxysubsubsection*{Custom UART\+:}
+\doxysubsubsection*{Custom UART}
 
 Also you could define a custom UART pins in the init() method and select specific sensors model, like this\+:
 
@@ -344,24 +344,20 @@ For now we are using it only for DHT sensors in PIN 23. For more info please rev
 
 \doxysubsubsection*{Platform\+IO (recommended)}
 
-\doxyparagraph*{Compiling and Installing}
-
 We recommended Platform\+IO because is more easy than Arduino IDE. For this, please install first \href{http://platformio.org/}{\texttt{ Platform\+IO}} and its command line tools (Windows, Mac\+Os and Linux), {\bfseries{pio}} command, then connect your compatible board to the USB and run the next command\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{pio run -\/-\/target upload}
+\DoxyCodeLine{pio run -\/e esp32 -\/-\/target upload}
 
 \end{DoxyCode}
 
 
 \doxysubsubsection*{Arduino IDE}
 
-Only import the {\ttfamily ino} file of the sample and install the libraries listed on {\ttfamily library.\+json} and this library.
+Only import the {\ttfamily ino} file of the sample and install the libraries listed on {\ttfamily library.\+json} and this library. Complete list of libraries used \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/unified-lib-deps.ini}{\texttt{ here}}
 
 \doxysubsubsection*{Arduino CLI}
-
-\doxyparagraph*{Prerequisites}
 
 For run the examples, you first need to install {\bfseries{arduino-\/cli}} or the {\bfseries{Arduino IDE}} with the libraries referenced in {\bfseries{lib\+\_\+deps}} on the file \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/platformio.ini}{\texttt{ platformio.\+ini}}, becuase {\bfseries{Arduino don\textquotesingle{}t install it automatically}} like Platform\+IO. Then put Can\+Air\+IO sensor library in your library directory, you can download it from \href{https://github.com/kike-canaries/canairio_sensorlib/releases}{\texttt{ releases}} section.
 
@@ -385,8 +381,6 @@ in the {\ttfamily .arduino15/arduino-\/cli.\+yaml} file add\+:
 
 \end{DoxyCode}
 
-
-\doxyparagraph*{Compiling and Installing}
 
 From {\ttfamily arduino-\/cli} you can run the basic example in a ESP32 board following these steps\+:
 
@@ -449,6 +443,7 @@ Also you can make a donation, be a patreon or buy a device\+: ~\newline
 \item \mbox{[}x\mbox{]} Sense\+Air S8 via UART support
 \item \mbox{[}x\mbox{]} Multivariable selection (get\+Next\+Unit(),get\+Unit\+Name(),etc)
 \item \mbox{[}x\mbox{]} Two I2C channel supported for M5\+Stack Devices (M5\+StickC tested)
+\item \mbox{[}x\mbox{]} Added CO and NH3 sensors
 \item \mbox{[} \mbox{]} Sea level setting for Pressure sensors and others
 \item \mbox{[} \mbox{]} Support to second UART port
 \end{DoxyItemize}

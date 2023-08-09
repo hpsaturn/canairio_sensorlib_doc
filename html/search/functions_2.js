@@ -1,8 +1,25 @@
 var searchData=
 [
-  ['init_69',['init',['../classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d',1,'Sensors']]],
-  ['isdataready_70',['isDataReady',['../classSensors.html#a63ec661795621129a831a6f837c7f560',1,'Sensors']]],
-  ['issensorregistered_71',['isSensorRegistered',['../classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1',1,'Sensors']]],
-  ['isuartsensorconfigured_72',['isUARTSensorConfigured',['../classSensors.html#aa99811f9bb9778253e4d0476fab7b86c',1,'Sensors']]],
-  ['isunitregistered_73',['isUnitRegistered',['../classSensors.html#ac1acd7bf32bda39fdfde1753af3ceef2',1,'Sensors']]]
+  ['getaltitude_49',['getAltitude',['../classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8',1,'Sensors']]],
+  ['getco2_50',['getCO2',['../classSensors.html#ad953d4564cc20d8134cccd962435dd81',1,'Sensors']]],
+  ['getco2humi_51',['getCO2humi',['../classSensors.html#a7fa1fe8f4f3469bce9311be880c243df',1,'Sensors']]],
+  ['getco2temp_52',['getCO2temp',['../classSensors.html#a7afb5c201c4e1933c96719e632181f71',1,'Sensors']]],
+  ['getgas_53',['getGas',['../classSensors.html#a6051b0aa681611fe040ea0cc7417ef90',1,'Sensors']]],
+  ['gethumidity_54',['getHumidity',['../classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1',1,'Sensors']]],
+  ['getnextunit_55',['getNextUnit',['../classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1',1,'Sensors']]],
+  ['getpm1_56',['getPM1',['../classSensors.html#a515884007d9b5239c2321ec0695f69e8',1,'Sensors']]],
+  ['getpm10_57',['getPM10',['../classSensors.html#a8165734cd6b82243549ba6bd1c7a837a',1,'Sensors']]],
+  ['getpm25_58',['getPM25',['../classSensors.html#adc3ad26b8a9be10b2100e3b023fdefc4',1,'Sensors']]],
+  ['getpm4_59',['getPM4',['../classSensors.html#aca9b394c691568c7bd3499cba0b67403',1,'Sensors']]],
+  ['getpressure_60',['getPressure',['../classSensors.html#a3db568a0fb294fd02cc1f95943db4f55',1,'Sensors']]],
+  ['getsensorgroup_61',['getSensorGroup',['../classSensors.html#abd4b900acd33f41c7fd184e0dad90aeb',1,'Sensors']]],
+  ['getsensorname_62',['getSensorName',['../classSensors.html#aa7ca70f31838cba52b96f76aa4a0d4a2',1,'Sensors']]],
+  ['getsensorsregistered_63',['getSensorsRegistered',['../classSensors.html#af9ee8f89e81d76a4c2b41ed6dc38f2f3',1,'Sensors']]],
+  ['getsensorsregisteredcount_64',['getSensorsRegisteredCount',['../classSensors.html#ad8395e69cf5dcc68d0a8049ec7372a81',1,'Sensors']]],
+  ['gettemperature_65',['getTemperature',['../classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c',1,'Sensors']]],
+  ['getuartdevicetypeselected_66',['getUARTDeviceTypeSelected',['../classSensors.html#aaca8ec4ae2c64c366c33622d3332ffb1',1,'Sensors']]],
+  ['getunitname_67',['getUnitName',['../classSensors.html#a4abb5d2a00d31a407e32cbdabe00b6eb',1,'Sensors']]],
+  ['getunitsregisteredcount_68',['getUnitsRegisteredCount',['../classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb',1,'Sensors']]],
+  ['getunitsymbol_69',['getUnitSymbol',['../classSensors.html#a365a45dc5c9ab598cfc206368579b94a',1,'Sensors']]],
+  ['getunitvalue_70',['getUnitValue',['../classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749',1,'Sensors']]]
 ];

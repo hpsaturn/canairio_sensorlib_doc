@@ -157,6 +157,21 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90">getGas</a> ()</td></tr>
 <tr class="memdesc:a6051b0aa681611fe040ea0cc7417ef90"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Gas resistance value of BMP680 sensor <br /></td></tr>
 <tr class="separator:a6051b0aa681611fe040ea0cc7417ef90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77e8576cefec2ee8ef72f5031a3647fb"><td class="memItemLeft" align="right" valign="top"><a id="a77e8576cefec2ee8ef72f5031a3647fb"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getNH3</b> ()</td></tr>
+<tr class="separator:a77e8576cefec2ee8ef72f5031a3647fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f73d13d14526125fa95fd9b29e088d"><td class="memItemLeft" align="right" valign="top"><a id="a73f73d13d14526125fa95fd9b29e088d"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getCO</b> ()</td></tr>
+<tr class="separator:a73f73d13d14526125fa95fd9b29e088d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f65f14f397fea4b9f8347f1b92fb061"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">enableGeigerSensor</a> (int gpio)</td></tr>
+<tr class="memdesc:a6f65f14f397fea4b9f8347f1b92fb061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Geiger sensor on specific pin.  <a href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">More...</a><br /></td></tr>
+<tr class="separator:a6f65f14f397fea4b9f8347f1b92fb061"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a588db8882dba0506b44ee4c0752b404c"><td class="memItemLeft" align="right" valign="top"><a id="a588db8882dba0506b44ee4c0752b404c"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getGeigerCPM</b> (void)</td></tr>
+<tr class="separator:a588db8882dba0506b44ee4c0752b404c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bea34fbbe7d0fcc1cdcde8886a1b94c"><td class="memItemLeft" align="right" valign="top"><a id="a7bea34fbbe7d0fcc1cdcde8886a1b94c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getGeigerMicroSievertHour</b> (void)</td></tr>
+<tr class="separator:a7bea34fbbe7d0fcc1cdcde8886a1b94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a122c0d2922d2a80984e8a3ac21b883c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">setTempOffset</a> (float offset)</td></tr>
 <tr class="memdesc:a122c0d2922d2a80984e8a3ac21b883c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set temperature offset for all temperature sensors.  <a href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">More...</a><br /></td></tr>
 <tr class="separator:a122c0d2922d2a80984e8a3ac21b883c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -242,7 +257,7 @@ struct sps_values&#160;</td><td class="memItemRight" valign="bottom"><b>val</b><
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>devmode</b></td></tr>
 <tr class="separator:a450841daddeac4d513711007e38d7f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad804d082e7a5ea663010008dbf5a0e84"><td class="memItemLeft" align="right" valign="top"><a id="ad804d082e7a5ea663010008dbf5a0e84"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>sample_time</b> = 5</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sample_time</b> = 10</td></tr>
 <tr class="separator:ad804d082e7a5ea663010008dbf5a0e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaf6032853fd0c97648ca75e32b37f8d"><td class="memItemLeft" align="right" valign="top"><a id="acaf6032853fd0c97648ca75e32b37f8d"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>toffset</b> = 0.0</td></tr>
@@ -311,8 +326,43 @@ SensirionI2CScd4x&#160;</td><td class="memItemRight" valign="bottom"><b>scd4x</b
 <tr class="memitem:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="memItemLeft" align="right" valign="top"><a id="aaab17888bad6c8c60c5a2f8e2501bfc8"></a>
 PM1006 *&#160;</td><td class="memItemRight" valign="bottom"><b>pm1006</b></td></tr>
 <tr class="separator:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e013ede87366e54e4ca42e72fb40c0"><td class="memItemLeft" align="right" valign="top"><a id="ad5e013ede87366e54e4ca42e72fb40c0"></a>
+DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><b>dfrCO</b></td></tr>
+<tr class="separator:ad5e013ede87366e54e4ca42e72fb40c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec9492ba3931bb6a05f02be5db61f79"><td class="memItemLeft" align="right" valign="top"><a id="a1ec9492ba3931bb6a05f02be5db61f79"></a>
+DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><b>dfrNH3</b></td></tr>
+<tr class="separator:a1ec9492ba3931bb6a05f02be5db61f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4f26a60c06c2659d088d778c0468874"><td class="memItemLeft" align="right" valign="top"><a id="af4f26a60c06c2659d088d778c0468874"></a>
+GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
+<tr class="separator:af4f26a60c06c2659d088d778c0468874"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6f65f14f397fea4b9f8347f1b92fb061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f65f14f397fea4b9f8347f1b92fb061">&#9670;&nbsp;</a></span>enableGeigerSensor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sensors::enableGeigerSensor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gpio</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable Geiger sensor on specific pin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GPIO</td><td>pin </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad33c76f341c86ac1900c5953fca9c0d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad33c76f341c86ac1900c5953fca9c0d1">&#9670;&nbsp;</a></span>getNextUnit()</h2>
 

@@ -63,6 +63,20 @@ float \mbox{\hyperlink{classSensors_ade9951fe566a8fc38dc4b6f4161361d8}{get\+Alti
 \mbox{\Hypertarget{classSensors_a6051b0aa681611fe040ea0cc7417ef90}\label{classSensors_a6051b0aa681611fe040ea0cc7417ef90}} 
 float \mbox{\hyperlink{classSensors_a6051b0aa681611fe040ea0cc7417ef90}{get\+Gas}} ()
 \begin{DoxyCompactList}\small\item\em get Gas resistance value of BMP680 sensor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSensors_a77e8576cefec2ee8ef72f5031a3647fb}\label{classSensors_a77e8576cefec2ee8ef72f5031a3647fb}} 
+float {\bfseries get\+NH3} ()
+\item 
+\mbox{\Hypertarget{classSensors_a73f73d13d14526125fa95fd9b29e088d}\label{classSensors_a73f73d13d14526125fa95fd9b29e088d}} 
+float {\bfseries get\+CO} ()
+\item 
+void \mbox{\hyperlink{classSensors_a6f65f14f397fea4b9f8347f1b92fb061}{enable\+Geiger\+Sensor}} (int gpio)
+\begin{DoxyCompactList}\small\item\em Enable Geiger sensor on specific pin. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSensors_a588db8882dba0506b44ee4c0752b404c}\label{classSensors_a588db8882dba0506b44ee4c0752b404c}} 
+uint32\+\_\+t {\bfseries get\+Geiger\+CPM} (void)
+\item 
+\mbox{\Hypertarget{classSensors_a7bea34fbbe7d0fcc1cdcde8886a1b94c}\label{classSensors_a7bea34fbbe7d0fcc1cdcde8886a1b94c}} 
+float {\bfseries get\+Geiger\+Micro\+Sievert\+Hour} (void)
+\item 
 void \mbox{\hyperlink{classSensors_a122c0d2922d2a80984e8a3ac21b883c3}{set\+Temp\+Offset}} (float offset)
 \begin{DoxyCompactList}\small\item\em Set temperature offset for all temperature sensors. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSensors_a27eec756609a421b3927c0dc132ae7c6}{set\+CO2\+Altitude\+Offset}} (float altitude)
@@ -127,7 +141,7 @@ struct sps\+\_\+values {\bfseries val}
 bool {\bfseries devmode}
 \item 
 \mbox{\Hypertarget{classSensors_ad804d082e7a5ea663010008dbf5a0e84}\label{classSensors_ad804d082e7a5ea663010008dbf5a0e84}} 
-int {\bfseries sample\+\_\+time} = 5
+int {\bfseries sample\+\_\+time} = 10
 \item 
 \mbox{\Hypertarget{classSensors_acaf6032853fd0c97648ca75e32b37f8d}\label{classSensors_acaf6032853fd0c97648ca75e32b37f8d}} 
 float {\bfseries toffset} = 0.\+0
@@ -194,10 +208,34 @@ Sensirion\+I2\+CScd4x {\bfseries scd4x}
 \item 
 \mbox{\Hypertarget{classSensors_aaab17888bad6c8c60c5a2f8e2501bfc8}\label{classSensors_aaab17888bad6c8c60c5a2f8e2501bfc8}} 
 PM1006 $\ast$ {\bfseries pm1006}
+\item 
+\mbox{\Hypertarget{classSensors_ad5e013ede87366e54e4ca42e72fb40c0}\label{classSensors_ad5e013ede87366e54e4ca42e72fb40c0}} 
+DFRobot\+\_\+\+GAS\+\_\+\+I2C {\bfseries dfr\+CO}
+\item 
+\mbox{\Hypertarget{classSensors_a1ec9492ba3931bb6a05f02be5db61f79}\label{classSensors_a1ec9492ba3931bb6a05f02be5db61f79}} 
+DFRobot\+\_\+\+GAS\+\_\+\+I2C {\bfseries dfr\+NH3}
+\item 
+\mbox{\Hypertarget{classSensors_af4f26a60c06c2659d088d778c0468874}\label{classSensors_af4f26a60c06c2659d088d778c0468874}} 
+GEIGER $\ast$ {\bfseries rad}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSensors_a6f65f14f397fea4b9f8347f1b92fb061}\label{classSensors_a6f65f14f397fea4b9f8347f1b92fb061}} 
+\index{Sensors@{Sensors}!enableGeigerSensor@{enableGeigerSensor}}
+\index{enableGeigerSensor@{enableGeigerSensor}!Sensors@{Sensors}}
+\doxysubsubsection{\texorpdfstring{enableGeigerSensor()}{enableGeigerSensor()}}
+{\footnotesize\ttfamily void Sensors\+::enable\+Geiger\+Sensor (\begin{DoxyParamCaption}\item[{int}]{gpio }\end{DoxyParamCaption})}
+
+
+
+Enable Geiger sensor on specific pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GPIO} & pin \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}\label{classSensors_ad33c76f341c86ac1900c5953fca9c0d1}} 
 \index{Sensors@{Sensors}!getNextUnit@{getNextUnit}}
 \index{getNextUnit@{getNextUnit}!Sensors@{Sensors}}
