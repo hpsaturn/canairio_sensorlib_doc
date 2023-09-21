@@ -1,0 +1,67 @@
+\hypertarget{classGEIGER}{}\doxysection{GEIGER Class Reference}
+\label{classGEIGER}\index{GEIGER@{GEIGER}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGEIGER_a73013f2c087d18441cacb03b190694e6}{GEIGER}} (int gpio=-\/1, bool debug=false)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGEIGER_af09a70fe225db31a1751c939f3dfb3c2}\label{classGEIGER_af09a70fe225db31a1751c939f3dfb3c2}} 
+bool {\bfseries read} ()
+\item 
+\mbox{\Hypertarget{classGEIGER_aa4b9f8d7f3bd64e7d58f633e7fd3a52e}\label{classGEIGER_aa4b9f8d7f3bd64e7d58f633e7fd3a52e}} 
+void {\bfseries clear} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classGEIGER_af26d4a6e7ae1a4316cfb549f07b40889}{get\+Tics}} ()
+\item 
+float \mbox{\hyperlink{classGEIGER_aa6aa116f925732f5c0fcfd083e01a824}{get\+USvh}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGEIGER_a35580c52c8738a3e3864e87b1f988851}\label{classGEIGER_a35580c52c8738a3e3864e87b1f988851}} 
+uint32\+\_\+t {\bfseries tics\+\_\+cpm} = 0U
+\item 
+\mbox{\Hypertarget{classGEIGER_a8e2ea3ead6631da955b02f1d9952adb5}\label{classGEIGER_a8e2ea3ead6631da955b02f1d9952adb5}} 
+float {\bfseries u\+Svh} = 0.\+0f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGEIGER_a73013f2c087d18441cacb03b190694e6}\label{classGEIGER_a73013f2c087d18441cacb03b190694e6}} 
+\index{GEIGER@{GEIGER}!GEIGER@{GEIGER}}
+\index{GEIGER@{GEIGER}!GEIGER@{GEIGER}}
+\doxysubsubsection{\texorpdfstring{GEIGER()}{GEIGER()}}
+{\footnotesize\ttfamily GEIGER\+::\+GEIGER (\begin{DoxyParamCaption}\item[{int}]{gpio = {\ttfamily -\/1},  }\item[{bool}]{debug = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpio} & attached pin \\
+\hline
+{\em debug} & debug mode enable/disable \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGEIGER_af26d4a6e7ae1a4316cfb549f07b40889}\label{classGEIGER_af26d4a6e7ae1a4316cfb549f07b40889}} 
+\index{GEIGER@{GEIGER}!getTics@{getTics}}
+\index{getTics@{getTics}!GEIGER@{GEIGER}}
+\doxysubsubsection{\texorpdfstring{getTics()}{getTics()}}
+{\footnotesize\ttfamily uint32\+\_\+t GEIGER\+::get\+Tics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns CPM \mbox{\Hypertarget{classGEIGER_aa6aa116f925732f5c0fcfd083e01a824}\label{classGEIGER_aa6aa116f925732f5c0fcfd083e01a824}} 
+\index{GEIGER@{GEIGER}!getUSvh@{getUSvh}}
+\index{getUSvh@{getUSvh}!GEIGER@{GEIGER}}
+\doxysubsubsection{\texorpdfstring{getUSvh()}{getUSvh()}}
+{\footnotesize\ttfamily float GEIGER\+::get\+USvh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Converts CPM to u\+Sv/h units (J305 tube) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/drivers/geiger.\+h\item 
+src/drivers/geiger.\+cpp\end{DoxyCompactItemize}

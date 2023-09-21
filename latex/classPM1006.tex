@@ -1,0 +1,56 @@
+\hypertarget{classPM1006}{}\doxysection{PM1006 Class Reference}
+\label{classPM1006}\index{PM1006@{PM1006}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPM1006_a8353469e8b1f678f70d5c3d90b1724d9}{PM1006}} (Stream \&serial, bool debug=false)
+\item 
+bool \mbox{\hyperlink{classPM1006_ad95b026b8b8dcc7b22db3c7de3d5e846}{read\+\_\+pm25}} (uint16\+\_\+t $\ast$pm)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPM1006_abb45baefa7437936f2c8c54d67c216e8}\label{classPM1006_abb45baefa7437936f2c8c54d67c216e8}} 
+static const int {\bfseries BIT\+\_\+\+RATE} = 9600
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPM1006_a8353469e8b1f678f70d5c3d90b1724d9}\label{classPM1006_a8353469e8b1f678f70d5c3d90b1724d9}} 
+\index{PM1006@{PM1006}!PM1006@{PM1006}}
+\index{PM1006@{PM1006}!PM1006@{PM1006}}
+\doxysubsubsection{\texorpdfstring{PM1006()}{PM1006()}}
+{\footnotesize\ttfamily PM1006\+::\+PM1006 (\begin{DoxyParamCaption}\item[{Stream \&}]{serial,  }\item[{bool}]{debug = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & the serial port, NOTE\+: the serial port has to be configured for a bit rate of PM1006\+::\+BIT\+\_\+\+RATE ! \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPM1006_ad95b026b8b8dcc7b22db3c7de3d5e846}\label{classPM1006_ad95b026b8b8dcc7b22db3c7de3d5e846}} 
+\index{PM1006@{PM1006}!read\_pm25@{read\_pm25}}
+\index{read\_pm25@{read\_pm25}!PM1006@{PM1006}}
+\doxysubsubsection{\texorpdfstring{read\_pm25()}{read\_pm25()}}
+{\footnotesize\ttfamily bool PM1006\+::read\+\_\+pm25 (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{pm }\end{DoxyParamCaption})}
+
+Reads the PM2.\+5 value (plus some other yet unknown parameters)
+
+
+\begin{DoxyParams}{Parameters}
+{\em pm} & the PM2.\+5 value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the value was read successfully 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/drivers/pm1006.\+h\item 
+src/drivers/pm1006.\+cpp\end{DoxyCompactItemize}
