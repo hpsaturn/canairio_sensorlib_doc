@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -23,10 +32,25 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CanAirIO Sensors Library
-   &#160;<span id="projectnumber">0.6.5</span>
+   &#160;<span id="projectnumber">0.7.1</span>
    </div>
    <div id="projectbrief">Generic sensor manager, abstratctions and bindings of multiple air sensors libraries</div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -38,16 +62,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('classSensors.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -62,7 +93,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -72,6 +102,11 @@ $(function() {
 <div class="title">Sensors Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>CanAirIO <a class="el" href="classSensors.html" title="CanAirIO Sensors Manager main class.">Sensors</a> Manager main class.  
+ <a href="classSensors.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Sensors_8hpp_source.html">Sensors.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -100,6 +135,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aba1b7a633d1d89514c891220b603351f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#aba1b7a633d1d89514c891220b603351f">setOnErrorCallBack</a> (errorCbFn cb)</td></tr>
 <tr class="memdesc:aba1b7a633d1d89514c891220b603351f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional callback for get the sensors errors.  <a href="classSensors.html#aba1b7a633d1d89514c891220b603351f">More...</a><br /></td></tr>
 <tr class="separator:aba1b7a633d1d89514c891220b603351f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb151247ff81fb34992458915c55ed9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">setTemperatureUnit</a> (TEMPUNIT tunit)</td></tr>
+<tr class="memdesc:aeb151247ff81fb34992458915c55ed9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the temperature type unit  <a href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">More...</a><br /></td></tr>
+<tr class="separator:aeb151247ff81fb34992458915c55ed9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac749e2c2618a177afa7d72ce68573fa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">setDebugMode</a> (bool enable)</td></tr>
 <tr class="memdesc:ac749e2c2618a177afa7d72ce68573fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional for increase the debug level.  <a href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">More...</a><br /></td></tr>
 <tr class="separator:ac749e2c2618a177afa7d72ce68573fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,11 +173,11 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <tr class="separator:a7fa1fe8f4f3469bce9311be880c243df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7afb5c201c4e1933c96719e632181f71"><td class="memItemLeft" align="right" valign="top"><a id="a7afb5c201c4e1933c96719e632181f71"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">getCO2temp</a> ()</td></tr>
-<tr class="memdesc:a7afb5c201c4e1933c96719e632181f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">get temperature °C value of CO2 sensor device <br /></td></tr>
+<tr class="memdesc:a7afb5c201c4e1933c96719e632181f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">get temperature value from the CO2 sensor device <br /></td></tr>
 <tr class="separator:a7afb5c201c4e1933c96719e632181f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4c22766994b94a2a28158ed72dc4a0c"><td class="memItemLeft" align="right" valign="top"><a id="ac4c22766994b94a2a28158ed72dc4a0c"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c">getTemperature</a> ()</td></tr>
-<tr class="memdesc:ac4c22766994b94a2a28158ed72dc4a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get temperature °C value of environment sensor <br /></td></tr>
+<tr class="memdesc:ac4c22766994b94a2a28158ed72dc4a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get temperature value from environment sensor <br /></td></tr>
 <tr class="separator:ac4c22766994b94a2a28158ed72dc4a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a255bf73cd4afaf6c656dbbcabb1a8bb1"><td class="memItemLeft" align="right" valign="top"><a id="a255bf73cd4afaf6c656dbbcabb1a8bb1"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">getHumidity</a> ()</td></tr>
@@ -158,19 +196,21 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <tr class="memdesc:a6051b0aa681611fe040ea0cc7417ef90"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Gas resistance value of BMP680 sensor <br /></td></tr>
 <tr class="separator:a6051b0aa681611fe040ea0cc7417ef90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77e8576cefec2ee8ef72f5031a3647fb"><td class="memItemLeft" align="right" valign="top"><a id="a77e8576cefec2ee8ef72f5031a3647fb"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getNH3</b> ()</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a77e8576cefec2ee8ef72f5031a3647fb">getNH3</a> ()</td></tr>
+<tr class="memdesc:a77e8576cefec2ee8ef72f5031a3647fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">get NH3 value in ppm <br /></td></tr>
 <tr class="separator:a77e8576cefec2ee8ef72f5031a3647fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73f73d13d14526125fa95fd9b29e088d"><td class="memItemLeft" align="right" valign="top"><a id="a73f73d13d14526125fa95fd9b29e088d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getCO</b> ()</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a73f73d13d14526125fa95fd9b29e088d">getCO</a> ()</td></tr>
+<tr class="memdesc:a73f73d13d14526125fa95fd9b29e088d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get CO value in ppm <br /></td></tr>
 <tr class="separator:a73f73d13d14526125fa95fd9b29e088d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f65f14f397fea4b9f8347f1b92fb061"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">enableGeigerSensor</a> (int gpio)</td></tr>
 <tr class="memdesc:a6f65f14f397fea4b9f8347f1b92fb061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Geiger sensor on specific pin.  <a href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">More...</a><br /></td></tr>
 <tr class="separator:a6f65f14f397fea4b9f8347f1b92fb061"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a588db8882dba0506b44ee4c0752b404c"><td class="memItemLeft" align="right" valign="top"><a id="a588db8882dba0506b44ee4c0752b404c"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getGeigerCPM</b> (void)</td></tr>
+<tr class="memitem:a588db8882dba0506b44ee4c0752b404c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a588db8882dba0506b44ee4c0752b404c">getGeigerCPM</a> (void)</td></tr>
+<tr class="memdesc:a588db8882dba0506b44ee4c0752b404c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Geiger count. Tics in the last 60secs  <a href="classSensors.html#a588db8882dba0506b44ee4c0752b404c">More...</a><br /></td></tr>
 <tr class="separator:a588db8882dba0506b44ee4c0752b404c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bea34fbbe7d0fcc1cdcde8886a1b94c"><td class="memItemLeft" align="right" valign="top"><a id="a7bea34fbbe7d0fcc1cdcde8886a1b94c"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getGeigerMicroSievertHour</b> (void)</td></tr>
+<tr class="memitem:a7bea34fbbe7d0fcc1cdcde8886a1b94c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a7bea34fbbe7d0fcc1cdcde8886a1b94c">getGeigerMicroSievertHour</a> (void)</td></tr>
+<tr class="memdesc:a7bea34fbbe7d0fcc1cdcde8886a1b94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Geiger count in uSv/h units  <a href="classSensors.html#a7bea34fbbe7d0fcc1cdcde8886a1b94c">More...</a><br /></td></tr>
 <tr class="separator:a7bea34fbbe7d0fcc1cdcde8886a1b94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a122c0d2922d2a80984e8a3ac21b883c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">setTempOffset</a> (float offset)</td></tr>
 <tr class="memdesc:a122c0d2922d2a80984e8a3ac21b883c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set temperature offset for all temperature sensors.  <a href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">More...</a><br /></td></tr>
@@ -178,7 +218,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getGeigerMicroSiever
 <tr class="memitem:a27eec756609a421b3927c0dc132ae7c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">setCO2AltitudeOffset</a> (float altitude)</td></tr>
 <tr class="memdesc:a27eec756609a421b3927c0dc132ae7c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">set CO2 altitude offset (m)  <a href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">More...</a><br /></td></tr>
 <tr class="separator:a27eec756609a421b3927c0dc132ae7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fe6e43b99919f6c481792f0c0de8c50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">setSeaLevelPressure</a> (float hpa)</td></tr>
+<tr class="memitem:a8fe6e43b99919f6c481792f0c0de8c50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">setSeaLevelPressure</a> (float <a class="el" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">hpa</a>)</td></tr>
 <tr class="memdesc:a8fe6e43b99919f6c481792f0c0de8c50"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the sea level pressure (hPa)  <a href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">More...</a><br /></td></tr>
 <tr class="separator:a8fe6e43b99919f6c481792f0c0de8c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47f337a24231440b661d57ed8e873a64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a47f337a24231440b661d57ed8e873a64">setCO2RecalibrationFactor</a> (int ppmValue)</td></tr>
@@ -186,13 +226,15 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getGeigerMicroSiever
 <tr class="separator:a47f337a24231440b661d57ed8e873a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae25465fbd64d3b2b9ae31e2cb5a4b246"><td class="memItemLeft" align="right" valign="top"><a id="ae25465fbd64d3b2b9ae31e2cb5a4b246"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">detectI2COnly</a> (bool enable)</td></tr>
-<tr class="memdesc:ae25465fbd64d3b2b9ae31e2cb5a4b246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forced to enable I2C sensors only Recommended to use only if you are using a I2C sensor and improve the performance. <br /></td></tr>
+<tr class="memdesc:ae25465fbd64d3b2b9ae31e2cb5a4b246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forced to enable I2C sensors only. Recommended to use only if you are using a I2C sensor and improve the performance. <br /></td></tr>
 <tr class="separator:ae25465fbd64d3b2b9ae31e2cb5a4b246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8c24cdf4179bf5bf7e799844e626b43"><td class="memItemLeft" align="right" valign="top"><a id="af8c24cdf4179bf5bf7e799844e626b43"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><b>getLibraryVersion</b> ()</td></tr>
+String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#af8c24cdf4179bf5bf7e799844e626b43">getLibraryVersion</a> ()</td></tr>
+<tr class="memdesc:af8c24cdf4179bf5bf7e799844e626b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the CanAirIO Sensorslib version <br /></td></tr>
 <tr class="separator:af8c24cdf4179bf5bf7e799844e626b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb026d51c7801930b26730371244bb5e"><td class="memItemLeft" align="right" valign="top"><a id="adb026d51c7801930b26730371244bb5e"></a>
-int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLibraryRevision</b> ()</td></tr>
+int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#adb026d51c7801930b26730371244bb5e">getLibraryRevision</a> ()</td></tr>
+<tr class="memdesc:adb026d51c7801930b26730371244bb5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the current revision code number <br /></td></tr>
 <tr class="separator:adb026d51c7801930b26730371244bb5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1cf4e90258eb2fcbdc8cf7c1f75a1c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1">isSensorRegistered</a> (SENSORS sensor)</td></tr>
 <tr class="memdesc:ac1cf4e90258eb2fcbdc8cf7c1f75a1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read and check the sensors status on initialization.  <a href="classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1">More...</a><br /></td></tr>
@@ -227,16 +269,17 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:ad33c76f341c86ac1900c5953fca9c0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the next sensor unit available  <a href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">More...</a><br /></td></tr>
 <tr class="separator:ad33c76f341c86ac1900c5953fca9c0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47635ad00b96b1175c96c6ead2c4a514"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">resetUnitsRegister</a> ()</td></tr>
-<tr class="memdesc:a47635ad00b96b1175c96c6ead2c4a514"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the sensor units registry  <a href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">More...</a><br /></td></tr>
+<tr class="memdesc:a47635ad00b96b1175c96c6ead2c4a514"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the sensor units registry.  <a href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">More...</a><br /></td></tr>
 <tr class="separator:a47635ad00b96b1175c96c6ead2c4a514"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86190ba0e2fce178aaf936d2c926f7fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">resetSensorsRegister</a> ()</td></tr>
-<tr class="memdesc:a86190ba0e2fce178aaf936d2c926f7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the sensor registry  <a href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">More...</a><br /></td></tr>
+<tr class="memdesc:a86190ba0e2fce178aaf936d2c926f7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the sensor registry.  <a href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">More...</a><br /></td></tr>
 <tr class="separator:a86190ba0e2fce178aaf936d2c926f7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6ac6080b6ad79ba9cd441646826058d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">resetNextUnit</a> ()</td></tr>
-<tr class="memdesc:ae6ac6080b6ad79ba9cd441646826058d"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the next sensor unit counter  <a href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">More...</a><br /></td></tr>
+<tr class="memdesc:ae6ac6080b6ad79ba9cd441646826058d"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the next sensor unit counter.  <a href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">More...</a><br /></td></tr>
 <tr class="separator:ae6ac6080b6ad79ba9cd441646826058d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a296d40a89de2b405c19f1982d6083545"><td class="memItemLeft" align="right" valign="top"><a id="a296d40a89de2b405c19f1982d6083545"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resetAllVariables</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a296d40a89de2b405c19f1982d6083545">resetAllVariables</a> ()</td></tr>
+<tr class="memdesc:a296d40a89de2b405c19f1982d6083545"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset all library variables (generic sensors units) <br /></td></tr>
 <tr class="separator:a296d40a89de2b405c19f1982d6083545"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e75dd4e3f2e655a9961f57650cbf749"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">getUnitValue</a> (UNIT unit)</td></tr>
 <tr class="memdesc:a7e75dd4e3f2e655a9961f57650cbf749"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the sensor unit value (float)  <a href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">More...</a><br /></td></tr>
@@ -251,92 +294,122 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetAllVariables</b>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a5b541f807d8fa5fd77ef92c06c63a45c"><td class="memItemLeft" align="right" valign="top"><a id="a5b541f807d8fa5fd77ef92c06c63a45c"></a>
-struct sps_values&#160;</td><td class="memItemRight" valign="bottom"><b>val</b></td></tr>
+struct sps_values&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">val</a></td></tr>
+<tr class="memdesc:a5b541f807d8fa5fd77ef92c06c63a45c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPS30 values. Only for Sensirion SPS30 sensor. <br /></td></tr>
 <tr class="separator:a5b541f807d8fa5fd77ef92c06c63a45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a450841daddeac4d513711007e38d7f3f"><td class="memItemLeft" align="right" valign="top"><a id="a450841daddeac4d513711007e38d7f3f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>devmode</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a450841daddeac4d513711007e38d7f3f">devmode</a></td></tr>
+<tr class="memdesc:a450841daddeac4d513711007e38d7f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug mode for increase verbose. <br /></td></tr>
 <tr class="separator:a450841daddeac4d513711007e38d7f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad804d082e7a5ea663010008dbf5a0e84"><td class="memItemLeft" align="right" valign="top"><a id="ad804d082e7a5ea663010008dbf5a0e84"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>sample_time</b> = 10</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">sample_time</a> = 10</td></tr>
+<tr class="memdesc:ad804d082e7a5ea663010008dbf5a0e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial sample time for all sensors. <br /></td></tr>
 <tr class="separator:ad804d082e7a5ea663010008dbf5a0e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaf6032853fd0c97648ca75e32b37f8d"><td class="memItemLeft" align="right" valign="top"><a id="acaf6032853fd0c97648ca75e32b37f8d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>toffset</b> = 0.0</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">toffset</a> = 0.0</td></tr>
+<tr class="memdesc:acaf6032853fd0c97648ca75e32b37f8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature offset (for final temp output) <br /></td></tr>
 <tr class="separator:acaf6032853fd0c97648ca75e32b37f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f2c839ce87342c2eb8ea174725dc751"><td class="memItemLeft" align="right" valign="top"><a id="a4f2c839ce87342c2eb8ea174725dc751"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>altoffset</b> = 0.0</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">altoffset</a> = 0.0</td></tr>
+<tr class="memdesc:a4f2c839ce87342c2eb8ea174725dc751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altitud compensation variable. <br /></td></tr>
 <tr class="separator:a4f2c839ce87342c2eb8ea174725dc751"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacc120de64676122893f4d68d8b39ded"><td class="memItemLeft" align="right" valign="top"><a id="aacc120de64676122893f4d68d8b39ded"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>sealevel</b> = 1013.25</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#aacc120de64676122893f4d68d8b39ded">sealevel</a> = 1013.25</td></tr>
+<tr class="memdesc:aacc120de64676122893f4d68d8b39ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sea level pressure (hPa) <br /></td></tr>
 <tr class="separator:aacc120de64676122893f4d68d8b39ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6abfa8f43319f8a98e92952f2e2e105"><td class="memItemLeft" align="right" valign="top"><a id="ac6abfa8f43319f8a98e92952f2e2e105"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>hpa</b> = 0.0</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">hpa</a> = 0.0</td></tr>
+<tr class="memdesc:ac6abfa8f43319f8a98e92952f2e2e105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altitud hpa calculation. <br /></td></tr>
 <tr class="separator:ac6abfa8f43319f8a98e92952f2e2e105"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afac2f108c62157d4d63baee21c1d2564"><td class="memItemLeft" align="right" valign="top"><a id="afac2f108c62157d4d63baee21c1d2564"></a>
 SPS30&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">sps30</a></td></tr>
 <tr class="memdesc:afac2f108c62157d4d63baee21c1d2564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sensirion library. <br /></td></tr>
 <tr class="separator:afac2f108c62157d4d63baee21c1d2564"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16174075dbfcc011ae3130ffd4c6605f"><td class="memItemLeft" align="right" valign="top"><a id="a16174075dbfcc011ae3130ffd4c6605f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>i2conly</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">i2conly</a></td></tr>
+<tr class="memdesc:a16174075dbfcc011ae3130ffd4c6605f"><td class="mdescLeft">&#160;</td><td class="mdescRight">only detect i2c sensors flag <br /></td></tr>
 <tr class="separator:a16174075dbfcc011ae3130ffd4c6605f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78c6800deaf6b89fc6719a936345bef5"><td class="memItemLeft" align="right" valign="top"><a id="a78c6800deaf6b89fc6719a936345bef5"></a>
-AM232X&#160;</td><td class="memItemRight" valign="bottom"><b>am2320</b></td></tr>
+AM232X&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">am2320</a></td></tr>
+<tr class="memdesc:a78c6800deaf6b89fc6719a936345bef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">AM2320 object (Humidity and temperature) <br /></td></tr>
 <tr class="separator:a78c6800deaf6b89fc6719a936345bef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a655dd7b6cd1864ecba724161213b1222"><td class="memItemLeft" align="right" valign="top"><a id="a655dd7b6cd1864ecba724161213b1222"></a>
-Adafruit_BME280&#160;</td><td class="memItemRight" valign="bottom"><b>bme280</b></td></tr>
+Adafruit_BME280&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">bme280</a></td></tr>
+<tr class="memdesc:a655dd7b6cd1864ecba724161213b1222"><td class="mdescLeft">&#160;</td><td class="mdescRight">BME280 object (Humidity, Pressure, Altitude and Temperature) <br /></td></tr>
 <tr class="separator:a655dd7b6cd1864ecba724161213b1222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5af169078d14a1272bdf390109041df0"><td class="memItemLeft" align="right" valign="top"><a id="a5af169078d14a1272bdf390109041df0"></a>
-Adafruit_BMP280&#160;</td><td class="memItemRight" valign="bottom"><b>bmp280</b></td></tr>
+Adafruit_BMP280&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a5af169078d14a1272bdf390109041df0">bmp280</a></td></tr>
+<tr class="memdesc:a5af169078d14a1272bdf390109041df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">BMP280 object (Humidity, Pressure, Altitude and Temperature) <br /></td></tr>
 <tr class="separator:a5af169078d14a1272bdf390109041df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c16019668f5e0e883211d1259331af3"><td class="memItemLeft" align="right" valign="top"><a id="a9c16019668f5e0e883211d1259331af3"></a>
-Adafruit_BME680&#160;</td><td class="memItemRight" valign="bottom"><b>bme680</b></td></tr>
+Adafruit_BME680&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a9c16019668f5e0e883211d1259331af3">bme680</a></td></tr>
+<tr class="memdesc:a9c16019668f5e0e883211d1259331af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">BME680 object (Humidity, Gas, IAQ, Pressure, Altitude and Temperature) <br /></td></tr>
 <tr class="separator:a9c16019668f5e0e883211d1259331af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e919d953ced2916be669a69a41fc098"><td class="memItemLeft" align="right" valign="top"><a id="a4e919d953ced2916be669a69a41fc098"></a>
-AHTxx&#160;</td><td class="memItemRight" valign="bottom"><b>aht10</b></td></tr>
+AHTxx&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a4e919d953ced2916be669a69a41fc098">aht10</a></td></tr>
+<tr class="memdesc:a4e919d953ced2916be669a69a41fc098"><td class="mdescLeft">&#160;</td><td class="mdescRight">AHTXX sensors object. <br /></td></tr>
 <tr class="separator:a4e919d953ced2916be669a69a41fc098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b5bcd2158f4ed4eb1674cc483cfab1d"><td class="memItemLeft" align="right" valign="top"><a id="a8b5bcd2158f4ed4eb1674cc483cfab1d"></a>
-Adafruit_SHT31&#160;</td><td class="memItemRight" valign="bottom"><b>sht31</b></td></tr>
+Adafruit_SHT31&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">sht31</a></td></tr>
+<tr class="memdesc:a8b5bcd2158f4ed4eb1674cc483cfab1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">SHT31 object (Humidity and temperature) <br /></td></tr>
 <tr class="separator:a8b5bcd2158f4ed4eb1674cc483cfab1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6156b78908fd064761301339e54c8af"><td class="memItemLeft" align="right" valign="top"><a id="ad6156b78908fd064761301339e54c8af"></a>
-MHZ19&#160;</td><td class="memItemRight" valign="bottom"><b>mhz19</b></td></tr>
+MHZ19&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ad6156b78908fd064761301339e54c8af">mhz19</a></td></tr>
+<tr class="memdesc:ad6156b78908fd064761301339e54c8af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mhz19 object sensor. <br /></td></tr>
 <tr class="separator:ad6156b78908fd064761301339e54c8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b69b0360b3ec5a2a08d2591be8a92b7"><td class="memItemLeft" align="right" valign="top"><a id="a7b69b0360b3ec5a2a08d2591be8a92b7"></a>
-Adafruit_SCD30&#160;</td><td class="memItemRight" valign="bottom"><b>scd30</b></td></tr>
+Adafruit_SCD30&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">scd30</a></td></tr>
+<tr class="memdesc:a7b69b0360b3ec5a2a08d2591be8a92b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCD30 object sensor. <br /></td></tr>
 <tr class="separator:a7b69b0360b3ec5a2a08d2591be8a92b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f92336ae7ee535c6417111075949ad1"><td class="memItemLeft" align="right" valign="top"><a id="a3f92336ae7ee535c6417111075949ad1"></a>
-CM1106_UART *&#160;</td><td class="memItemRight" valign="bottom"><b>cm1106</b></td></tr>
+CM1106_UART *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">cm1106</a></td></tr>
+<tr class="memdesc:a3f92336ae7ee535c6417111075949ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">CM1106 UART main object sensor. <br /></td></tr>
 <tr class="separator:a3f92336ae7ee535c6417111075949ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b00eb1d005ea6634307c236d6a39a70"><td class="memItemLeft" align="right" valign="top"><a id="a8b00eb1d005ea6634307c236d6a39a70"></a>
-CM1106_sensor&#160;</td><td class="memItemRight" valign="bottom"><b>cm1106sensor</b></td></tr>
+CM1106_sensor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">cm1106sensor</a></td></tr>
+<tr class="memdesc:a8b00eb1d005ea6634307c236d6a39a70"><td class="mdescLeft">&#160;</td><td class="mdescRight">CM1106 UART main variable. <br /></td></tr>
 <tr class="separator:a8b00eb1d005ea6634307c236d6a39a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace9ca82dcea1486bdf395cacdb7d2620"><td class="memItemLeft" align="right" valign="top"><a id="ace9ca82dcea1486bdf395cacdb7d2620"></a>
-CM1106_ABC&#160;</td><td class="memItemRight" valign="bottom"><b>abc</b></td></tr>
+CM1106_ABC&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">abc</a></td></tr>
+<tr class="memdesc:ace9ca82dcea1486bdf395cacdb7d2620"><td class="mdescLeft">&#160;</td><td class="mdescRight">CM1106 UART calibration object. <br /></td></tr>
 <tr class="separator:ace9ca82dcea1486bdf395cacdb7d2620"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98fa1dc37540b4c3c11609c7840ada8b"><td class="memItemLeft" align="right" valign="top"><a id="a98fa1dc37540b4c3c11609c7840ada8b"></a>
-SFE_PARTICLE_SENSOR&#160;</td><td class="memItemRight" valign="bottom"><b>pmGCJA5</b></td></tr>
+SFE_PARTICLE_SENSOR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">pmGCJA5</a></td></tr>
+<tr class="memdesc:a98fa1dc37540b4c3c11609c7840ada8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Panasonic SN-GCJA5 object sensor. <br /></td></tr>
 <tr class="separator:a98fa1dc37540b4c3c11609c7840ada8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5b958024787912f4ab413034a3a0a75"><td class="memItemLeft" align="right" valign="top"><a id="ad5b958024787912f4ab413034a3a0a75"></a>
-S8_UART *&#160;</td><td class="memItemRight" valign="bottom"><b>s8</b></td></tr>
+S8_UART *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">s8</a></td></tr>
+<tr class="memdesc:ad5b958024787912f4ab413034a3a0a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">SenseAir S8 CO2 object sensor. <br /></td></tr>
 <tr class="separator:ad5b958024787912f4ab413034a3a0a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfac0bef57dc49feb0de18a3a8492ca0"><td class="memItemLeft" align="right" valign="top"><a id="adfac0bef57dc49feb0de18a3a8492ca0"></a>
-S8_sensor&#160;</td><td class="memItemRight" valign="bottom"><b>s8sensor</b></td></tr>
+S8_sensor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">s8sensor</a></td></tr>
+<tr class="memdesc:adfac0bef57dc49feb0de18a3a8492ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">SenseAir S8 CO2 object sensor. <br /></td></tr>
 <tr class="separator:adfac0bef57dc49feb0de18a3a8492ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15b986d752487db6a9a61948f255eb84"><td class="memItemLeft" align="right" valign="top"><a id="a15b986d752487db6a9a61948f255eb84"></a>
-SensirionI2CScd4x&#160;</td><td class="memItemRight" valign="bottom"><b>scd4x</b></td></tr>
+SensirionI2CScd4x&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a15b986d752487db6a9a61948f255eb84">scd4x</a></td></tr>
+<tr class="memdesc:a15b986d752487db6a9a61948f255eb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCD4x object sensor. <br /></td></tr>
 <tr class="separator:a15b986d752487db6a9a61948f255eb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="memItemLeft" align="right" valign="top"><a id="aaab17888bad6c8c60c5a2f8e2501bfc8"></a>
-PM1006 *&#160;</td><td class="memItemRight" valign="bottom"><b>pm1006</b></td></tr>
+PM1006 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">pm1006</a></td></tr>
+<tr class="memdesc:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">IKEA Vindriktn object sensor. <br /></td></tr>
 <tr class="separator:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5e013ede87366e54e4ca42e72fb40c0"><td class="memItemLeft" align="right" valign="top"><a id="ad5e013ede87366e54e4ca42e72fb40c0"></a>
-DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><b>dfrCO</b></td></tr>
+DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">dfrCO</a></td></tr>
+<tr class="memdesc:ad5e013ede87366e54e4ca42e72fb40c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFRobot gravity NH3 object sensor addr 0x74. <br /></td></tr>
 <tr class="separator:ad5e013ede87366e54e4ca42e72fb40c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ec9492ba3931bb6a05f02be5db61f79"><td class="memItemLeft" align="right" valign="top"><a id="a1ec9492ba3931bb6a05f02be5db61f79"></a>
-DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><b>dfrNH3</b></td></tr>
+DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">dfrNH3</a></td></tr>
+<tr class="memdesc:a1ec9492ba3931bb6a05f02be5db61f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFRobot gravity NH3 object sensor addr 0x77. <br /></td></tr>
 <tr class="separator:a1ec9492ba3931bb6a05f02be5db61f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4f26a60c06c2659d088d778c0468874"><td class="memItemLeft" align="right" valign="top"><a id="af4f26a60c06c2659d088d778c0468874"></a>
-GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
+GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#af4f26a60c06c2659d088d778c0468874">rad</a></td></tr>
+<tr class="memdesc:af4f26a60c06c2659d088d778c0468874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geiger CAJOE object sensor. <br /></td></tr>
 <tr class="separator:af4f26a60c06c2659d088d778c0468874"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>CanAirIO <a class="el" href="classSensors.html" title="CanAirIO Sensors Manager main class.">Sensors</a> Manager main class. </p>
+<dl class="section author"><dt>Authors</dt><dd>@hpsaturn and CanAir.IO contributers </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6f65f14f397fea4b9f8347f1b92fb061"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f65f14f397fea4b9f8347f1b92fb061">&#9670;&nbsp;</a></span>enableGeigerSensor()</h2>
 
@@ -356,10 +429,52 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 <p>Enable Geiger sensor on specific pin. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIO</td><td>pin </td></tr>
+    <tr><td class="paramname">gpio</td><td>number or pin. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a588db8882dba0506b44ee4c0752b404c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a588db8882dba0506b44ee4c0752b404c">&#9670;&nbsp;</a></span>getGeigerCPM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Sensors::getGeigerCPM </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get Geiger count. Tics in the last 60secs </p>
+<dl class="section return"><dt>Returns</dt><dd>CPM </dd></dl>
+
+</div>
+</div>
+<a id="a7bea34fbbe7d0fcc1cdcde8886a1b94c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bea34fbbe7d0fcc1cdcde8886a1b94c">&#9670;&nbsp;</a></span>getGeigerMicroSievertHour()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Sensors::getGeigerMicroSievertHour </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get Geiger count in uSv/h units </p>
+<dl class="section return"><dt>Returns</dt><dd>CPM * J305 conversion factor </dd></dl>
 
 </div>
 </div>
@@ -454,7 +569,8 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 </div><div class="memdoc">
 
 <p>get the sensor registry for retrieve the sensor names </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to the sensor registry <a class="el" href="">See the multivariable example: <a href="https://bit.ly/2XzZ9yw">https://bit.ly/2XzZ9yw</a> </a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the sensor registry.</dd></dl>
+<p>See the <a href="https://bit.ly/3qVQYYy">Advanced Multivariable example</a> </p>
 
 </div>
 </div>
@@ -555,8 +671,8 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>float value of the each unit (RAW)</dd></dl>
-<p>Also you can use the specific primitive like <a class="el" href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c" title="get temperature °C value of environment sensor">getTemperature()</a>, <a class="el" href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1" title="get humidity % value of environment sensor">getHumidity()</a>, <a class="el" href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90" title="get Gas resistance value of BMP680 sensor">getGas()</a>, <a class="el" href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8" title="get Altitude value in meters">getAltitude()</a>, <a class="el" href="classSensors.html#a3db568a0fb294fd02cc1f95943db4f55" title="get Pressure value in hPa">getPressure()</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>float value of the each unit (RAW).</dd></dl>
+<p>Also you can use the specific primitive like <a class="el" href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c" title="get temperature value from environment sensor">getTemperature()</a>, <a class="el" href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1" title="get humidity % value of environment sensor">getHumidity()</a>, <a class="el" href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90" title="get Gas resistance value of BMP680 sensor">getGas()</a>, <a class="el" href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8" title="get Altitude value in meters">getAltitude()</a>, <a class="el" href="classSensors.html#a3db568a0fb294fd02cc1f95943db4f55" title="get Pressure value in hPa">getPressure()</a> </p>
 
 </div>
 </div>
@@ -668,7 +784,8 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 </div><div class="memdoc">
 
 <p>get the sensor unit status on the registry </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the sensor unit is available, false otherwise. <a class="el" href="">See the multivariable example: <a href="https://bit.ly/2XzZ9yw">https://bit.ly/2XzZ9yw</a> </a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the sensor unit is available, false otherwise.</dd></dl>
+<p>See the <a href="https://bit.ly/3qVQYYy">Advanced Multivariable example</a> </p>
 
 </div>
 </div>
@@ -691,7 +808,7 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 <p>print the sensor names detected </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">debug</td><td>optional boolean to set the debug mode flag </td></tr>
+    <tr><td class="paramname">debug</td><td>optional boolean to set the debug mode flag. </td></tr>
   </table>
   </dd>
 </dl>
@@ -717,7 +834,7 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 <p>print the sensor units names available </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">debug</td><td>optional boolean to set the debug mode flag </td></tr>
+    <tr><td class="paramname">debug</td><td>optional boolean to set the debug mode flag. </td></tr>
   </table>
   </dd>
 </dl>
@@ -739,7 +856,7 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>reset the next sensor unit counter </p>
+<p>reset the next sensor unit counter. </p>
 <p>This function is useful to reset the counter to review the sensor units again. but it is not necessary to call this function. </p>
 
 </div>
@@ -759,7 +876,7 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>reset the sensor registry </p>
+<p>reset the sensor registry. </p>
 <p>This function is useful to reset the sensors registry after a sensor is removed. It should be called before the initialization of the sensors but it is <b>Not necessary</b> to call this function. </p>
 
 </div>
@@ -779,7 +896,7 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>reset the sensor units registry </p>
+<p>reset the sensor units registry. </p>
 <p>This function is useful to reset the units registry after a sensor unit is removed. but it is <b>Not necessary</b> to call this function. </p>
 
 </div>
@@ -803,7 +920,7 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 <p>set CO2 altitude offset (m) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">altitude</td><td>(m)</td></tr>
+    <tr><td class="paramname">altitude</td><td>(m).</td></tr>
   </table>
   </dd>
 </dl>
@@ -935,11 +1052,37 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 <p>set the sea level pressure (hPa) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hpa</td><td>(hPa)</td></tr>
+    <tr><td class="paramname">hpa</td><td>(hPa).</td></tr>
   </table>
   </dd>
 </dl>
 <p>This method is used to set the sea level pressure for some sensors that need it. </p>
+
+</div>
+</div>
+<a id="aeb151247ff81fb34992458915c55ed9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb151247ff81fb34992458915c55ed9c">&#9670;&nbsp;</a></span>setTemperatureUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sensors::setTemperatureUnit </td>
+          <td>(</td>
+          <td class="paramtype">TEMPUNIT&#160;</td>
+          <td class="paramname"><em>tunit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the temperature type unit </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tunit</td><td>celciuse, kelvin or fahrenheit. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -975,9 +1118,13 @@ GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
 <li>src/Sensors.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classSensors.html">Sensors</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

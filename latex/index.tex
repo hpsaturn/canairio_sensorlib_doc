@@ -38,7 +38,9 @@ Sensirion SPS30   &\PBS\centering Yes   &\PBS\centering Yes   &\PBS\centering Se
 \end{longtabu}
 
 
-NOTE\+: Panasonic via UART in ESP8266 maybe needs select in detection
+NOTE\+: ~\newline
+ Panasonic via UART in ESP8266 maybe needs select in detection. ~\newline
+
 
 \doxysubsubsection*{CO2 sensors}
 
@@ -80,11 +82,14 @@ BMP280   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    
 BME680   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
 Df\+Robot SEN0469 NH3   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
 DFRobot SEN0466 CO   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
-DHTxx   &\PBS\centering Two\+Wire   &\PBS\centering Auto   &\PBS\centering DISABLED   \\\cline{1-4}
+Geiger CAJOE   &\PBS\centering GPIO   &\PBS\centering Select   &\PBS\centering TESTING    \\\cline{1-4}
+DHTxx   &\PBS\centering Two\+Wire   &\PBS\centering Select   &\PBS\centering DISABLED   \\\cline{1-4}
 \end{longtabu}
 
 
-NOTE\+: DHT22 is supported but is not recommended. Please see the documentation.
+NOTE\+: ~\newline
+ DHT22 is supported but is not recommended. Please see the documentation. ~\newline
+
 
 \doxysubsubsection*{Platforms supported}
 
@@ -122,6 +127,7 @@ Arduino   &\PBS\centering Atmel   &\PBS\centering Some third party libraries fai
 \item Unified calibration trigger for all CO2 sensors
 \item Unified CO2 Altitude compensation
 \item Unified temperature offset for CO2 and environment sensors
+\item Add support for Kelvin and Fahrenheit on environment and CO2 sensors
 \item Public access to main objects of each library (full methods access)
 \item Get unit symbol and name and each sub-\/sensor
 \item Get the main group type\+: NONE, PM, CO2 and ENV.
@@ -169,6 +175,7 @@ You can review a full implementation on \href{https://github.com/kike-canaries/c
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_a8fe6e43b99919f6c481792f0c0de8c50}{setSeaLevelPressure}}(1036.25);           \textcolor{comment}{// [optional] Set sea level pressure in hpa}}
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ac749e2c2618a177afa7d72ce68573fa5}{setDebugMode}}(\textcolor{keyword}{false});                    \textcolor{comment}{// [optional] debug mode to get detailed msgs}}
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ae25465fbd64d3b2b9ae31e2cb5a4b246}{detectI2COnly}}(\textcolor{keyword}{true});                    \textcolor{comment}{// [optional] force to only i2c sensors}}
+\DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_aeb151247ff81fb34992458915c55ed9c}{setTemperatureUnit}}(TEMPUNIT::KELVIN);   \textcolor{comment}{// comment it for Celsius or set Fahrenheit}}
 \DoxyCodeLine{    sensors.\mbox{\hyperlink{classSensors_ab0b53515ecf64e30e854a27eb0a1399d}{init}}();                                 \textcolor{comment}{// Auto detection to UART and i2c sensors}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Alternatives only for UART sensors (TX/RX):}}
@@ -183,8 +190,6 @@ You can review a full implementation on \href{https://github.com/kike-canaries/c
 \DoxyCodeLine{    \textcolor{comment}{// sensors.init(SENSORS::SAIRS8);               // Force UART detection to SenseAirS8 CO2 sensor}}
 \DoxyCodeLine{    \textcolor{comment}{// sensors.init(SENSORS::Auto,PMS\_RX,PMS\_TX);   // Auto detection on custom RX,TX}}
 \DoxyCodeLine{  }
-\DoxyCodeLine{}
-\DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Also you can access to sub-\/library objects, and perform for example calls like next:}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// sensors.sps30.sleep()}}
@@ -344,7 +349,7 @@ For now we are using it only for DHT sensors in PIN 23. For more info please rev
 
 \doxysubsubsection*{Platform\+IO (recommended)}
 
-We recommended Platform\+IO because is more easy than Arduino IDE. For this, please install first \href{http://platformio.org/}{\texttt{ Platform\+IO}} and its command line tools (Windows, Mac\+Os and Linux), {\bfseries{pio}} command, then connect your compatible board to the USB and run the next command\+:
+We recommended Platform\+IO because is more easy than Arduino IDE. For that, please install first \href{http://platformio.org/}{\texttt{ Platform\+IO}} and its command line tools (Windows, Mac\+Os and Linux), {\bfseries{pio}} command, then connect your compatible board to the USB and run the next command\+:
 
 
 \begin{DoxyCode}{0}
@@ -352,6 +357,8 @@ We recommended Platform\+IO because is more easy than Arduino IDE. For this, ple
 
 \end{DoxyCode}
 
+
+Also you can see some examples than have {\ttfamily platformio.\+ini} files for your project.
 
 \doxysubsubsection*{Arduino IDE}
 
@@ -444,6 +451,7 @@ Also you can make a donation, be a patreon or buy a device\+: ~\newline
 \item \mbox{[}x\mbox{]} Multivariable selection (get\+Next\+Unit(),get\+Unit\+Name(),etc)
 \item \mbox{[}x\mbox{]} Two I2C channel supported for M5\+Stack Devices (M5\+StickC tested)
 \item \mbox{[}x\mbox{]} Added CO and NH3 sensors
+\item \mbox{[}x\mbox{]} Added Geiger sensor support
 \item \mbox{[} \mbox{]} Sea level setting for Pressure sensors and others
 \item \mbox{[} \mbox{]} Support to second UART port
 \end{DoxyItemize}

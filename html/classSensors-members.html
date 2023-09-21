@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -23,10 +32,25 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CanAirIO Sensors Library
-   &#160;<span id="projectnumber">0.6.5</span>
+   &#160;<span id="projectnumber">0.7.1</span>
    </div>
    <div id="projectbrief">Generic sensor manager, abstratctions and bindings of multiple air sensors libraries</div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -38,16 +62,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('classSensors.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -62,7 +93,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Sensors Member List</div>  </div>
@@ -71,33 +101,33 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="classSensors.html">Sensors</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>abc</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>aht10</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>altoffset</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>am2320</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>bme280</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>bme680</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>bmp280</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>cm1106</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>cm1106sensor</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">abc</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a4e919d953ced2916be669a69a41fc098">aht10</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">altoffset</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">am2320</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">bme280</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a9c16019668f5e0e883211d1259331af3">bme680</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a5af169078d14a1272bdf390109041df0">bmp280</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">cm1106</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">cm1106sensor</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">detectI2COnly</a>(bool enable)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>devmode</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>dfrCO</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>dfrNH3</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a450841daddeac4d513711007e38d7f3f">devmode</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">dfrCO</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">dfrNH3</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">enableGeigerSensor</a>(int gpio)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8">getAltitude</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getCO</b>() (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a73f73d13d14526125fa95fd9b29e088d">getCO</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ad953d4564cc20d8134cccd962435dd81">getCO2</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a7fa1fe8f4f3469bce9311be880c243df">getCO2humi</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">getCO2temp</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90">getGas</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getGeigerCPM</b>(void) (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getGeigerMicroSievertHour</b>(void) (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a588db8882dba0506b44ee4c0752b404c">getGeigerCPM</a>(void)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a7bea34fbbe7d0fcc1cdcde8886a1b94c">getGeigerMicroSievertHour</a>(void)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">getHumidity</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getLibraryRevision</b>() (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getLibraryVersion</b>() (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#adb026d51c7801930b26730371244bb5e">getLibraryRevision</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#af8c24cdf4179bf5bf7e799844e626b43">getLibraryVersion</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">getNextUnit</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getNH3</b>() (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a77e8576cefec2ee8ef72f5031a3647fb">getNH3</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a515884007d9b5239c2321ec0695f69e8">getPM1</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a8165734cd6b82243549ba6bd1c7a837a">getPM10</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#adc3ad26b8a9be10b2100e3b023fdefc4">getPM25</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
@@ -113,31 +143,31 @@ $(function() {
   <tr><td class="entry"><a class="el" href="classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb">getUnitsRegisteredCount</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a365a45dc5c9ab598cfc206368579b94a">getUnitSymbol</a>(UNIT unit)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">getUnitValue</a>(UNIT unit)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>hpa</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>i2conly</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">hpa</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">i2conly</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d">init</a>(u_int pms_type=0, int pms_rx=PMS_RX, int pms_tx=PMS_TX)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a63ec661795621129a831a6f837c7f560">isDataReady</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1">isSensorRegistered</a>(SENSORS sensor)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#aa99811f9bb9778253e4d0476fab7b86c">isUARTSensorConfigured</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ac1acd7bf32bda39fdfde1753af3ceef2">isUnitRegistered</a>(UNIT unit)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">loop</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>mhz19</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pm1006</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pmGCJA5</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ad6156b78908fd064761301339e54c8af">mhz19</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">pm1006</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">pmGCJA5</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#aed05af978baed0801ff4de5f1c367cf0">printSensorsRegistered</a>(bool debug=false)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a0e9516d728256efd1eba97ef834cd385">printUnitsRegistered</a>(bool debug=false)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>rad</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#af4f26a60c06c2659d088d778c0468874">rad</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a4f531daf0233f48c3c4e5e91688f90ea">readAllSensors</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>resetAllVariables</b>() (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a296d40a89de2b405c19f1982d6083545">resetAllVariables</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">resetNextUnit</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">resetSensorsRegister</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">resetUnitsRegister</a>()</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>s8</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>s8sensor</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>sample_time</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>scd30</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>scd4x</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sealevel</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">s8</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">s8sensor</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">sample_time</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">scd30</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a15b986d752487db6a9a61948f255eb84">scd4x</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#aacc120de64676122893f4d68d8b39ded">sealevel</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">setCO2AltitudeOffset</a>(float altitude)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a47f337a24231440b661d57ed8e873a64">setCO2RecalibrationFactor</a>(int ppmValue)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">setDebugMode</a>(bool enable)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
@@ -145,15 +175,19 @@ $(function() {
   <tr><td class="entry"><a class="el" href="classSensors.html#aba1b7a633d1d89514c891220b603351f">setOnErrorCallBack</a>(errorCbFn cb)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSensors.html#ac723c0d9cf5af5daa0fa8d041f41f3d8">setSampleTime</a>(int seconds)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">setSeaLevelPressure</a>(float hpa)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">setTempOffset</a>(float offset)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>sht31</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">sps30</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>toffset</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>val</b> (defined in <a class="el" href="classSensors.html">Sensors</a>)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">setTemperatureUnit</a>(TEMPUNIT tunit)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">setTempOffset</a>(float offset)</td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">sht31</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">sps30</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">toffset</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">val</a></td><td class="entry"><a class="el" href="classSensors.html">Sensors</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

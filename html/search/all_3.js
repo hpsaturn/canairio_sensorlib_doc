@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['init_24',['init',['../classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d',1,'Sensors']]],
-  ['isdataready_25',['isDataReady',['../classSensors.html#a63ec661795621129a831a6f837c7f560',1,'Sensors']]],
-  ['issensorregistered_26',['isSensorRegistered',['../classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1',1,'Sensors']]],
-  ['isuartsensorconfigured_27',['isUARTSensorConfigured',['../classSensors.html#aa99811f9bb9778253e4d0476fab7b86c',1,'Sensors']]],
-  ['isunitregistered_28',['isUnitRegistered',['../classSensors.html#ac1acd7bf32bda39fdfde1753af3ceef2',1,'Sensors']]]
+  ['detecti2conly_9',['detectI2COnly',['../classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246',1,'Sensors']]],
+  ['devmode_10',['devmode',['../classSensors.html#a450841daddeac4d513711007e38d7f3f',1,'Sensors']]],
+  ['dfrco_11',['dfrCO',['../classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0',1,'Sensors']]],
+  ['dfrnh3_12',['dfrNH3',['../classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79',1,'Sensors']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loop_29',['loop',['../classSensors.html#a255ece4e475221edb8ba7a8983014a76',1,'Sensors']]]
+  ['enablegeigersensor_13',['enableGeigerSensor',['../classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061',1,'Sensors']]]
 ];

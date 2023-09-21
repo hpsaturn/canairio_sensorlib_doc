@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -23,10 +32,25 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CanAirIO Sensors Library
-   &#160;<span id="projectnumber">0.6.5</span>
+   &#160;<span id="projectnumber">0.7.1</span>
    </div>
    <div id="projectbrief">Generic sensor manager, abstratctions and bindings of multiple air sensors libraries</div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -38,17 +62,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
-</div><!-- top -->
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,7 +99,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/kike-canaries/canairio_sensorlib/actions/"><img src="https://github.com/kike-canaries/canairio_sensorlib/workflows/PlatformIO/badge.svg" alt="PlatformIO" style="pointer-events: none;" class="inline"/></a> <a href="https://travis-ci.com/kike-canaries/canairio_sensorlib.svg?branch=master"><img src="https://travis-ci.com/kike-canaries/canairio_sensorlib.svg?branch=master" alt="Build Status" style="pointer-events: none;" class="inline"/></a> <img src="https://views.whatilearened.today/views/github/kike-canaries/canairio_sensorlib.svg" alt="ViewCount" style="pointer-events: none;" class="inline"/></p>
-<h1>Air Quality <a class="el" href="classSensors.html">Sensors</a> Library</h1>
+<h1>Air Quality <a class="el" href="classSensors.html" title="CanAirIO Sensors Manager main class.">Sensors</a> Library</h1>
 <p>Generic sensor manager, abstractions and bindings of multiple sensors <a href="https://github.com/kike-canaries/canairio_sensorlib/blob/master/unified-lib-deps.ini">libraries</a>: Honeywell, Plantower, Panasonic, Sensirion, etc. and CO2 sensors. Also it's handling others environment sensors. This library is for general purpose, but also is the sensors library base of <a href="https://canair.io/docs">CanAirIO project</a>.</p>
 <p>For developers also you can check the complete library documentation <a href="http://hpsaturn.com/canairio_sensorlib_doc/html/index.html">here</a></p>
 <table class="doxtable">
@@ -94,7 +124,9 @@ $(function() {
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">Sensirion SPS30   </td><td class="markdownTableBodyCenter">Yes   </td><td class="markdownTableBodyCenter">Yes   </td><td class="markdownTableBodyCenter">Select / Auto   </td><td class="markdownTableBodyCenter">STABLE   </td></tr>
 </table>
-<p>NOTE: Panasonic via UART in ESP8266 maybe needs select in detection</p>
+<p>NOTE: <br  />
+ Panasonic via UART in ESP8266 maybe needs select in detection. <br  />
+</p>
 <h3>CO2 sensors</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -131,9 +163,13 @@ $(function() {
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">DFRobot SEN0466 CO   </td><td class="markdownTableBodyCenter">i2c   </td><td class="markdownTableBodyCenter">Auto   </td><td class="markdownTableBodyCenter">TESTING    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">DHTxx   </td><td class="markdownTableBodyCenter">TwoWire   </td><td class="markdownTableBodyCenter">Auto   </td><td class="markdownTableBodyCenter">DISABLED   </td></tr>
+<td class="markdownTableBodyLeft">Geiger CAJOE   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">Select   </td><td class="markdownTableBodyCenter">TESTING    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">DHTxx   </td><td class="markdownTableBodyCenter">TwoWire   </td><td class="markdownTableBodyCenter">Select   </td><td class="markdownTableBodyCenter">DISABLED   </td></tr>
 </table>
-<p>NOTE: DHT22 is supported but is not recommended. Please see the documentation.</p>
+<p>NOTE: <br  />
+ DHT22 is supported but is not recommended. Please see the documentation. <br  />
+</p>
 <h3>Platforms supported</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -164,6 +200,7 @@ $(function() {
 <li>Unified calibration trigger for all CO2 sensors</li>
 <li>Unified CO2 Altitude compensation</li>
 <li>Unified temperature offset for CO2 and environment sensors</li>
+<li>Add support for Kelvin and Fahrenheit on environment and CO2 sensors</li>
 <li>Public access to main objects of each library (full methods access)</li>
 <li>Get unit symbol and name and each sub-sensor</li>
 <li>Get the main group type: NONE, PM, CO2 and ENV.</li>
@@ -200,6 +237,7 @@ $(function() {
 <div class="line">    sensors.<a class="code" href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">setSeaLevelPressure</a>(1036.25);           <span class="comment">// [optional] Set sea level pressure in hpa</span></div>
 <div class="line">    sensors.<a class="code" href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">setDebugMode</a>(<span class="keyword">false</span>);                    <span class="comment">// [optional] debug mode to get detailed msgs</span></div>
 <div class="line">    sensors.<a class="code" href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">detectI2COnly</a>(<span class="keyword">true</span>);                    <span class="comment">// [optional] force to only i2c sensors</span></div>
+<div class="line">    sensors.<a class="code" href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">setTemperatureUnit</a>(TEMPUNIT::KELVIN);   <span class="comment">// comment it for Celsius or set Fahrenheit</span></div>
 <div class="line">    sensors.<a class="code" href="classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d">init</a>();                                 <span class="comment">// Auto detection to UART and i2c sensors</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Alternatives only for UART sensors (TX/RX):</span></div>
@@ -214,8 +252,6 @@ $(function() {
 <div class="line">    <span class="comment">// sensors.init(SENSORS::SAIRS8);               // Force UART detection to SenseAirS8 CO2 sensor</span></div>
 <div class="line">    <span class="comment">// sensors.init(SENSORS::Auto,PMS_RX,PMS_TX);   // Auto detection on custom RX,TX</span></div>
 <div class="line">  </div>
-<div class="line"> </div>
-<div class="line"> </div>
 <div class="line">    <span class="comment">// Also you can access to sub-library objects, and perform for example calls like next:</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// sensors.sps30.sleep()</span></div>
@@ -232,20 +268,21 @@ $(function() {
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">    sensors.<a class="code" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">loop</a>();  <span class="comment">// read sensor data and showed it</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassSensors_html_a122c0d2922d2a80984e8a3ac21b883c3"><div class="ttname"><a href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">Sensors::setTempOffset</a></div><div class="ttdeci">void setTempOffset(float offset)</div><div class="ttdoc">Set temperature offset for all temperature sensors.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:308</div></div>
-<div class="ttc" id="aclassSensors_html_a255bf73cd4afaf6c656dbbcabb1a8bb1"><div class="ttname"><a href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">Sensors::getHumidity</a></div><div class="ttdeci">float getHumidity()</div><div class="ttdoc">get humidity % value of environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:293</div></div>
+<div class="ttc" id="aclassSensors_html_a122c0d2922d2a80984e8a3ac21b883c3"><div class="ttname"><a href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">Sensors::setTempOffset</a></div><div class="ttdeci">void setTempOffset(float offset)</div><div class="ttdoc">Set temperature offset for all temperature sensors.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:376</div></div>
+<div class="ttc" id="aclassSensors_html_a255bf73cd4afaf6c656dbbcabb1a8bb1"><div class="ttname"><a href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">Sensors::getHumidity</a></div><div class="ttdeci">float getHumidity()</div><div class="ttdoc">get humidity % value of environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:288</div></div>
 <div class="ttc" id="aclassSensors_html_a255ece4e475221edb8ba7a8983014a76"><div class="ttname"><a href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">Sensors::loop</a></div><div class="ttdeci">void loop()</div><div class="ttdoc">Main sensors loop. All sensors are read here, please call it on main loop.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:34</div></div>
 <div class="ttc" id="aclassSensors_html_a27eec756609a421b3927c0dc132ae7c6"><div class="ttname"><a href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">Sensors::setCO2AltitudeOffset</a></div><div class="ttdeci">void setCO2AltitudeOffset(float altitude)</div><div class="ttdoc">set CO2 altitude offset (m)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:195</div></div>
-<div class="ttc" id="aclassSensors_html_a7afb5c201c4e1933c96719e632181f71"><div class="ttname"><a href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">Sensors::getCO2temp</a></div><div class="ttdeci">float getCO2temp()</div><div class="ttdoc">get temperature °C value of CO2 sensor device</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:288</div></div>
+<div class="ttc" id="aclassSensors_html_a7afb5c201c4e1933c96719e632181f71"><div class="ttname"><a href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">Sensors::getCO2temp</a></div><div class="ttdeci">float getCO2temp()</div><div class="ttdoc">get temperature value from the CO2 sensor device</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:316</div></div>
 <div class="ttc" id="aclassSensors_html_a7fa1fe8f4f3469bce9311be880c243df"><div class="ttname"><a href="classSensors.html#a7fa1fe8f4f3469bce9311be880c243df">Sensors::getCO2humi</a></div><div class="ttdeci">float getCO2humi()</div><div class="ttdoc">get humidity % value of CO2 sensor device</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:283</div></div>
 <div class="ttc" id="aclassSensors_html_a8fe6e43b99919f6c481792f0c0de8c50"><div class="ttname"><a href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">Sensors::setSeaLevelPressure</a></div><div class="ttdeci">void setSeaLevelPressure(float hpa)</div><div class="ttdoc">set the sea level pressure (hPa)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:217</div></div>
 <div class="ttc" id="aclassSensors_html_aba1b7a633d1d89514c891220b603351f"><div class="ttname"><a href="classSensors.html#aba1b7a633d1d89514c891220b603351f">Sensors::setOnErrorCallBack</a></div><div class="ttdeci">void setOnErrorCallBack(errorCbFn cb)</div><div class="ttdoc">Optional callback for get the sensors errors.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:240</div></div>
-<div class="ttc" id="aclassSensors_html_ac4c22766994b94a2a28158ed72dc4a0c"><div class="ttname"><a href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c">Sensors::getTemperature</a></div><div class="ttdeci">float getTemperature()</div><div class="ttdoc">get temperature °C value of environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:298</div></div>
+<div class="ttc" id="aclassSensors_html_ac4c22766994b94a2a28158ed72dc4a0c"><div class="ttname"><a href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c">Sensors::getTemperature</a></div><div class="ttdeci">float getTemperature()</div><div class="ttdoc">get temperature value from environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:329</div></div>
 <div class="ttc" id="aclassSensors_html_ac723c0d9cf5af5daa0fa8d041f41f3d8"><div class="ttname"><a href="classSensors.html#ac723c0d9cf5af5daa0fa8d041f41f3d8">Sensors::setSampleTime</a></div><div class="ttdeci">void setSampleTime(int seconds)</div><div class="ttdoc">set loop time interval for each sensor sample</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:143</div></div>
 <div class="ttc" id="aclassSensors_html_ac749e2c2618a177afa7d72ce68573fa5"><div class="ttname"><a href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">Sensors::setDebugMode</a></div><div class="ttdeci">void setDebugMode(bool enable)</div><div class="ttdoc">Optional for increase the debug level.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:248</div></div>
 <div class="ttc" id="aclassSensors_html_ad953d4564cc20d8134cccd962435dd81"><div class="ttname"><a href="classSensors.html#ad953d4564cc20d8134cccd962435dd81">Sensors::getCO2</a></div><div class="ttdeci">uint16_t getCO2()</div><div class="ttdoc">get CO2 ppm value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:278</div></div>
 <div class="ttc" id="aclassSensors_html_adc3ad26b8a9be10b2100e3b023fdefc4"><div class="ttname"><a href="classSensors.html#adc3ad26b8a9be10b2100e3b023fdefc4">Sensors::getPM25</a></div><div class="ttdeci">uint16_t getPM25()</div><div class="ttdoc">get PM2.5 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:263</div></div>
-<div class="ttc" id="aclassSensors_html_ae25465fbd64d3b2b9ae31e2cb5a4b246"><div class="ttname"><a href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">Sensors::detectI2COnly</a></div><div class="ttdeci">void detectI2COnly(bool enable)</div><div class="ttdoc">Forced to enable I2C sensors only Recommended to use only if you are using a I2C sensor and improve t...</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:357</div></div>
+<div class="ttc" id="aclassSensors_html_ae25465fbd64d3b2b9ae31e2cb5a4b246"><div class="ttname"><a href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">Sensors::detectI2COnly</a></div><div class="ttdeci">void detectI2COnly(bool enable)</div><div class="ttdoc">Forced to enable I2C sensors only. Recommended to use only if you are using a I2C sensor and improve ...</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:427</div></div>
+<div class="ttc" id="aclassSensors_html_aeb151247ff81fb34992458915c55ed9c"><div class="ttname"><a href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">Sensors::setTemperatureUnit</a></div><div class="ttdeci">void setTemperatureUnit(TEMPUNIT tunit)</div><div class="ttdoc">set the temperature type unit</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:296</div></div>
 </div><!-- fragment --><h2>Multivariable demo</h2>
 <p>In this <a href="https://www.youtube.com/watch?v=-5Va47Bap48">demo</a> on two different devices with multiple sensors, you can choose the possible sub sensors units or variables:</p>
 <p><a href="https://www.youtube.com/watch?v=-5Va47Bap48"><img src="https://img.youtube.com/vi/-5Va47Bap48/0.jpg" alt="CanAirIO multivariable demo" class="inline"/></a></p>
@@ -308,14 +345,14 @@ $(function() {
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">    sensors.<a class="code" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">loop</a>();  <span class="comment">// read sensor data and showed it</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassSensors_html_a1d723cdb619b2d61d3e4080182a12cbb"><div class="ttname"><a href="classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb">Sensors::getUnitsRegisteredCount</a></div><div class="ttdeci">uint8_t getUnitsRegisteredCount()</div><div class="ttdoc">get device sensors units detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:446</div></div>
-<div class="ttc" id="aclassSensors_html_a365a45dc5c9ab598cfc206368579b94a"><div class="ttname"><a href="classSensors.html#a365a45dc5c9ab598cfc206368579b94a">Sensors::getUnitSymbol</a></div><div class="ttdeci">String getUnitSymbol(UNIT unit)</div><div class="ttdoc">get the sensor unit symbol</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:465</div></div>
-<div class="ttc" id="aclassSensors_html_a4abb5d2a00d31a407e32cbdabe00b6eb"><div class="ttname"><a href="classSensors.html#a4abb5d2a00d31a407e32cbdabe00b6eb">Sensors::getUnitName</a></div><div class="ttdeci">String getUnitName(UNIT unit)</div><div class="ttdoc">get the sensor unit name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:455</div></div>
-<div class="ttc" id="aclassSensors_html_a7e75dd4e3f2e655a9961f57650cbf749"><div class="ttname"><a href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">Sensors::getUnitValue</a></div><div class="ttdeci">float getUnitValue(UNIT unit)</div><div class="ttdoc">get the sensor unit value (float)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:528</div></div>
-<div class="ttc" id="aclassSensors_html_aa7ca70f31838cba52b96f76aa4a0d4a2"><div class="ttname"><a href="classSensors.html#aa7ca70f31838cba52b96f76aa4a0d4a2">Sensors::getSensorName</a></div><div class="ttdeci">String getSensorName(SENSORS sensor)</div><div class="ttdoc">get the sensor name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:391</div></div>
-<div class="ttc" id="aclassSensors_html_ad33c76f341c86ac1900c5953fca9c0d1"><div class="ttname"><a href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">Sensors::getNextUnit</a></div><div class="ttdeci">UNIT getNextUnit()</div><div class="ttdoc">get the next sensor unit available</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:473</div></div>
-<div class="ttc" id="aclassSensors_html_ad8395e69cf5dcc68d0a8049ec7372a81"><div class="ttname"><a href="classSensors.html#ad8395e69cf5dcc68d0a8049ec7372a81">Sensors::getSensorsRegisteredCount</a></div><div class="ttdeci">uint8_t getSensorsRegisteredCount()</div><div class="ttdoc">get device sensors detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:370</div></div>
-<div class="ttc" id="aclassSensors_html_af9ee8f89e81d76a4c2b41ed6dc38f2f3"><div class="ttname"><a href="classSensors.html#af9ee8f89e81d76a4c2b41ed6dc38f2f3">Sensors::getSensorsRegistered</a></div><div class="ttdeci">uint8_t * getSensorsRegistered()</div><div class="ttdoc">get the sensor registry for retrieve the sensor names</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:415</div></div>
+<div class="ttc" id="aclassSensors_html_a1d723cdb619b2d61d3e4080182a12cbb"><div class="ttname"><a href="classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb">Sensors::getUnitsRegisteredCount</a></div><div class="ttdeci">uint8_t getUnitsRegisteredCount()</div><div class="ttdoc">get device sensors units detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:515</div></div>
+<div class="ttc" id="aclassSensors_html_a365a45dc5c9ab598cfc206368579b94a"><div class="ttname"><a href="classSensors.html#a365a45dc5c9ab598cfc206368579b94a">Sensors::getUnitSymbol</a></div><div class="ttdeci">String getUnitSymbol(UNIT unit)</div><div class="ttdoc">get the sensor unit symbol</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:534</div></div>
+<div class="ttc" id="aclassSensors_html_a4abb5d2a00d31a407e32cbdabe00b6eb"><div class="ttname"><a href="classSensors.html#a4abb5d2a00d31a407e32cbdabe00b6eb">Sensors::getUnitName</a></div><div class="ttdeci">String getUnitName(UNIT unit)</div><div class="ttdoc">get the sensor unit name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:524</div></div>
+<div class="ttc" id="aclassSensors_html_a7e75dd4e3f2e655a9961f57650cbf749"><div class="ttname"><a href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">Sensors::getUnitValue</a></div><div class="ttdeci">float getUnitValue(UNIT unit)</div><div class="ttdoc">get the sensor unit value (float)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:597</div></div>
+<div class="ttc" id="aclassSensors_html_aa7ca70f31838cba52b96f76aa4a0d4a2"><div class="ttname"><a href="classSensors.html#aa7ca70f31838cba52b96f76aa4a0d4a2">Sensors::getSensorName</a></div><div class="ttdeci">String getSensorName(SENSORS sensor)</div><div class="ttdoc">get the sensor name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:463</div></div>
+<div class="ttc" id="aclassSensors_html_ad33c76f341c86ac1900c5953fca9c0d1"><div class="ttname"><a href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">Sensors::getNextUnit</a></div><div class="ttdeci">UNIT getNextUnit()</div><div class="ttdoc">get the next sensor unit available</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:542</div></div>
+<div class="ttc" id="aclassSensors_html_ad8395e69cf5dcc68d0a8049ec7372a81"><div class="ttname"><a href="classSensors.html#ad8395e69cf5dcc68d0a8049ec7372a81">Sensors::getSensorsRegisteredCount</a></div><div class="ttdeci">uint8_t getSensorsRegisteredCount()</div><div class="ttdoc">get device sensors detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:442</div></div>
+<div class="ttc" id="aclassSensors_html_af9ee8f89e81d76a4c2b41ed6dc38f2f3"><div class="ttname"><a href="classSensors.html#af9ee8f89e81d76a4c2b41ed6dc38f2f3">Sensors::getSensorsRegistered</a></div><div class="ttdeci">uint8_t * getSensorsRegistered()</div><div class="ttdoc">get the sensor registry for retrieve the sensor names</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:486</div></div>
 </div><!-- fragment --><h2>UART detection demo</h2>
 <p><a href="https://www.youtube.com/watch?v=hmukAmG5Eec"><img src="https://img.youtube.com/vi/hmukAmG5Eec/0.jpg" alt="CanAirIO auto configuration demo" class="inline"/></a></p>
 <p>CanAirIO sensorlib auto configuration demo on <a href="https://www.youtube.com/watch?v=hmukAmG5Eec">Youtube</a></p>
@@ -355,9 +392,10 @@ $(function() {
 <p>For now we are using it only for DHT sensors in PIN 23. For more info please review the next lines <a href="https://github.com/kike-canaries/canairio_sensorlib/blob/master/src/Sensors.hpp#L19-L52">here</a>.</p>
 <h1>Examples</h1>
 <h3>PlatformIO (recommended)</h3>
-<p>We recommended PlatformIO because is more easy than Arduino IDE. For this, please install first <a href="http://platformio.org/">PlatformIO</a> and its command line tools (Windows, MacOs and Linux), <b>pio</b> command, then connect your compatible board to the USB and run the next command:</p>
+<p>We recommended PlatformIO because is more easy than Arduino IDE. For that, please install first <a href="http://platformio.org/">PlatformIO</a> and its command line tools (Windows, MacOs and Linux), <b>pio</b> command, then connect your compatible board to the USB and run the next command:</p>
 <div class="fragment"><div class="line">pio run -e esp32 --target upload</div>
-</div><!-- fragment --><h3>Arduino IDE</h3>
+</div><!-- fragment --><p>Also you can see some examples than have <code>platformio.ini</code> files for your project.</p>
+<h3>Arduino IDE</h3>
 <p>Only import the <code>ino</code> file of the sample and install the libraries listed on <code>library.json</code> and this library. Complete list of libraries used <a href="https://github.com/kike-canaries/canairio_sensorlib/blob/master/unified-lib-deps.ini">here</a></p>
 <h3>Arduino CLI</h3>
 <p>For run the examples, you first need to install <b>arduino-cli</b> or the <b>Arduino IDE</b> with the libraries referenced in <b>lib_deps</b> on the file <a href="https://github.com/kike-canaries/canairio_sensorlib/blob/master/platformio.ini">platformio.ini</a>, becuase <b>Arduino don't install it automatically</b> like PlatformIO. Then put CanAirIO sensor library in your library directory, you can download it from <a href="https://github.com/kike-canaries/canairio_sensorlib/releases">releases</a> section.</p>
@@ -411,6 +449,7 @@ $(function() {
 <li>[x] Multivariable selection (getNextUnit(),getUnitName(),etc)</li>
 <li>[x] Two I2C channel supported for M5Stack Devices (M5StickC tested)</li>
 <li>[x] Added CO and NH3 sensors</li>
+<li>[x] Added Geiger sensor support</li>
 <li>[ ] Sea level setting for Pressure sensors and others</li>
 <li>[ ] Support to second UART port</li>
 </ul>
@@ -426,9 +465,12 @@ $(function() {
 <hr  />
  </div></div><!-- PageDoc -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

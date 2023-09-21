@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['enablegeigersensor_1',['enableGeigerSensor',['../classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061',1,'Sensors']]]
+  ['bme280_4',['bme280',['../classSensors.html#a655dd7b6cd1864ecba724161213b1222',1,'Sensors']]],
+  ['bme680_5',['bme680',['../classSensors.html#a9c16019668f5e0e883211d1259331af3',1,'Sensors']]],
+  ['bmp280_6',['bmp280',['../classSensors.html#a5af169078d14a1272bdf390109041df0',1,'Sensors']]]
 ];
