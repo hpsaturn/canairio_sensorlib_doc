@@ -6,7 +6,7 @@
 
 Generic sensor manager, abstractions and bindings of multiple sensors \href{https://github.com/kike-canaries/canairio_sensorlib/blob/master/unified-lib-deps.ini}{\texttt{ libraries}}\+: Honeywell, Plantower, Panasonic, Sensirion, etc. and CO2 sensors. Also it\textquotesingle{}s handling others environment sensors. This library is for general purpose, but also is the sensors library base of \href{https://canair.io/docs}{\texttt{ Can\+Air\+IO project}}.
 
-For developers also you can check the complete library documentation \href{http://hpsaturn.com/canairio_sensorlib_doc/html/index.html}{\texttt{ here}}
+For developers also you can check the complete library documentation \href{http://hpsaturn.com/canairio_sensorlib_doc/html/classSensors.html}{\texttt{ here}}
 
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{1}{|X[-1]}|}
@@ -82,6 +82,7 @@ BMP280   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    
 BME680   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering STABLE    \\\cline{1-4}
 Df\+Robot SEN0469 NH3   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
 DFRobot SEN0466 CO   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
+DFRobot SEN0471 NO2   &\PBS\centering i2c   &\PBS\centering Auto   &\PBS\centering TESTING    \\\cline{1-4}
 Geiger CAJOE   &\PBS\centering GPIO   &\PBS\centering Select   &\PBS\centering TESTING    \\\cline{1-4}
 DHTxx   &\PBS\centering Two\+Wire   &\PBS\centering Select   &\PBS\centering DISABLED   \\\cline{1-4}
 \end{longtabu}
@@ -450,8 +451,9 @@ Also you can make a donation, be a patreon or buy a device\+: ~\newline
 \item \mbox{[}x\mbox{]} Sense\+Air S8 via UART support
 \item \mbox{[}x\mbox{]} Multivariable selection (get\+Next\+Unit(),get\+Unit\+Name(),etc)
 \item \mbox{[}x\mbox{]} Two I2C channel supported for M5\+Stack Devices (M5\+StickC tested)
-\item \mbox{[}x\mbox{]} Added CO and NH3 sensors
+\item \mbox{[}x\mbox{]} Added CO, NO2 and NH3 sensors
 \item \mbox{[}x\mbox{]} Added Geiger sensor support
+\item \mbox{[} \mbox{]} New IKEA VINDSTYRKA device support
 \item \mbox{[} \mbox{]} Sea level setting for Pressure sensors and others
 \item \mbox{[} \mbox{]} Support to second UART port
 \end{DoxyItemize}

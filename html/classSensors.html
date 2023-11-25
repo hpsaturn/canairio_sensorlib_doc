@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CanAirIO Sensors Library
-   &#160;<span id="projectnumber">0.7.1</span>
+   &#160;<span id="projectnumber">0.7.3</span>
    </div>
    <div id="projectbrief">Generic sensor manager, abstratctions and bindings of multiple air sensors libraries</div>
   </td>
@@ -203,6 +203,10 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a73f73d13d14526125fa95fd9b29e088d">getCO</a> ()</td></tr>
 <tr class="memdesc:a73f73d13d14526125fa95fd9b29e088d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get CO value in ppm <br /></td></tr>
 <tr class="separator:a73f73d13d14526125fa95fd9b29e088d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa0c05a2b225bc8614df73969c30880"><td class="memItemLeft" align="right" valign="top"><a id="a4fa0c05a2b225bc8614df73969c30880"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a4fa0c05a2b225bc8614df73969c30880">getNO2</a> ()</td></tr>
+<tr class="memdesc:a4fa0c05a2b225bc8614df73969c30880"><td class="mdescLeft">&#160;</td><td class="mdescRight">get NO2 value in ppm <br /></td></tr>
+<tr class="separator:a4fa0c05a2b225bc8614df73969c30880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f65f14f397fea4b9f8347f1b92fb061"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">enableGeigerSensor</a> (int gpio)</td></tr>
 <tr class="memdesc:a6f65f14f397fea4b9f8347f1b92fb061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Geiger sensor on specific pin.  <a href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">More...</a><br /></td></tr>
 <tr class="separator:a6f65f14f397fea4b9f8347f1b92fb061"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -389,18 +393,25 @@ S8_sensor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 SensirionI2CScd4x&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a15b986d752487db6a9a61948f255eb84">scd4x</a></td></tr>
 <tr class="memdesc:a15b986d752487db6a9a61948f255eb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCD4x object sensor. <br /></td></tr>
 <tr class="separator:a15b986d752487db6a9a61948f255eb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a73c8a33598740602fc7b5014f735c7"><td class="memItemLeft" align="right" valign="top"><a id="a4a73c8a33598740602fc7b5014f735c7"></a>
+SensirionI2CSen5x&#160;</td><td class="memItemRight" valign="bottom"><b>sen5x</b></td></tr>
+<tr class="separator:a4a73c8a33598740602fc7b5014f735c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="memItemLeft" align="right" valign="top"><a id="aaab17888bad6c8c60c5a2f8e2501bfc8"></a>
 PM1006 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">pm1006</a></td></tr>
 <tr class="memdesc:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">IKEA Vindriktn object sensor. <br /></td></tr>
 <tr class="separator:aaab17888bad6c8c60c5a2f8e2501bfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5e013ede87366e54e4ca42e72fb40c0"><td class="memItemLeft" align="right" valign="top"><a id="ad5e013ede87366e54e4ca42e72fb40c0"></a>
 DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">dfrCO</a></td></tr>
-<tr class="memdesc:ad5e013ede87366e54e4ca42e72fb40c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFRobot gravity NH3 object sensor addr 0x74. <br /></td></tr>
+<tr class="memdesc:ad5e013ede87366e54e4ca42e72fb40c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFRobot gravity CO object sensor addr 0x78. <br /></td></tr>
 <tr class="separator:ad5e013ede87366e54e4ca42e72fb40c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ec9492ba3931bb6a05f02be5db61f79"><td class="memItemLeft" align="right" valign="top"><a id="a1ec9492ba3931bb6a05f02be5db61f79"></a>
 DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">dfrNH3</a></td></tr>
-<tr class="memdesc:a1ec9492ba3931bb6a05f02be5db61f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFRobot gravity NH3 object sensor addr 0x77. <br /></td></tr>
+<tr class="memdesc:a1ec9492ba3931bb6a05f02be5db61f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFRobot gravity NH3 object sensor addr 0x7A. <br /></td></tr>
 <tr class="separator:a1ec9492ba3931bb6a05f02be5db61f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b812855728867a6e01882abb18fa26"><td class="memItemLeft" align="right" valign="top"><a id="aa3b812855728867a6e01882abb18fa26"></a>
+DFRobot_GAS_I2C&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#aa3b812855728867a6e01882abb18fa26">dfrNO2</a></td></tr>
+<tr class="memdesc:aa3b812855728867a6e01882abb18fa26"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFRobot gravity NO2 object sensor add 0x7B. <br /></td></tr>
+<tr class="separator:aa3b812855728867a6e01882abb18fa26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4f26a60c06c2659d088d778c0468874"><td class="memItemLeft" align="right" valign="top"><a id="af4f26a60c06c2659d088d778c0468874"></a>
 GEIGER *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensors.html#af4f26a60c06c2659d088d778c0468874">rad</a></td></tr>
 <tr class="memdesc:af4f26a60c06c2659d088d778c0468874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geiger CAJOE object sensor. <br /></td></tr>

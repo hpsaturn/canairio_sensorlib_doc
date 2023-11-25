@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CanAirIO Sensors Library
-   &#160;<span id="projectnumber">0.7.1</span>
+   &#160;<span id="projectnumber">0.7.3</span>
    </div>
    <div id="projectbrief">Generic sensor manager, abstratctions and bindings of multiple air sensors libraries</div>
   </td>
@@ -110,545 +110,565 @@ $(document).ready(function(){initNavTree('Sensors_8hpp_source.html',''); initRes
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;Adafruit_SCD30.h&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;Adafruit_Sensor.h&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;MHZ19.h&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;SensirionI2CScd4x.h&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;SparkFun_Particle_Sensor_SN-GCJA5_Arduino_Library.h&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;cm1106_uart.h&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;s8_uart.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;SparkFun_Particle_Sensor_SN-GCJA5_Arduino_Library.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;cm1106_uart.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;s8_uart.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;SensirionI2CScd4x.h&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;sps30.h&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;drivers/pm1006.h&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;drivers/geiger.h&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;DFRobot_MultiGasSensor.h&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifdef DHT11_ENABLED</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;dht_nonblocking.h&gt;</span> </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define CSL_VERSION &quot;0.7.1&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define CSL_REVISION 378</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">/***************************************************************</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">* S E T U P   E S P 3 2   B O A R D S   A N D   F I E L D S</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">***************************************************************/</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef WEMOSOLED</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define PMS_RX 13          </span><span class="comment">// config for Wemos board &amp; TTGO18650</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define PMS_TX 15          </span><span class="comment">// some old TTGO18650 have PMS_RX 18 &amp; PMS_TX 17</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#elif HELTEC</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#define PMS_RX 17  </span><span class="comment">// config for Heltec board, ESP32Sboard &amp; ESPDUINO-32. Use Uart2</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define PMS_TX 18  </span><span class="comment">// some old ESP32Sboard have PMS_RX 27 &amp; PMS_TX 25. Jump Uart2 tx from 16 to 18. !6 used by Oled.</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#elif TTGO_TQ</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define PMS_RX 13</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define PMS_TX 18</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#elif M5COREINK</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#define PMS_RX 13  </span><span class="comment">// config for backward header in M5CoreInk</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define PMS_TX 14</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#elif TTGO_TDISPLAY</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#define PMS_RX 13</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define PMS_TX 12</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#elif ESP32PICOD4</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#define PMS_RX 19</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#define PMS_TX 18</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#elif ESP32GENERIC</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#define PMS_RX RX</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#define PMS_TX TX</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#elif M5STICKCPLUS</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define PMS_RX 36   </span><span class="comment">// provisional for M5StickCPlus board for now</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define PMS_TX 0</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#elif M5COREINK</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#define PMS_RX 13</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define PMS_TX 14</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#elif M5ATOM</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#define PMS_RX 23</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#define PMS_TX 33</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#elif M5PICOD4</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#define PMS_RX 3</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define PMS_TX 1</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#elif ESP32C3</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#define PMS_RX 20</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#define PMS_TX 21</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#else              </span><span class="comment">// **DEFAULT** for legacy CanAirIO devices:</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#define PMS_RX 17  </span><span class="comment">// D1MIN1 / TTGOT7 / ESP32DEVKIT, also for main ESP32 dev boards use it</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define PMS_TX 16</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// I2C pins for M5COREINK and M5STICKCPLUS</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#define HAT_I2C_SDA 0</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#define HAT_I2C_SCL 26</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#define EXT_I2C_SDA 32</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define EXT_I2C_SCL 33</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">// Read UART sensor retry.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define SENSOR_RETRY 1000  </span><span class="comment">// Max Serial characters</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// UART defualt port</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define SENSOR_COMMS SERIALPORT2</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">// Sensors units definitions (symbol/name)</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#define SENSOR_UNITS           \</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">    X(NUNIT, &quot;NUNIT&quot;</span>, &quot;NUNIT&quot;) \</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    X(PM1, &quot;ug/m3&quot;, &quot;PM1&quot;)     \</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    X(PM25, &quot;ug/m3&quot;, &quot;PM2.5&quot;)  \</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    X(PM4, &quot;ug/m3&quot;, &quot;PM4&quot;)     \</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    X(PM10, &quot;ug/m3&quot;, &quot;PM10&quot;)   \</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    X(TEMP, &quot;C&quot;, &quot;T&quot;)          \</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    X(TEMPK, &quot;K&quot;, &quot;T&quot;)          \</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    X(TEMPF, &quot;F&quot;, &quot;T&quot;)          \</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    X(HUM, &quot;%&quot;, &quot;H&quot;)           \</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    X(CO2, &quot;ppm&quot;, &quot;CO2&quot;)       \</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    X(CO2TEMP, &quot;C&quot;, &quot;CO2T&quot;)    \</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    X(CO2TEMPK, &quot;K&quot;, &quot;CO2TK&quot;)    \</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    X(CO2TEMPF, &quot;F&quot;, &quot;CO2TF&quot;)    \</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    X(CO2HUM, &quot;%&quot;, &quot;CO2H&quot;)     \</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    X(PRESS, &quot;hPa&quot;, &quot;P&quot;)       \</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    X(ALT, &quot;m&quot;, &quot;Alt&quot;)         \</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    X(GAS, &quot;Ohm&quot;, &quot;Gas&quot;)       \</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    X(CPM, &quot;CPM&quot;, &quot;RAD&quot;)       \</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    X(RAD, &quot;uSv/h&quot;, &quot;RAD&quot;) \</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    X(NH3, &quot;ppm&quot;, &quot;NH3&quot;)       \</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    X(CO, &quot;ppm&quot;, &quot;CO&quot;)         \</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    X(UCOUNT, &quot;COUNT&quot;, &quot;UCOUNT&quot;)</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#define X(unit, symbol, name) unit,</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> UNIT : <span class="keywordtype">size_t</span> { SENSOR_UNITS } UNIT;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#undef X</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">// sensors types: 1:PM, 2:CO2, 3:ENV</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#define SENSORS_TYPES       \</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">    X(Auto, &quot;GENERIC&quot;</span>, 1)   \</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    X(SGCJA5, &quot;GCJA5&quot;, 1)   \</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    X(SSPS30, &quot;SPS30&quot;, 1)   \</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    X(SDS011, &quot;SDS011&quot;, 1)  \</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    X(SMHZ19, &quot;MHZ19&quot;, 2)   \</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    X(SCM1106, &quot;CM1106&quot;, 2) \</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    X(SAIRS8, &quot;SAIRS8&quot;, 2)  \</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    X(IKEAVK, &quot;IKEAVK&quot;,1)   \</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    X(SSCD30, &quot;SCD30&quot;, 2)   \</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    X(SSCD4X, &quot;SCD4X&quot;, 2)   \</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    X(SSHT31, &quot;SHT31&quot;, 3)   \</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    X(SBME280, &quot;BME280&quot;, 3) \</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    X(SBMP280, &quot;BMP280&quot;, 3) \</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    X(SBME680, &quot;BME680&quot;, 3) \</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    X(SAHTXX, &quot;AHTXX&quot;, 3)   \</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    X(SAM232X, &quot;AM232X&quot;, 3) \</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    X(SDHTX, &quot;DHTX&quot;, 3)     \</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    X(SDFRCO, &quot;DFRCO&quot;, 3) \</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    X(SDFRNH3, &quot;DFRNH3&quot;, 3) \</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    X(SCAJOE, &quot;CAJOE&quot;, 3)   \</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    X(SCOUNT, &quot;SCOUNT&quot;, 3)</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#define X(utype, uname, umaintype) utype,</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> SENSORS : <span class="keywordtype">size_t</span> { SENSORS_TYPES } SENSORS;  <span class="comment">// backward compatibility</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#undef X</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;SensirionI2CSen5x.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;drivers/pm1006.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;drivers/geiger.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;DFRobot_MultiGasSensor.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifdef DHT11_ENABLED</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;dht_nonblocking.h&gt;</span> </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define CSL_VERSION &quot;0.7.3&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#define CSL_REVISION 382</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/***************************************************************</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">* S E T U P   E S P 3 2   B O A R D S   A N D   F I E L D S</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">***************************************************************/</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef WEMOSOLED</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define PMS_RX 13          </span><span class="comment">// config for Wemos board &amp; TTGO18650</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define PMS_TX 15          </span><span class="comment">// some old TTGO18650 have PMS_RX 18 &amp; PMS_TX 17</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#elif HELTEC</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define PMS_RX 17  </span><span class="comment">// config for Heltec board, ESP32Sboard &amp; ESPDUINO-32. Use Uart2</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define PMS_TX 18  </span><span class="comment">// some old ESP32Sboard have PMS_RX 27 &amp; PMS_TX 25. Jump Uart2 tx from 16 to 18. !6 used by Oled.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#elif TTGO_TQ</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define PMS_RX 13</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define PMS_TX 18</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#elif M5COREINK</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define PMS_RX 13  </span><span class="comment">// config for backward header in M5CoreInk</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define PMS_TX 14</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#elif TTGO_TDISPLAY</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define PMS_RX 13</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#define PMS_TX 12</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#elif ESP32PICOD4</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#define PMS_RX 19</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#define PMS_TX 18</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#elif ESP32GENERIC</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#define PMS_RX RX</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define PMS_TX TX</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#elif M5STICKCPLUS</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define PMS_RX 36   </span><span class="comment">// provisional for M5StickCPlus board for now</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#define PMS_TX 0</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#elif M5COREINK</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define PMS_RX 13</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#define PMS_TX 14</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#elif M5ATOM</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#define PMS_RX 23</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#define PMS_TX 33</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#elif M5PICOD4</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define PMS_RX 3</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#define PMS_TX 1</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#elif ESP32C3</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#define PMS_RX 20</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define PMS_TX 21</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#else              </span><span class="comment">// **DEFAULT** for legacy CanAirIO devices:</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define PMS_RX 17  </span><span class="comment">// D1MIN1 / TTGOT7 / ESP32DEVKIT, also for main ESP32 dev boards use it</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#define PMS_TX 16</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// I2C pins for M5COREINK and M5STICKCPLUS</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#define HAT_I2C_SDA 0</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#define HAT_I2C_SCL 26</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define EXT_I2C_SDA 32</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define EXT_I2C_SCL 33</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">// Read UART sensor retry.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#define SENSOR_RETRY 1000  </span><span class="comment">// Max Serial characters</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">// UART defualt port</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define SENSOR_COMMS SERIALPORT2</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">// Sensors units definitions (symbol/name)</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#define SENSOR_UNITS           \</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">    X(NUNIT, &quot;NUNIT&quot;</span>, &quot;NUNIT&quot;) \</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    X(PM1, &quot;ug/m3&quot;, &quot;PM1&quot;)     \</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    X(PM25, &quot;ug/m3&quot;, &quot;PM2.5&quot;)  \</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    X(PM4, &quot;ug/m3&quot;, &quot;PM4&quot;)     \</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    X(PM10, &quot;ug/m3&quot;, &quot;PM10&quot;)   \</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    X(TEMP, &quot;C&quot;, &quot;T&quot;)          \</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    X(TEMPK, &quot;K&quot;, &quot;T&quot;)          \</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    X(TEMPF, &quot;F&quot;, &quot;T&quot;)          \</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    X(HUM, &quot;%&quot;, &quot;H&quot;)           \</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    X(CO2, &quot;ppm&quot;, &quot;CO2&quot;)       \</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    X(CO2TEMP, &quot;C&quot;, &quot;CO2T&quot;)    \</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    X(CO2TEMPK, &quot;K&quot;, &quot;CO2TK&quot;)    \</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    X(CO2TEMPF, &quot;F&quot;, &quot;CO2TF&quot;)    \</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    X(CO2HUM, &quot;%&quot;, &quot;CO2H&quot;)     \</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    X(PRESS, &quot;hPa&quot;, &quot;P&quot;)       \</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    X(ALT, &quot;m&quot;, &quot;Alt&quot;)         \</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    X(GAS, &quot;Ohm&quot;, &quot;Gas&quot;)       \</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    X(CPM, &quot;CPM&quot;, &quot;RAD&quot;)       \</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    X(RAD, &quot;uSv/h&quot;, &quot;RAD&quot;) \</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    X(NH3, &quot;ppm&quot;, &quot;NH3&quot;)       \</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    X(CO, &quot;ppm&quot;, &quot;CO&quot;)         \</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    X(NO2, &quot;ppm&quot;, &quot;NO2&quot;)       \</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    X(UCOUNT, &quot;COUNT&quot;, &quot;UCOUNT&quot;)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#define X(unit, symbol, name) unit,</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> UNIT : <span class="keywordtype">size_t</span> { SENSOR_UNITS } UNIT;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#undef X</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">// sensors types: 1:PM, 2:CO2, 3:ENV</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#define SENSORS_TYPES       \</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">    X(Auto, &quot;GENERIC&quot;</span>, 1)   \</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    X(SGCJA5, &quot;GCJA5&quot;, 1)   \</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    X(SSPS30, &quot;SPS30&quot;, 1)   \</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    X(SDS011, &quot;SDS011&quot;, 1)  \</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    X(SMHZ19, &quot;MHZ19&quot;, 2)   \</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    X(SCM1106, &quot;CM1106&quot;, 2) \</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    X(SAIRS8, &quot;SAIRS8&quot;, 2)  \</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    X(IKEAVK, &quot;IKEAVK&quot;,1)   \</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    X(SSCD30, &quot;SCD30&quot;, 2)   \</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    X(SSCD4X, &quot;SCD4X&quot;, 2)   \</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    X(SSEN5X, &quot;SEN5X&quot;, 1)   \</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    X(SSHT31, &quot;SHT31&quot;, 3)   \</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    X(SBME280, &quot;BME280&quot;, 3) \</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    X(SBMP280, &quot;BMP280&quot;, 3) \</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    X(SBME680, &quot;BME680&quot;, 3) \</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    X(SAHTXX, &quot;AHTXX&quot;, 3)   \</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    X(SAM232X, &quot;AM232X&quot;, 3) \</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    X(SDHTX, &quot;DHTX&quot;, 3)     \</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    X(SDFRCO, &quot;DFRCO&quot;, 3)   \</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    X(SDFRNH3, &quot;DFRNH3&quot;, 3) \</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    X(SDFRNO2, &quot;DFRNO2&quot;, 3) \</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    X(SCAJOE, &quot;CAJOE&quot;, 3)   \</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    X(SCOUNT, &quot;SCOUNT&quot;, 3)</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">// MAIN SENSOR GROUPS TYPE</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">enum class</span> SensorGroup { SENSOR_NONE,</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                         SENSOR_PM,</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                         SENSOR_CO2,</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                         SENSOR_ENV, </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                         SENSOR_RAD  <span class="comment">// CAJOE_GEIGER</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                         };</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">// TEMPERATURE UNITS</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">enum class</span> TEMPUNIT {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    CELSIUS,</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    FAHRENHEIT,</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    KELVIN</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;};</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">typedef</span> void (*errorCbFn)(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keyword">typedef</span> void (*voidCbFn)();</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classSensors.html">  166</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSensors.html">Sensors</a> {</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;   <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">struct </span>sps_values <a class="code" href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">val</a>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classSensors.html#a450841daddeac4d513711007e38d7f3f">  172</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a450841daddeac4d513711007e38d7f3f">devmode</a>;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">  175</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">sample_time</a> = 10;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">  178</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">toffset</a> = 0.0;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">  181</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">altoffset</a> = 0.0;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classSensors.html#aacc120de64676122893f4d68d8b39ded">  184</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#aacc120de64676122893f4d68d8b39ded">sealevel</a> = 1013.25;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">  187</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">hpa</a> = 0.0;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">  190</a></span>&#160;    SPS30 <a class="code" href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">sps30</a>;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">  193</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">i2conly</a>;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">    /*****************************************</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">     * I2C sensors:</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">     ****************************************/</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#define X(utype, uname, umaintype) utype,</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> SENSORS : <span class="keywordtype">size_t</span> { SENSORS_TYPES } SENSORS;  <span class="comment">// backward compatibility</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#undef X</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">// MAIN SENSOR GROUPS TYPE</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keyword">enum class</span> SensorGroup { SENSOR_NONE,</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                         SENSOR_PM,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                         SENSOR_CO2,</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                         SENSOR_ENV, </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                         SENSOR_RAD  <span class="comment">// CAJOE_GEIGER</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                         };</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">// TEMPERATURE UNITS</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">enum class</span> TEMPUNIT {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    CELSIUS,</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    FAHRENHEIT,</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    KELVIN</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;};</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="keyword">typedef</span> void (*errorCbFn)(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keyword">typedef</span> void (*voidCbFn)();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="classSensors.html">  170</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSensors.html">Sensors</a> {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keyword">struct </span>sps_values <a class="code" href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">val</a>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="classSensors.html#a450841daddeac4d513711007e38d7f3f">  176</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a450841daddeac4d513711007e38d7f3f">devmode</a>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">  179</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">sample_time</a> = 10;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">  182</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">toffset</a> = 0.0;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">  185</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">altoffset</a> = 0.0;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="classSensors.html#aacc120de64676122893f4d68d8b39ded">  188</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#aacc120de64676122893f4d68d8b39ded">sealevel</a> = 1013.25;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">  191</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">hpa</a> = 0.0;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">  194</a></span>&#160;    SPS30 <a class="code" href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">sps30</a>;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">  197</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">i2conly</a>;</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">  200</a></span>&#160;    AM232X <a class="code" href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">am2320</a>;</div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">  202</a></span>&#160;    Adafruit_BME280 <a class="code" href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">bme280</a>;</div>
-<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="classSensors.html#a5af169078d14a1272bdf390109041df0">  204</a></span>&#160;    Adafruit_BMP280 <a class="code" href="classSensors.html#a5af169078d14a1272bdf390109041df0">bmp280</a>;</div>
-<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="classSensors.html#a9c16019668f5e0e883211d1259331af3">  206</a></span>&#160;    Adafruit_BME680 <a class="code" href="classSensors.html#a9c16019668f5e0e883211d1259331af3">bme680</a>;</div>
-<div class="line"><a name="l00208"></a><span class="lineno"><a class="line" href="classSensors.html#a4e919d953ced2916be669a69a41fc098">  208</a></span>&#160;    AHTxx <a class="code" href="classSensors.html#a4e919d953ced2916be669a69a41fc098">aht10</a>;</div>
-<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">  210</a></span>&#160;    Adafruit_SHT31 <a class="code" href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">sht31</a>;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">    #ifdef DHT11_ENABLED</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordtype">float</span> dhthumi, dhttemp;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="classSensors.html#ad6156b78908fd064761301339e54c8af">  217</a></span>&#160;    MHZ19 <a class="code" href="classSensors.html#ad6156b78908fd064761301339e54c8af">mhz19</a>;</div>
-<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">  219</a></span>&#160;    Adafruit_SCD30 <a class="code" href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">scd30</a>;</div>
-<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">  221</a></span>&#160;    CM1106_UART *<a class="code" href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">cm1106</a>;</div>
-<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">  223</a></span>&#160;    CM1106_sensor <a class="code" href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">cm1106sensor</a>;</div>
-<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">  225</a></span>&#160;    CM1106_ABC <a class="code" href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">abc</a>;</div>
-<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">  227</a></span>&#160;    SFE_PARTICLE_SENSOR <a class="code" href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">pmGCJA5</a>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">  229</a></span>&#160;    S8_UART *<a class="code" href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">s8</a>;</div>
-<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">  231</a></span>&#160;    S8_sensor <a class="code" href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">s8sensor</a>;</div>
-<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classSensors.html#a15b986d752487db6a9a61948f255eb84">  233</a></span>&#160;    SensirionI2CScd4x <a class="code" href="classSensors.html#a15b986d752487db6a9a61948f255eb84">scd4x</a>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">  235</a></span>&#160;    PM1006 *<a class="code" href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">pm1006</a>;</div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">  237</a></span>&#160;    DFRobot_GAS_I2C <a class="code" href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">dfrCO</a>;</div>
-<div class="line"><a name="l00239"></a><span class="lineno"><a class="line" href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">  239</a></span>&#160;    DFRobot_GAS_I2C <a class="code" href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">dfrNH3</a>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="classSensors.html#af4f26a60c06c2659d088d778c0468874">  241</a></span>&#160;    GEIGER *<a class="code" href="classSensors.html#af4f26a60c06c2659d088d778c0468874">rad</a>;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d">init</a>(u_int pms_type = 0, <span class="keywordtype">int</span> pms_rx = PMS_RX, <span class="keywordtype">int</span> pms_tx = PMS_TX);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">loop</a>();</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a4f531daf0233f48c3c4e5e91688f90ea">readAllSensors</a>();</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a63ec661795621129a831a6f837c7f560">isDataReady</a>();</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">    /*****************************************</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">     * I2C sensors:</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">     ****************************************/</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">  204</a></span>&#160;    AM232X <a class="code" href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">am2320</a>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">  206</a></span>&#160;    Adafruit_BME280 <a class="code" href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">bme280</a>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno"><a class="line" href="classSensors.html#a5af169078d14a1272bdf390109041df0">  208</a></span>&#160;    Adafruit_BMP280 <a class="code" href="classSensors.html#a5af169078d14a1272bdf390109041df0">bmp280</a>;</div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="classSensors.html#a9c16019668f5e0e883211d1259331af3">  210</a></span>&#160;    Adafruit_BME680 <a class="code" href="classSensors.html#a9c16019668f5e0e883211d1259331af3">bme680</a>;</div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="classSensors.html#a4e919d953ced2916be669a69a41fc098">  212</a></span>&#160;    AHTxx <a class="code" href="classSensors.html#a4e919d953ced2916be669a69a41fc098">aht10</a>;</div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">  214</a></span>&#160;    Adafruit_SHT31 <a class="code" href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">sht31</a>;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">    #ifdef DHT11_ENABLED</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">float</span> dhthumi, dhttemp;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="classSensors.html#ad6156b78908fd064761301339e54c8af">  221</a></span>&#160;    MHZ19 <a class="code" href="classSensors.html#ad6156b78908fd064761301339e54c8af">mhz19</a>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">  223</a></span>&#160;    Adafruit_SCD30 <a class="code" href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">scd30</a>;</div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">  225</a></span>&#160;    CM1106_UART *<a class="code" href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">cm1106</a>;</div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">  227</a></span>&#160;    CM1106_sensor <a class="code" href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">cm1106sensor</a>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">  229</a></span>&#160;    CM1106_ABC <a class="code" href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">abc</a>;</div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">  231</a></span>&#160;    SFE_PARTICLE_SENSOR <a class="code" href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">pmGCJA5</a>;</div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">  233</a></span>&#160;    S8_UART *<a class="code" href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">s8</a>;</div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">  235</a></span>&#160;    S8_sensor <a class="code" href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">s8sensor</a>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="classSensors.html#a15b986d752487db6a9a61948f255eb84">  237</a></span>&#160;    SensirionI2CScd4x <a class="code" href="classSensors.html#a15b986d752487db6a9a61948f255eb84">scd4x</a>;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="comment">// SEN5x sensor PM</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    SensirionI2CSen5x sen5x;</div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">  241</a></span>&#160;    PM1006 *<a class="code" href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">pm1006</a>;</div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">  243</a></span>&#160;    DFRobot_GAS_I2C <a class="code" href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">dfrCO</a>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">  245</a></span>&#160;    DFRobot_GAS_I2C <a class="code" href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">dfrNH3</a>;</div>
+<div class="line"><a name="l00247"></a><span class="lineno"><a class="line" href="classSensors.html#aa3b812855728867a6e01882abb18fa26">  247</a></span>&#160;    DFRobot_GAS_I2C <a class="code" href="classSensors.html#aa3b812855728867a6e01882abb18fa26">dfrNO2</a>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="classSensors.html#af4f26a60c06c2659d088d778c0468874">  249</a></span>&#160;    GEIGER *<a class="code" href="classSensors.html#af4f26a60c06c2659d088d778c0468874">rad</a>;</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ac723c0d9cf5af5daa0fa8d041f41f3d8">setSampleTime</a>(<span class="keywordtype">int</span> seconds);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a729f911e0508cc8814a2276ff519b219">setOnDataCallBack</a>(voidCbFn cb);</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d">init</a>(u_int pms_type = 0, <span class="keywordtype">int</span> pms_rx = PMS_RX, <span class="keywordtype">int</span> pms_tx = PMS_TX);</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#aba1b7a633d1d89514c891220b603351f">setOnErrorCallBack</a>(errorCbFn cb);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">loop</a>();</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">setTemperatureUnit</a>(TEMPUNIT tunit);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a4f531daf0233f48c3c4e5e91688f90ea">readAllSensors</a>();</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">setDebugMode</a>(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#a63ec661795621129a831a6f837c7f560">isDataReady</a>();</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#aa99811f9bb9778253e4d0476fab7b86c">isUARTSensorConfigured</a>();</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ac723c0d9cf5af5daa0fa8d041f41f3d8">setSampleTime</a>(<span class="keywordtype">int</span> seconds);</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSensors.html#aaca8ec4ae2c64c366c33622d3332ffb1">getUARTDeviceTypeSelected</a>();</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a729f911e0508cc8814a2276ff519b219">setOnDataCallBack</a>(voidCbFn cb);</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    uint16_t <a class="code" href="classSensors.html#a515884007d9b5239c2321ec0695f69e8">getPM1</a>();</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#aba1b7a633d1d89514c891220b603351f">setOnErrorCallBack</a>(errorCbFn cb);</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    uint16_t <a class="code" href="classSensors.html#adc3ad26b8a9be10b2100e3b023fdefc4">getPM25</a>();</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">setTemperatureUnit</a>(TEMPUNIT tunit);</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    uint16_t <a class="code" href="classSensors.html#aca9b394c691568c7bd3499cba0b67403">getPM4</a>();</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">setDebugMode</a>(<span class="keywordtype">bool</span> enable);</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    uint16_t <a class="code" href="classSensors.html#a8165734cd6b82243549ba6bd1c7a837a">getPM10</a>();</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#aa99811f9bb9778253e4d0476fab7b86c">isUARTSensorConfigured</a>();</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    uint16_t <a class="code" href="classSensors.html#ad953d4564cc20d8134cccd962435dd81">getCO2</a>();</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classSensors.html#aaca8ec4ae2c64c366c33622d3332ffb1">getUARTDeviceTypeSelected</a>();</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7fa1fe8f4f3469bce9311be880c243df">getCO2humi</a>();</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    uint16_t <a class="code" href="classSensors.html#a515884007d9b5239c2321ec0695f69e8">getPM1</a>();</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">getCO2temp</a>();</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    uint16_t <a class="code" href="classSensors.html#adc3ad26b8a9be10b2100e3b023fdefc4">getPM25</a>();</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c">getTemperature</a>();</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    uint16_t <a class="code" href="classSensors.html#aca9b394c691568c7bd3499cba0b67403">getPM4</a>();</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">getHumidity</a>();</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    uint16_t <a class="code" href="classSensors.html#a8165734cd6b82243549ba6bd1c7a837a">getPM10</a>();</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a3db568a0fb294fd02cc1f95943db4f55">getPressure</a>();</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    uint16_t <a class="code" href="classSensors.html#ad953d4564cc20d8134cccd962435dd81">getCO2</a>();</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8">getAltitude</a>();</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7fa1fe8f4f3469bce9311be880c243df">getCO2humi</a>();</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90">getGas</a>();</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    </div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a77e8576cefec2ee8ef72f5031a3647fb">getNH3</a>();</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    </div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a73f73d13d14526125fa95fd9b29e088d">getCO</a>();</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">getCO2temp</a>();</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c">getTemperature</a>();</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">getHumidity</a>();</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">enableGeigerSensor</a>(<span class="keywordtype">int</span> gpio);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a3db568a0fb294fd02cc1f95943db4f55">getPressure</a>();</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    uint32_t <a class="code" href="classSensors.html#a588db8882dba0506b44ee4c0752b404c">getGeigerCPM</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8">getAltitude</a>();</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7bea34fbbe7d0fcc1cdcde8886a1b94c">getGeigerMicroSievertHour</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">setTempOffset</a>(<span class="keywordtype">float</span> offset);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">setCO2AltitudeOffset</a>(<span class="keywordtype">float</span> altitude);</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">setSeaLevelPressure</a>(<span class="keywordtype">float</span> <a class="code" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">hpa</a>);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    </div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a47f337a24231440b661d57ed8e873a64">setCO2RecalibrationFactor</a>(<span class="keywordtype">int</span> ppmValue);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90">getGas</a>();</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a77e8576cefec2ee8ef72f5031a3647fb">getNH3</a>();</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    </div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a73f73d13d14526125fa95fd9b29e088d">getCO</a>();</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a4fa0c05a2b225bc8614df73969c30880">getNO2</a>();</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">enableGeigerSensor</a>(<span class="keywordtype">int</span> gpio);</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">detectI2COnly</a>(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    uint32_t <a class="code" href="classSensors.html#a588db8882dba0506b44ee4c0752b404c">getGeigerCPM</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    String <a class="code" href="classSensors.html#af8c24cdf4179bf5bf7e799844e626b43">getLibraryVersion</a>();</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7bea34fbbe7d0fcc1cdcde8886a1b94c">getGeigerMicroSievertHour</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    int16_t <a class="code" href="classSensors.html#adb026d51c7801930b26730371244bb5e">getLibraryRevision</a>();</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">setTempOffset</a>(<span class="keywordtype">float</span> offset);</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1">isSensorRegistered</a>(SENSORS sensor);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">setCO2AltitudeOffset</a>(<span class="keywordtype">float</span> altitude);</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    uint8_t *<a class="code" href="classSensors.html#af9ee8f89e81d76a4c2b41ed6dc38f2f3">getSensorsRegistered</a>();</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    uint8_t <a class="code" href="classSensors.html#ad8395e69cf5dcc68d0a8049ec7372a81">getSensorsRegisteredCount</a>();</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">setSeaLevelPressure</a>(<span class="keywordtype">float</span> <a class="code" href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">hpa</a>);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    </div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a47f337a24231440b661d57ed8e873a64">setCO2RecalibrationFactor</a>(<span class="keywordtype">int</span> ppmValue);</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    String <a class="code" href="classSensors.html#aa7ca70f31838cba52b96f76aa4a0d4a2">getSensorName</a>(SENSORS sensor);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">detectI2COnly</a>(<span class="keywordtype">bool</span> enable);</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    SensorGroup <a class="code" href="classSensors.html#abd4b900acd33f41c7fd184e0dad90aeb">getSensorGroup</a>(SENSORS sensor);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    String <a class="code" href="classSensors.html#af8c24cdf4179bf5bf7e799844e626b43">getLibraryVersion</a>();</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    uint8_t <a class="code" href="classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb">getUnitsRegisteredCount</a>();</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    int16_t <a class="code" href="classSensors.html#adb026d51c7801930b26730371244bb5e">getLibraryRevision</a>();</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#ac1acd7bf32bda39fdfde1753af3ceef2">isUnitRegistered</a>(UNIT unit);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1">isSensorRegistered</a>(SENSORS sensor);</div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    String <a class="code" href="classSensors.html#a4abb5d2a00d31a407e32cbdabe00b6eb">getUnitName</a>(UNIT unit);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    uint8_t *<a class="code" href="classSensors.html#af9ee8f89e81d76a4c2b41ed6dc38f2f3">getSensorsRegistered</a>();</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    String <a class="code" href="classSensors.html#a365a45dc5c9ab598cfc206368579b94a">getUnitSymbol</a>(UNIT unit);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    uint8_t <a class="code" href="classSensors.html#ad8395e69cf5dcc68d0a8049ec7372a81">getSensorsRegisteredCount</a>();</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    UNIT <a class="code" href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">getNextUnit</a>();</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    String <a class="code" href="classSensors.html#aa7ca70f31838cba52b96f76aa4a0d4a2">getSensorName</a>(SENSORS sensor);</div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">resetUnitsRegister</a>();</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    SensorGroup <a class="code" href="classSensors.html#abd4b900acd33f41c7fd184e0dad90aeb">getSensorGroup</a>(SENSORS sensor);</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">resetSensorsRegister</a>();</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    uint8_t <a class="code" href="classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb">getUnitsRegisteredCount</a>();</div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">resetNextUnit</a>();</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSensors.html#ac1acd7bf32bda39fdfde1753af3ceef2">isUnitRegistered</a>(UNIT unit);</div>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a296d40a89de2b405c19f1982d6083545">resetAllVariables</a>();</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    String <a class="code" href="classSensors.html#a4abb5d2a00d31a407e32cbdabe00b6eb">getUnitName</a>(UNIT unit);</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">getUnitValue</a>(UNIT unit);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    String <a class="code" href="classSensors.html#a365a45dc5c9ab598cfc206368579b94a">getUnitSymbol</a>(UNIT unit);</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a0e9516d728256efd1eba97ef834cd385">printUnitsRegistered</a>(<span class="keywordtype">bool</span> debug = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    UNIT <a class="code" href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">getNextUnit</a>();</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#aed05af978baed0801ff4de5f1c367cf0">printSensorsRegistered</a>(<span class="keywordtype">bool</span> debug = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">resetUnitsRegister</a>();</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">resetSensorsRegister</a>();</div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="preprocessor">    #ifdef DHT11_ENABLED</span></div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    uint32_t delayMS;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    Stream *_serial;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    errorCbFn _onErrorCb = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    voidCbFn _onDataCb = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="keywordtype">int</span> dev_uart_type = -1;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keywordtype">bool</span> dataReady;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160; </div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="keywordtype">bool</span> readAllComplete = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    uint8_t sensors_registered_count;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    uint8_t units_registered_count;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    uint8_t current_unit = 0;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">resetNextUnit</a>();</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a296d40a89de2b405c19f1982d6083545">resetAllVariables</a>();</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">getUnitValue</a>(UNIT unit);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#a0e9516d728256efd1eba97ef834cd385">printUnitsRegistered</a>(<span class="keywordtype">bool</span> debug = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSensors.html#aed05af978baed0801ff4de5f1c367cf0">printSensorsRegistered</a>(<span class="keywordtype">bool</span> debug = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160; </div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160; </div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor">    #ifdef DHT11_ENABLED</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    uint32_t delayMS;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    Stream *_serial;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    errorCbFn _onErrorCb = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    voidCbFn _onDataCb = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    uint16_t pm1;   <span class="comment">// PM1</span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    uint16_t pm25;  <span class="comment">// PM2.5</span></div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    uint16_t pm4;   <span class="comment">// PM4</span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    uint16_t pm10;  <span class="comment">// PM10</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160; </div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keywordtype">float</span> humi = 0.0;  <span class="comment">// % Relative humidity</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="keywordtype">float</span> temp = 0.0;  <span class="comment">// Temperature (°C)</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keywordtype">float</span> pres = 0.0;  <span class="comment">// Pressure</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="keywordtype">float</span> alt = 0.0;</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordtype">float</span> gas = 0.0;   <span class="comment">//</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="comment">// temperature unit (C,K,F)</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    TEMPUNIT temp_unit = TEMPUNIT::CELSIUS; </div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    </div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    uint16_t CO2Val;      <span class="comment">// CO2 in ppm</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keywordtype">float</span> CO2humi = 0.0;  <span class="comment">// humidity of CO2 sensor</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="keywordtype">float</span> CO2temp = 0.0;  <span class="comment">// temperature of CO2 sensor</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; </div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="keywordtype">float</span> nh3;         <span class="comment">// Amonium in ppm</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="keywordtype">float</span> co;          <span class="comment">// Carbon monoxide</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        </div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keywordtype">void</span> am2320Init();</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordtype">void</span> am2320Read();</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160; </div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordtype">void</span> bme280Init();</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keywordtype">void</span> bme280Read();</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordtype">void</span> bmp280Init();</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="keywordtype">void</span> bmp280Read();</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="keywordtype">int</span> dev_uart_type = -1;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordtype">bool</span> dataReady;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keywordtype">bool</span> readAllComplete = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    uint8_t sensors_registered_count;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160; </div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    uint8_t units_registered_count;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    uint8_t current_unit = 0;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160; </div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    uint16_t pm1;   <span class="comment">// PM1</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    uint16_t pm25;  <span class="comment">// PM2.5</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    uint16_t pm4;   <span class="comment">// PM4</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    uint16_t pm10;  <span class="comment">// PM10</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordtype">float</span> humi = 0.0;  <span class="comment">// % Relative humidity</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="keywordtype">float</span> temp = 0.0;  <span class="comment">// Temperature (°C)</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="keywordtype">float</span> pres = 0.0;  <span class="comment">// Pressure</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordtype">float</span> alt = 0.0;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keywordtype">float</span> gas = 0.0;   <span class="comment">//</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="comment">// temperature unit (C,K,F)</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    TEMPUNIT temp_unit = TEMPUNIT::CELSIUS; </div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    </div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    uint16_t CO2Val;      <span class="comment">// CO2 in ppm</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordtype">float</span> CO2humi = 0.0;  <span class="comment">// humidity of CO2 sensor</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="keywordtype">float</span> CO2temp = 0.0;  <span class="comment">// temperature of CO2 sensor</span></div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160; </div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordtype">void</span> bme680Init();</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordtype">void</span> bme680Read();</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160; </div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="keywordtype">void</span> aht10Init();</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordtype">void</span> aht10Read();</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160; </div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="keywordtype">void</span> sht31Init();</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordtype">void</span> sht31Read();</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="keywordtype">void</span> CO2scd30Init();</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordtype">void</span> CO2scd30Read();</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordtype">void</span> setSCD30TempOffset(<span class="keywordtype">float</span> offset);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="keywordtype">void</span> setSCD30AltitudeOffset(<span class="keywordtype">float</span> offset);</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keywordtype">void</span> CO2correctionAlt();</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordtype">float</span> hpaCalculation(<span class="keywordtype">float</span> altitude);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordtype">float</span> nh3;         <span class="comment">// Amonium in ppm</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordtype">float</span> co;          <span class="comment">// Carbon monoxide in ppm</span></div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="keywordtype">float</span> no2;         <span class="comment">// Nitrogen dioxide in ppm</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        </div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordtype">void</span> am2320Init();</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="keywordtype">void</span> am2320Read();</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordtype">void</span> bme280Init();</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="keywordtype">void</span> bme280Read();</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160; </div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordtype">void</span> bmp280Init();</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordtype">void</span> bmp280Read();</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keywordtype">void</span> bme680Init();</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordtype">void</span> bme680Read();</div>
 <div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160; </div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="keywordtype">void</span> CO2scd4xInit();</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <span class="keywordtype">void</span> CO2scd4xRead();</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keywordtype">void</span> setSCD4xTempOffset(<span class="keywordtype">float</span> offset);</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordtype">void</span> setSCD4xAltitudeOffset(<span class="keywordtype">float</span> offset);</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160; </div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <span class="keywordtype">void</span> GCJA5Init();</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <span class="keywordtype">void</span> GCJA5Read();</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    </div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="preprocessor">    #ifdef DHT11_ENABLED</span></div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="keywordtype">void</span> dhtInit();</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="keywordtype">void</span> dhtRead();</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keywordtype">bool</span> dhtIsReady(<span class="keywordtype">float</span> *temperature, <span class="keywordtype">float</span> *humidity);</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160; </div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <span class="keywordtype">void</span> DFRobotNH3Init();</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="keywordtype">void</span> DFRobotNH3Read();</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    <span class="keywordtype">void</span> DFRobotCOInit();</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    <span class="keywordtype">void</span> DFRobotCORead();</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160; </div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="comment">// UART sensors methods:</span></div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160; </div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    <span class="keywordtype">bool</span> sensorSerialInit(u_int pms_type, <span class="keywordtype">int</span> rx, <span class="keywordtype">int</span> tx);</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keywordtype">bool</span> pmSensorAutoDetect(u_int pms_type);</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    <span class="keywordtype">bool</span> pmSensorRead();</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="keywordtype">bool</span> pmGenericRead();</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <span class="keywordtype">bool</span> pmGCJA5Read();</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="keywordtype">bool</span> pmSDS011Read();</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keywordtype">bool</span> pm1006Read();</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordtype">bool</span> CO2Mhz19Read();</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <span class="keywordtype">bool</span> CO2CM1106Read();</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordtype">bool</span> CO2Mhz19Init();</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordtype">bool</span> CO2CM1106Init();</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    <span class="keywordtype">bool</span> senseAirS8Init();</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keywordtype">bool</span> senseAirS8Read();</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keywordtype">bool</span> PM1006Init();</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    <span class="keywordtype">bool</span> sps30I2CInit();</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    <span class="keywordtype">bool</span> sps30UARTInit();</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <span class="keywordtype">bool</span> sps30Read();</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <span class="keywordtype">bool</span> sps30tests();</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="keywordtype">void</span> sps30ErrToMess(<span class="keywordtype">char</span> *mess, uint8_t r);</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    <span class="keywordtype">void</span> sps30Errorloop(<span class="keywordtype">char</span> *mess, uint8_t r);</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="keywordtype">void</span> sps30DeviceInfo();</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    <span class="keywordtype">void</span> geigerRead();</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160; </div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="keywordtype">void</span> onSensorError(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg);</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160; </div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <span class="keywordtype">void</span> startI2C();</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160; </div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    <span class="keywordtype">void</span> enableWire1();</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160; </div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    <span class="keywordtype">void</span> disableWire1();</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160; </div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="keywordtype">bool</span> serialInit(u_int pms_type, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> speed_baud, <span class="keywordtype">int</span> pms_rx, <span class="keywordtype">int</span> pms_tx);</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160; </div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    String hwSerialRead(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lenght_buffer);</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="keywordtype">void</span> restart();  <span class="comment">// restart serial (it isn&#39;t works sometimes)</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160; </div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    <span class="keywordtype">void</span> DEBUG(<span class="keyword">const</span> <span class="keywordtype">char</span> *text, <span class="keyword">const</span> <span class="keywordtype">char</span> *textb = <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160; </div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    <span class="keywordtype">void</span> printValues();</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160; </div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    <span class="keywordtype">void</span> printHumTemp();</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160; </div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    <span class="keywordtype">void</span> tempRegister(<span class="keywordtype">bool</span> isCO2temp);</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160; </div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    <span class="keywordtype">void</span> sensorRegister(SENSORS sensor);</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160; </div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    <span class="keywordtype">void</span> sensorAnnounce(SENSORS sensor);</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <span class="keywordtype">void</span> unitRegister(UNIT unit);</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    uint8_t *getUnitsRegistered();</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160; </div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">// @todo use DEBUG_ESP_PORT ?</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="preprocessor">#ifdef WM_DEBUG_PORT</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    Stream &amp;_debugPort = WM_DEBUG_PORT;</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    Stream &amp;_debugPort = Serial;  <span class="comment">// debug output stream ref</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;};</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160; </div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="preprocessor">#if !defined(NO_GLOBAL_INSTANCES) &amp;&amp; !defined(NO_GLOBAL_SENSORSHANDLER)</span></div>
-<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">  503</a></span>&#160;<span class="keyword">extern</span> <a class="code" href="classSensors.html">Sensors</a> sensors;</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160; </div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="preprocessor">    </span></div>
-<div class="ttc" id="aclassSensors_html"><div class="ttname"><a href="classSensors.html">Sensors</a></div><div class="ttdoc">CanAirIO Sensors Manager main class.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:166</div></div>
-<div class="ttc" id="aclassSensors_html_a0e9516d728256efd1eba97ef834cd385"><div class="ttname"><a href="classSensors.html#a0e9516d728256efd1eba97ef834cd385">Sensors::printUnitsRegistered</a></div><div class="ttdeci">void printUnitsRegistered(bool debug=false)</div><div class="ttdoc">print the sensor units names available</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:648</div></div>
-<div class="ttc" id="aclassSensors_html_a122c0d2922d2a80984e8a3ac21b883c3"><div class="ttname"><a href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">Sensors::setTempOffset</a></div><div class="ttdeci">void setTempOffset(float offset)</div><div class="ttdoc">Set temperature offset for all temperature sensors.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:376</div></div>
-<div class="ttc" id="aclassSensors_html_a15b986d752487db6a9a61948f255eb84"><div class="ttname"><a href="classSensors.html#a15b986d752487db6a9a61948f255eb84">Sensors::scd4x</a></div><div class="ttdeci">SensirionI2CScd4x scd4x</div><div class="ttdoc">SCD4x object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:233</div></div>
-<div class="ttc" id="aclassSensors_html_a16174075dbfcc011ae3130ffd4c6605f"><div class="ttname"><a href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">Sensors::i2conly</a></div><div class="ttdeci">bool i2conly</div><div class="ttdoc">only detect i2c sensors flag</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:193</div></div>
-<div class="ttc" id="aclassSensors_html_a1d723cdb619b2d61d3e4080182a12cbb"><div class="ttname"><a href="classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb">Sensors::getUnitsRegisteredCount</a></div><div class="ttdeci">uint8_t getUnitsRegisteredCount()</div><div class="ttdoc">get device sensors units detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:515</div></div>
-<div class="ttc" id="aclassSensors_html_a1ec9492ba3931bb6a05f02be5db61f79"><div class="ttname"><a href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">Sensors::dfrNH3</a></div><div class="ttdeci">DFRobot_GAS_I2C dfrNH3</div><div class="ttdoc">DFRobot gravity NH3 object sensor addr 0x77.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:239</div></div>
-<div class="ttc" id="aclassSensors_html_a255bf73cd4afaf6c656dbbcabb1a8bb1"><div class="ttname"><a href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">Sensors::getHumidity</a></div><div class="ttdeci">float getHumidity()</div><div class="ttdoc">get humidity % value of environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:288</div></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="keywordtype">void</span> aht10Init();</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <span class="keywordtype">void</span> aht10Read();</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordtype">void</span> sht31Init();</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="keywordtype">void</span> sht31Read();</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160; </div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <span class="keywordtype">void</span> CO2scd30Init();</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <span class="keywordtype">void</span> CO2scd30Read();</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <span class="keywordtype">void</span> setSCD30TempOffset(<span class="keywordtype">float</span> offset);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="keywordtype">void</span> setSCD30AltitudeOffset(<span class="keywordtype">float</span> offset);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="keywordtype">void</span> CO2correctionAlt();</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keywordtype">float</span> hpaCalculation(<span class="keywordtype">float</span> altitude);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    <span class="keywordtype">void</span> CO2scd4xInit();</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <span class="keywordtype">void</span> CO2scd4xRead();</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="keywordtype">void</span> setSCD4xTempOffset(<span class="keywordtype">float</span> offset);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    <span class="keywordtype">void</span> setSCD4xAltitudeOffset(<span class="keywordtype">float</span> offset);</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    <span class="keywordtype">void</span> sen5xInit();</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordtype">void</span> sen5xRead();</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordtype">void</span> setsen5xTempOffset(<span class="keywordtype">float</span> offset);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keywordtype">void</span> GCJA5Init();</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    <span class="keywordtype">void</span> GCJA5Read();</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    </div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;<span class="preprocessor">    #ifdef DHT11_ENABLED</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="keywordtype">void</span> dhtInit();</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keywordtype">void</span> dhtRead();</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordtype">bool</span> dhtIsReady(<span class="keywordtype">float</span> *temperature, <span class="keywordtype">float</span> *humidity);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordtype">void</span> DFRobotNH3Init();</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    <span class="keywordtype">void</span> DFRobotNH3Read();</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keywordtype">void</span> DFRobotCOInit();</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keywordtype">void</span> DFRobotCORead();</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <span class="keywordtype">void</span> DFRobotNO2Init();</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    <span class="keywordtype">void</span> DFRobotNO2Read();</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160; </div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <span class="comment">// UART sensors methods:</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160; </div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="keywordtype">bool</span> sensorSerialInit(u_int pms_type, <span class="keywordtype">int</span> rx, <span class="keywordtype">int</span> tx);</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    <span class="keywordtype">bool</span> pmSensorAutoDetect(u_int pms_type);</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="keywordtype">bool</span> pmSensorRead();</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    <span class="keywordtype">bool</span> pmGenericRead();</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    <span class="keywordtype">bool</span> pmGCJA5Read();</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    <span class="keywordtype">bool</span> pmSDS011Read();</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="keywordtype">bool</span> pm1006Read();</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <span class="keywordtype">bool</span> CO2Mhz19Read();</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <span class="keywordtype">bool</span> CO2CM1106Read();</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    <span class="keywordtype">bool</span> CO2Mhz19Init();</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    <span class="keywordtype">bool</span> CO2CM1106Init();</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    <span class="keywordtype">bool</span> senseAirS8Init();</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    <span class="keywordtype">bool</span> senseAirS8Read();</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    <span class="keywordtype">bool</span> PM1006Init();</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160; </div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    <span class="keywordtype">bool</span> sps30I2CInit();</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="keywordtype">bool</span> sps30UARTInit();</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="keywordtype">bool</span> sps30Read();</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="keywordtype">bool</span> sps30tests();</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    <span class="keywordtype">void</span> sps30ErrToMess(<span class="keywordtype">char</span> *mess, uint8_t r);</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    <span class="keywordtype">void</span> sps30Errorloop(<span class="keywordtype">char</span> *mess, uint8_t r);</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    <span class="keywordtype">void</span> sps30DeviceInfo();</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; </div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    <span class="keywordtype">void</span> geigerRead();</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160; </div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="keywordtype">void</span> onSensorError(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg);</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160; </div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="keywordtype">void</span> startI2C();</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160; </div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    <span class="keywordtype">void</span> enableWire1();</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160; </div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    <span class="keywordtype">void</span> disableWire1();</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160; </div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    <span class="keywordtype">bool</span> serialInit(u_int pms_type, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> speed_baud, <span class="keywordtype">int</span> pms_rx, <span class="keywordtype">int</span> pms_tx);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160; </div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    String hwSerialRead(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lenght_buffer);</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160; </div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <span class="keywordtype">void</span> restart();  <span class="comment">// restart serial (it isn&#39;t works sometimes)</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160; </div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    <span class="keywordtype">void</span> DEBUG(<span class="keyword">const</span> <span class="keywordtype">char</span> *text, <span class="keyword">const</span> <span class="keywordtype">char</span> *textb = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160; </div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    <span class="keywordtype">void</span> printValues();</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160; </div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    <span class="keywordtype">void</span> printHumTemp();</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160; </div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    <span class="keywordtype">void</span> tempRegister(<span class="keywordtype">bool</span> isCO2temp);</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160; </div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    <span class="keywordtype">void</span> sensorRegister(SENSORS sensor);</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160; </div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="keywordtype">void</span> sensorAnnounce(SENSORS sensor);</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160; </div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    <span class="keywordtype">void</span> unitRegister(UNIT unit);</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160; </div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    uint8_t *getUnitsRegistered();</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160; </div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="comment">// @todo use DEBUG_ESP_PORT ?</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="preprocessor">#ifdef WM_DEBUG_PORT</span></div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    Stream &amp;_debugPort = WM_DEBUG_PORT;</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    Stream &amp;_debugPort = Serial;  <span class="comment">// debug output stream ref</span></div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;};</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160; </div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="preprocessor">#if !defined(NO_GLOBAL_INSTANCES) &amp;&amp; !defined(NO_GLOBAL_SENSORSHANDLER)</span></div>
+<div class="line"><a name="l00522"></a><span class="lineno"><a class="line" href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">  522</a></span>&#160;<span class="keyword">extern</span> <a class="code" href="classSensors.html">Sensors</a> sensors;</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160; </div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;    </div>
+<div class="ttc" id="aclassSensors_html"><div class="ttname"><a href="classSensors.html">Sensors</a></div><div class="ttdoc">CanAirIO Sensors Manager main class.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:170</div></div>
+<div class="ttc" id="aclassSensors_html_a0e9516d728256efd1eba97ef834cd385"><div class="ttname"><a href="classSensors.html#a0e9516d728256efd1eba97ef834cd385">Sensors::printUnitsRegistered</a></div><div class="ttdeci">void printUnitsRegistered(bool debug=false)</div><div class="ttdoc">print the sensor units names available</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:666</div></div>
+<div class="ttc" id="aclassSensors_html_a122c0d2922d2a80984e8a3ac21b883c3"><div class="ttname"><a href="classSensors.html#a122c0d2922d2a80984e8a3ac21b883c3">Sensors::setTempOffset</a></div><div class="ttdeci">void setTempOffset(float offset)</div><div class="ttdoc">Set temperature offset for all temperature sensors.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:386</div></div>
+<div class="ttc" id="aclassSensors_html_a15b986d752487db6a9a61948f255eb84"><div class="ttname"><a href="classSensors.html#a15b986d752487db6a9a61948f255eb84">Sensors::scd4x</a></div><div class="ttdeci">SensirionI2CScd4x scd4x</div><div class="ttdoc">SCD4x object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:237</div></div>
+<div class="ttc" id="aclassSensors_html_a16174075dbfcc011ae3130ffd4c6605f"><div class="ttname"><a href="classSensors.html#a16174075dbfcc011ae3130ffd4c6605f">Sensors::i2conly</a></div><div class="ttdeci">bool i2conly</div><div class="ttdoc">only detect i2c sensors flag</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:197</div></div>
+<div class="ttc" id="aclassSensors_html_a1d723cdb619b2d61d3e4080182a12cbb"><div class="ttname"><a href="classSensors.html#a1d723cdb619b2d61d3e4080182a12cbb">Sensors::getUnitsRegisteredCount</a></div><div class="ttdeci">uint8_t getUnitsRegisteredCount()</div><div class="ttdoc">get device sensors units detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:531</div></div>
+<div class="ttc" id="aclassSensors_html_a1ec9492ba3931bb6a05f02be5db61f79"><div class="ttname"><a href="classSensors.html#a1ec9492ba3931bb6a05f02be5db61f79">Sensors::dfrNH3</a></div><div class="ttdeci">DFRobot_GAS_I2C dfrNH3</div><div class="ttdoc">DFRobot gravity NH3 object sensor addr 0x7A.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:245</div></div>
+<div class="ttc" id="aclassSensors_html_a255bf73cd4afaf6c656dbbcabb1a8bb1"><div class="ttname"><a href="classSensors.html#a255bf73cd4afaf6c656dbbcabb1a8bb1">Sensors::getHumidity</a></div><div class="ttdeci">float getHumidity()</div><div class="ttdoc">get humidity % value of environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:298</div></div>
 <div class="ttc" id="aclassSensors_html_a255ece4e475221edb8ba7a8983014a76"><div class="ttname"><a href="classSensors.html#a255ece4e475221edb8ba7a8983014a76">Sensors::loop</a></div><div class="ttdeci">void loop()</div><div class="ttdoc">Main sensors loop. All sensors are read here, please call it on main loop.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:34</div></div>
-<div class="ttc" id="aclassSensors_html_a27eec756609a421b3927c0dc132ae7c6"><div class="ttname"><a href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">Sensors::setCO2AltitudeOffset</a></div><div class="ttdeci">void setCO2AltitudeOffset(float altitude)</div><div class="ttdoc">set CO2 altitude offset (m)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:195</div></div>
-<div class="ttc" id="aclassSensors_html_a296d40a89de2b405c19f1982d6083545"><div class="ttname"><a href="classSensors.html#a296d40a89de2b405c19f1982d6083545">Sensors::resetAllVariables</a></div><div class="ttdeci">void resetAllVariables()</div><div class="ttdoc">reset all library variables (generic sensors units)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1739</div></div>
-<div class="ttc" id="aclassSensors_html_a365a45dc5c9ab598cfc206368579b94a"><div class="ttname"><a href="classSensors.html#a365a45dc5c9ab598cfc206368579b94a">Sensors::getUnitSymbol</a></div><div class="ttdeci">String getUnitSymbol(UNIT unit)</div><div class="ttdoc">get the sensor unit symbol</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:534</div></div>
-<div class="ttc" id="aclassSensors_html_a3db568a0fb294fd02cc1f95943db4f55"><div class="ttname"><a href="classSensors.html#a3db568a0fb294fd02cc1f95943db4f55">Sensors::getPressure</a></div><div class="ttdeci">float getPressure()</div><div class="ttdoc">get Pressure value in hPa</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:393</div></div>
-<div class="ttc" id="aclassSensors_html_a3f92336ae7ee535c6417111075949ad1"><div class="ttname"><a href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">Sensors::cm1106</a></div><div class="ttdeci">CM1106_UART * cm1106</div><div class="ttdoc">CM1106 UART main object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:221</div></div>
-<div class="ttc" id="aclassSensors_html_a450841daddeac4d513711007e38d7f3f"><div class="ttname"><a href="classSensors.html#a450841daddeac4d513711007e38d7f3f">Sensors::devmode</a></div><div class="ttdeci">bool devmode</div><div class="ttdoc">Debug mode for increase verbose.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:172</div></div>
-<div class="ttc" id="aclassSensors_html_a47635ad00b96b1175c96c6ead2c4a514"><div class="ttname"><a href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">Sensors::resetUnitsRegister</a></div><div class="ttdeci">void resetUnitsRegister()</div><div class="ttdoc">reset the sensor units registry.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:559</div></div>
-<div class="ttc" id="aclassSensors_html_a47f337a24231440b661d57ed8e873a64"><div class="ttname"><a href="classSensors.html#a47f337a24231440b661d57ed8e873a64">Sensors::setCO2RecalibrationFactor</a></div><div class="ttdeci">void setCO2RecalibrationFactor(int ppmValue)</div><div class="ttdoc">set CO2 recalibration PPM value (400 to 2000)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:159</div></div>
-<div class="ttc" id="aclassSensors_html_a4abb5d2a00d31a407e32cbdabe00b6eb"><div class="ttname"><a href="classSensors.html#a4abb5d2a00d31a407e32cbdabe00b6eb">Sensors::getUnitName</a></div><div class="ttdeci">String getUnitName(UNIT unit)</div><div class="ttdoc">get the sensor unit name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:524</div></div>
-<div class="ttc" id="aclassSensors_html_a4e919d953ced2916be669a69a41fc098"><div class="ttname"><a href="classSensors.html#a4e919d953ced2916be669a69a41fc098">Sensors::aht10</a></div><div class="ttdeci">AHTxx aht10</div><div class="ttdoc">AHTXX sensors object.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:208</div></div>
-<div class="ttc" id="aclassSensors_html_a4f2c839ce87342c2eb8ea174725dc751"><div class="ttname"><a href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">Sensors::altoffset</a></div><div class="ttdeci">float altoffset</div><div class="ttdoc">Altitud compensation variable.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:181</div></div>
+<div class="ttc" id="aclassSensors_html_a27eec756609a421b3927c0dc132ae7c6"><div class="ttname"><a href="classSensors.html#a27eec756609a421b3927c0dc132ae7c6">Sensors::setCO2AltitudeOffset</a></div><div class="ttdeci">void setCO2AltitudeOffset(float altitude)</div><div class="ttdoc">set CO2 altitude offset (m)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:205</div></div>
+<div class="ttc" id="aclassSensors_html_a296d40a89de2b405c19f1982d6083545"><div class="ttname"><a href="classSensors.html#a296d40a89de2b405c19f1982d6083545">Sensors::resetAllVariables</a></div><div class="ttdeci">void resetAllVariables()</div><div class="ttdoc">reset all library variables (generic sensors units)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1846</div></div>
+<div class="ttc" id="aclassSensors_html_a365a45dc5c9ab598cfc206368579b94a"><div class="ttname"><a href="classSensors.html#a365a45dc5c9ab598cfc206368579b94a">Sensors::getUnitSymbol</a></div><div class="ttdeci">String getUnitSymbol(UNIT unit)</div><div class="ttdoc">get the sensor unit symbol</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:550</div></div>
+<div class="ttc" id="aclassSensors_html_a3db568a0fb294fd02cc1f95943db4f55"><div class="ttname"><a href="classSensors.html#a3db568a0fb294fd02cc1f95943db4f55">Sensors::getPressure</a></div><div class="ttdeci">float getPressure()</div><div class="ttdoc">get Pressure value in hPa</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:404</div></div>
+<div class="ttc" id="aclassSensors_html_a3f92336ae7ee535c6417111075949ad1"><div class="ttname"><a href="classSensors.html#a3f92336ae7ee535c6417111075949ad1">Sensors::cm1106</a></div><div class="ttdeci">CM1106_UART * cm1106</div><div class="ttdoc">CM1106 UART main object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:225</div></div>
+<div class="ttc" id="aclassSensors_html_a450841daddeac4d513711007e38d7f3f"><div class="ttname"><a href="classSensors.html#a450841daddeac4d513711007e38d7f3f">Sensors::devmode</a></div><div class="ttdeci">bool devmode</div><div class="ttdoc">Debug mode for increase verbose.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:176</div></div>
+<div class="ttc" id="aclassSensors_html_a47635ad00b96b1175c96c6ead2c4a514"><div class="ttname"><a href="classSensors.html#a47635ad00b96b1175c96c6ead2c4a514">Sensors::resetUnitsRegister</a></div><div class="ttdeci">void resetUnitsRegister()</div><div class="ttdoc">reset the sensor units registry.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:575</div></div>
+<div class="ttc" id="aclassSensors_html_a47f337a24231440b661d57ed8e873a64"><div class="ttname"><a href="classSensors.html#a47f337a24231440b661d57ed8e873a64">Sensors::setCO2RecalibrationFactor</a></div><div class="ttdeci">void setCO2RecalibrationFactor(int ppmValue)</div><div class="ttdoc">set CO2 recalibration PPM value (400 to 2000)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:169</div></div>
+<div class="ttc" id="aclassSensors_html_a4abb5d2a00d31a407e32cbdabe00b6eb"><div class="ttname"><a href="classSensors.html#a4abb5d2a00d31a407e32cbdabe00b6eb">Sensors::getUnitName</a></div><div class="ttdeci">String getUnitName(UNIT unit)</div><div class="ttdoc">get the sensor unit name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:540</div></div>
+<div class="ttc" id="aclassSensors_html_a4e919d953ced2916be669a69a41fc098"><div class="ttname"><a href="classSensors.html#a4e919d953ced2916be669a69a41fc098">Sensors::aht10</a></div><div class="ttdeci">AHTxx aht10</div><div class="ttdoc">AHTXX sensors object.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:212</div></div>
+<div class="ttc" id="aclassSensors_html_a4f2c839ce87342c2eb8ea174725dc751"><div class="ttname"><a href="classSensors.html#a4f2c839ce87342c2eb8ea174725dc751">Sensors::altoffset</a></div><div class="ttdeci">float altoffset</div><div class="ttdoc">Altitud compensation variable.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:185</div></div>
 <div class="ttc" id="aclassSensors_html_a4f531daf0233f48c3c4e5e91688f90ea"><div class="ttname"><a href="classSensors.html#a4f531daf0233f48c3c4e5e91688f90ea">Sensors::readAllSensors</a></div><div class="ttdeci">bool readAllSensors()</div><div class="ttdoc">Read all sensors but use only one time or use loop() instead. All sensors are read here....</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:61</div></div>
-<div class="ttc" id="aclassSensors_html_a515884007d9b5239c2321ec0695f69e8"><div class="ttname"><a href="classSensors.html#a515884007d9b5239c2321ec0695f69e8">Sensors::getPM1</a></div><div class="ttdeci">uint16_t getPM1()</div><div class="ttdoc">get PM1.0 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:258</div></div>
-<div class="ttc" id="aclassSensors_html_a588db8882dba0506b44ee4c0752b404c"><div class="ttname"><a href="classSensors.html#a588db8882dba0506b44ee4c0752b404c">Sensors::getGeigerCPM</a></div><div class="ttdeci">uint32_t getGeigerCPM(void)</div><div class="ttdoc">get Geiger count. Tics in the last 60secs</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1782</div></div>
-<div class="ttc" id="aclassSensors_html_a5af169078d14a1272bdf390109041df0"><div class="ttname"><a href="classSensors.html#a5af169078d14a1272bdf390109041df0">Sensors::bmp280</a></div><div class="ttdeci">Adafruit_BMP280 bmp280</div><div class="ttdoc">BMP280 object (Humidity, Pressure, Altitude and Temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:204</div></div>
-<div class="ttc" id="aclassSensors_html_a5b541f807d8fa5fd77ef92c06c63a45c"><div class="ttname"><a href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">Sensors::val</a></div><div class="ttdeci">struct sps_values val</div><div class="ttdoc">SPS30 values. Only for Sensirion SPS30 sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:169</div></div>
-<div class="ttc" id="aclassSensors_html_a6051b0aa681611fe040ea0cc7417ef90"><div class="ttname"><a href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90">Sensors::getGas</a></div><div class="ttdeci">float getGas()</div><div class="ttdoc">get Gas resistance value of BMP680 sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:383</div></div>
-<div class="ttc" id="aclassSensors_html_a63ec661795621129a831a6f837c7f560"><div class="ttname"><a href="classSensors.html#a63ec661795621129a831a6f837c7f560">Sensors::isDataReady</a></div><div class="ttdeci">bool isDataReady()</div><div class="ttdoc">get the sensor status</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:253</div></div>
-<div class="ttc" id="aclassSensors_html_a655dd7b6cd1864ecba724161213b1222"><div class="ttname"><a href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">Sensors::bme280</a></div><div class="ttdeci">Adafruit_BME280 bme280</div><div class="ttdoc">BME280 object (Humidity, Pressure, Altitude and Temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:202</div></div>
-<div class="ttc" id="aclassSensors_html_a6f65f14f397fea4b9f8347f1b92fb061"><div class="ttname"><a href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">Sensors::enableGeigerSensor</a></div><div class="ttdeci">void enableGeigerSensor(int gpio)</div><div class="ttdoc">Enable Geiger sensor on specific pin.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1768</div></div>
-<div class="ttc" id="aclassSensors_html_a729f911e0508cc8814a2276ff519b219"><div class="ttname"><a href="classSensors.html#a729f911e0508cc8814a2276ff519b219">Sensors::setOnDataCallBack</a></div><div class="ttdeci">void setOnDataCallBack(voidCbFn cb)</div><div class="ttdoc">Get sensor data.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:232</div></div>
-<div class="ttc" id="aclassSensors_html_a73f73d13d14526125fa95fd9b29e088d"><div class="ttname"><a href="classSensors.html#a73f73d13d14526125fa95fd9b29e088d">Sensors::getCO</a></div><div class="ttdeci">float getCO()</div><div class="ttdoc">get CO value in ppm</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:403</div></div>
-<div class="ttc" id="aclassSensors_html_a77e8576cefec2ee8ef72f5031a3647fb"><div class="ttname"><a href="classSensors.html#a77e8576cefec2ee8ef72f5031a3647fb">Sensors::getNH3</a></div><div class="ttdeci">float getNH3()</div><div class="ttdoc">get NH3 value in ppm</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:398</div></div>
-<div class="ttc" id="aclassSensors_html_a78c6800deaf6b89fc6719a936345bef5"><div class="ttname"><a href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">Sensors::am2320</a></div><div class="ttdeci">AM232X am2320</div><div class="ttdoc">AM2320 object (Humidity and temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:200</div></div>
-<div class="ttc" id="aclassSensors_html_a7afb5c201c4e1933c96719e632181f71"><div class="ttname"><a href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">Sensors::getCO2temp</a></div><div class="ttdeci">float getCO2temp()</div><div class="ttdoc">get temperature value from the CO2 sensor device</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:316</div></div>
-<div class="ttc" id="aclassSensors_html_a7b69b0360b3ec5a2a08d2591be8a92b7"><div class="ttname"><a href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">Sensors::scd30</a></div><div class="ttdeci">Adafruit_SCD30 scd30</div><div class="ttdoc">SCD30 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:219</div></div>
-<div class="ttc" id="aclassSensors_html_a7bea34fbbe7d0fcc1cdcde8886a1b94c"><div class="ttname"><a href="classSensors.html#a7bea34fbbe7d0fcc1cdcde8886a1b94c">Sensors::getGeigerMicroSievertHour</a></div><div class="ttdeci">float getGeigerMicroSievertHour(void)</div><div class="ttdoc">get Geiger count in uSv/h units</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1791</div></div>
-<div class="ttc" id="aclassSensors_html_a7e75dd4e3f2e655a9961f57650cbf749"><div class="ttname"><a href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">Sensors::getUnitValue</a></div><div class="ttdeci">float getUnitValue(UNIT unit)</div><div class="ttdoc">get the sensor unit value (float)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:597</div></div>
-<div class="ttc" id="aclassSensors_html_a7fa1fe8f4f3469bce9311be880c243df"><div class="ttname"><a href="classSensors.html#a7fa1fe8f4f3469bce9311be880c243df">Sensors::getCO2humi</a></div><div class="ttdeci">float getCO2humi()</div><div class="ttdoc">get humidity % value of CO2 sensor device</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:283</div></div>
-<div class="ttc" id="aclassSensors_html_a8165734cd6b82243549ba6bd1c7a837a"><div class="ttname"><a href="classSensors.html#a8165734cd6b82243549ba6bd1c7a837a">Sensors::getPM10</a></div><div class="ttdeci">uint16_t getPM10()</div><div class="ttdoc">get PM10 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:273</div></div>
-<div class="ttc" id="aclassSensors_html_a86190ba0e2fce178aaf936d2c926f7fe"><div class="ttname"><a href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">Sensors::resetSensorsRegister</a></div><div class="ttdeci">void resetSensorsRegister()</div><div class="ttdoc">reset the sensor registry.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:572</div></div>
-<div class="ttc" id="aclassSensors_html_a8b00eb1d005ea6634307c236d6a39a70"><div class="ttname"><a href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">Sensors::cm1106sensor</a></div><div class="ttdeci">CM1106_sensor cm1106sensor</div><div class="ttdoc">CM1106 UART main variable.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:223</div></div>
-<div class="ttc" id="aclassSensors_html_a8b5bcd2158f4ed4eb1674cc483cfab1d"><div class="ttname"><a href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">Sensors::sht31</a></div><div class="ttdeci">Adafruit_SHT31 sht31</div><div class="ttdoc">SHT31 object (Humidity and temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:210</div></div>
-<div class="ttc" id="aclassSensors_html_a8fe6e43b99919f6c481792f0c0de8c50"><div class="ttname"><a href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">Sensors::setSeaLevelPressure</a></div><div class="ttdeci">void setSeaLevelPressure(float hpa)</div><div class="ttdoc">set the sea level pressure (hPa)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:217</div></div>
-<div class="ttc" id="aclassSensors_html_a98fa1dc37540b4c3c11609c7840ada8b"><div class="ttname"><a href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">Sensors::pmGCJA5</a></div><div class="ttdeci">SFE_PARTICLE_SENSOR pmGCJA5</div><div class="ttdoc">Panasonic SN-GCJA5 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:227</div></div>
-<div class="ttc" id="aclassSensors_html_a9c16019668f5e0e883211d1259331af3"><div class="ttname"><a href="classSensors.html#a9c16019668f5e0e883211d1259331af3">Sensors::bme680</a></div><div class="ttdeci">Adafruit_BME680 bme680</div><div class="ttdoc">BME680 object (Humidity, Gas, IAQ, Pressure, Altitude and Temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:206</div></div>
-<div class="ttc" id="aclassSensors_html_aa7ca70f31838cba52b96f76aa4a0d4a2"><div class="ttname"><a href="classSensors.html#aa7ca70f31838cba52b96f76aa4a0d4a2">Sensors::getSensorName</a></div><div class="ttdeci">String getSensorName(SENSORS sensor)</div><div class="ttdoc">get the sensor name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:463</div></div>
-<div class="ttc" id="aclassSensors_html_aa99811f9bb9778253e4d0476fab7b86c"><div class="ttname"><a href="classSensors.html#aa99811f9bb9778253e4d0476fab7b86c">Sensors::isUARTSensorConfigured</a></div><div class="ttdeci">bool isUARTSensorConfigured()</div><div class="ttdoc">UART only: check if the UART sensor is registered.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:411</div></div>
-<div class="ttc" id="aclassSensors_html_aaab17888bad6c8c60c5a2f8e2501bfc8"><div class="ttname"><a href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">Sensors::pm1006</a></div><div class="ttdeci">PM1006 * pm1006</div><div class="ttdoc">IKEA Vindriktn object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:235</div></div>
-<div class="ttc" id="aclassSensors_html_aaca8ec4ae2c64c366c33622d3332ffb1"><div class="ttname"><a href="classSensors.html#aaca8ec4ae2c64c366c33622d3332ffb1">Sensors::getUARTDeviceTypeSelected</a></div><div class="ttdeci">int getUARTDeviceTypeSelected()</div><div class="ttdoc">UART only: get the UART sensor type. See SENSORS enum. Also getDeviceName()</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:419</div></div>
-<div class="ttc" id="aclassSensors_html_aacc120de64676122893f4d68d8b39ded"><div class="ttname"><a href="classSensors.html#aacc120de64676122893f4d68d8b39ded">Sensors::sealevel</a></div><div class="ttdeci">float sealevel</div><div class="ttdoc">Sea level pressure (hPa)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:184</div></div>
-<div class="ttc" id="aclassSensors_html_ab0b53515ecf64e30e854a27eb0a1399d"><div class="ttname"><a href="classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d">Sensors::init</a></div><div class="ttdeci">void init(u_int pms_type=0, int pms_rx=PMS_RX, int pms_tx=PMS_TX)</div><div class="ttdoc">All sensors init.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:102</div></div>
-<div class="ttc" id="aclassSensors_html_aba1b7a633d1d89514c891220b603351f"><div class="ttname"><a href="classSensors.html#aba1b7a633d1d89514c891220b603351f">Sensors::setOnErrorCallBack</a></div><div class="ttdeci">void setOnErrorCallBack(errorCbFn cb)</div><div class="ttdoc">Optional callback for get the sensors errors.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:240</div></div>
-<div class="ttc" id="aclassSensors_html_abd4b900acd33f41c7fd184e0dad90aeb"><div class="ttname"><a href="classSensors.html#abd4b900acd33f41c7fd184e0dad90aeb">Sensors::getSensorGroup</a></div><div class="ttdeci">SensorGroup getSensorGroup(SENSORS sensor)</div><div class="ttdoc">get the sensor group type</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:476</div></div>
-<div class="ttc" id="aclassSensors_html_ac1acd7bf32bda39fdfde1753af3ceef2"><div class="ttname"><a href="classSensors.html#ac1acd7bf32bda39fdfde1753af3ceef2">Sensors::isUnitRegistered</a></div><div class="ttdeci">bool isUnitRegistered(UNIT unit)</div><div class="ttdoc">get the sensor unit status on the registry</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:496</div></div>
-<div class="ttc" id="aclassSensors_html_ac1cf4e90258eb2fcbdc8cf7c1f75a1c1"><div class="ttname"><a href="classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1">Sensors::isSensorRegistered</a></div><div class="ttdeci">bool isSensorRegistered(SENSORS sensor)</div><div class="ttdoc">Read and check the sensors status on initialization.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:451</div></div>
-<div class="ttc" id="aclassSensors_html_ac4c22766994b94a2a28158ed72dc4a0c"><div class="ttname"><a href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c">Sensors::getTemperature</a></div><div class="ttdeci">float getTemperature()</div><div class="ttdoc">get temperature value from environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:329</div></div>
-<div class="ttc" id="aclassSensors_html_ac6abfa8f43319f8a98e92952f2e2e105"><div class="ttname"><a href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">Sensors::hpa</a></div><div class="ttdeci">float hpa</div><div class="ttdoc">Altitud hpa calculation.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:187</div></div>
-<div class="ttc" id="aclassSensors_html_ac723c0d9cf5af5daa0fa8d041f41f3d8"><div class="ttname"><a href="classSensors.html#ac723c0d9cf5af5daa0fa8d041f41f3d8">Sensors::setSampleTime</a></div><div class="ttdeci">void setSampleTime(int seconds)</div><div class="ttdoc">set loop time interval for each sensor sample</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:143</div></div>
-<div class="ttc" id="aclassSensors_html_ac749e2c2618a177afa7d72ce68573fa5"><div class="ttname"><a href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">Sensors::setDebugMode</a></div><div class="ttdeci">void setDebugMode(bool enable)</div><div class="ttdoc">Optional for increase the debug level.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:248</div></div>
-<div class="ttc" id="aclassSensors_html_aca9b394c691568c7bd3499cba0b67403"><div class="ttname"><a href="classSensors.html#aca9b394c691568c7bd3499cba0b67403">Sensors::getPM4</a></div><div class="ttdeci">uint16_t getPM4()</div><div class="ttdoc">get PM4 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:268</div></div>
-<div class="ttc" id="aclassSensors_html_acaf6032853fd0c97648ca75e32b37f8d"><div class="ttname"><a href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">Sensors::toffset</a></div><div class="ttdeci">float toffset</div><div class="ttdoc">Temperature offset (for final temp output)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:178</div></div>
-<div class="ttc" id="aclassSensors_html_ace9ca82dcea1486bdf395cacdb7d2620"><div class="ttname"><a href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">Sensors::abc</a></div><div class="ttdeci">CM1106_ABC abc</div><div class="ttdoc">CM1106 UART calibration object.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:225</div></div>
-<div class="ttc" id="aclassSensors_html_ad33c76f341c86ac1900c5953fca9c0d1"><div class="ttname"><a href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">Sensors::getNextUnit</a></div><div class="ttdeci">UNIT getNextUnit()</div><div class="ttdoc">get the next sensor unit available</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:542</div></div>
-<div class="ttc" id="aclassSensors_html_ad5b958024787912f4ab413034a3a0a75"><div class="ttname"><a href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">Sensors::s8</a></div><div class="ttdeci">S8_UART * s8</div><div class="ttdoc">SenseAir S8 CO2 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:229</div></div>
-<div class="ttc" id="aclassSensors_html_ad5e013ede87366e54e4ca42e72fb40c0"><div class="ttname"><a href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">Sensors::dfrCO</a></div><div class="ttdeci">DFRobot_GAS_I2C dfrCO</div><div class="ttdoc">DFRobot gravity NH3 object sensor addr 0x74.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:237</div></div>
-<div class="ttc" id="aclassSensors_html_ad6156b78908fd064761301339e54c8af"><div class="ttname"><a href="classSensors.html#ad6156b78908fd064761301339e54c8af">Sensors::mhz19</a></div><div class="ttdeci">MHZ19 mhz19</div><div class="ttdoc">Mhz19 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:217</div></div>
-<div class="ttc" id="aclassSensors_html_ad804d082e7a5ea663010008dbf5a0e84"><div class="ttname"><a href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">Sensors::sample_time</a></div><div class="ttdeci">int sample_time</div><div class="ttdoc">Initial sample time for all sensors.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:175</div></div>
-<div class="ttc" id="aclassSensors_html_ad8395e69cf5dcc68d0a8049ec7372a81"><div class="ttname"><a href="classSensors.html#ad8395e69cf5dcc68d0a8049ec7372a81">Sensors::getSensorsRegisteredCount</a></div><div class="ttdeci">uint8_t getSensorsRegisteredCount()</div><div class="ttdoc">get device sensors detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:442</div></div>
-<div class="ttc" id="aclassSensors_html_ad953d4564cc20d8134cccd962435dd81"><div class="ttname"><a href="classSensors.html#ad953d4564cc20d8134cccd962435dd81">Sensors::getCO2</a></div><div class="ttdeci">uint16_t getCO2()</div><div class="ttdoc">get CO2 ppm value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:278</div></div>
-<div class="ttc" id="aclassSensors_html_adb026d51c7801930b26730371244bb5e"><div class="ttname"><a href="classSensors.html#adb026d51c7801930b26730371244bb5e">Sensors::getLibraryRevision</a></div><div class="ttdeci">int16_t getLibraryRevision()</div><div class="ttdoc">return the current revision code number</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:437</div></div>
-<div class="ttc" id="aclassSensors_html_adc3ad26b8a9be10b2100e3b023fdefc4"><div class="ttname"><a href="classSensors.html#adc3ad26b8a9be10b2100e3b023fdefc4">Sensors::getPM25</a></div><div class="ttdeci">uint16_t getPM25()</div><div class="ttdoc">get PM2.5 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:263</div></div>
-<div class="ttc" id="aclassSensors_html_ade9951fe566a8fc38dc4b6f4161361d8"><div class="ttname"><a href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8">Sensors::getAltitude</a></div><div class="ttdeci">float getAltitude()</div><div class="ttdoc">get Altitude value in meters</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:388</div></div>
-<div class="ttc" id="aclassSensors_html_adfac0bef57dc49feb0de18a3a8492ca0"><div class="ttname"><a href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">Sensors::s8sensor</a></div><div class="ttdeci">S8_sensor s8sensor</div><div class="ttdoc">SenseAir S8 CO2 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:231</div></div>
-<div class="ttc" id="aclassSensors_html_ae25465fbd64d3b2b9ae31e2cb5a4b246"><div class="ttname"><a href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">Sensors::detectI2COnly</a></div><div class="ttdeci">void detectI2COnly(bool enable)</div><div class="ttdoc">Forced to enable I2C sensors only. Recommended to use only if you are using a I2C sensor and improve ...</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:427</div></div>
-<div class="ttc" id="aclassSensors_html_ae6ac6080b6ad79ba9cd441646826058d"><div class="ttname"><a href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">Sensors::resetNextUnit</a></div><div class="ttdeci">void resetNextUnit()</div><div class="ttdoc">reset the next sensor unit counter.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:585</div></div>
-<div class="ttc" id="aclassSensors_html_aeb151247ff81fb34992458915c55ed9c"><div class="ttname"><a href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">Sensors::setTemperatureUnit</a></div><div class="ttdeci">void setTemperatureUnit(TEMPUNIT tunit)</div><div class="ttdoc">set the temperature type unit</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:296</div></div>
-<div class="ttc" id="aclassSensors_html_aed05af978baed0801ff4de5f1c367cf0"><div class="ttname"><a href="classSensors.html#aed05af978baed0801ff4de5f1c367cf0">Sensors::printSensorsRegistered</a></div><div class="ttdeci">void printSensorsRegistered(bool debug=false)</div><div class="ttdoc">print the sensor names detected</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:663</div></div>
-<div class="ttc" id="aclassSensors_html_af4f26a60c06c2659d088d778c0468874"><div class="ttname"><a href="classSensors.html#af4f26a60c06c2659d088d778c0468874">Sensors::rad</a></div><div class="ttdeci">GEIGER * rad</div><div class="ttdoc">Geiger CAJOE object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:241</div></div>
-<div class="ttc" id="aclassSensors_html_af8c24cdf4179bf5bf7e799844e626b43"><div class="ttname"><a href="classSensors.html#af8c24cdf4179bf5bf7e799844e626b43">Sensors::getLibraryVersion</a></div><div class="ttdeci">String getLibraryVersion()</div><div class="ttdoc">returns the CanAirIO Sensorslib version</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:432</div></div>
-<div class="ttc" id="aclassSensors_html_af9ee8f89e81d76a4c2b41ed6dc38f2f3"><div class="ttname"><a href="classSensors.html#af9ee8f89e81d76a4c2b41ed6dc38f2f3">Sensors::getSensorsRegistered</a></div><div class="ttdeci">uint8_t * getSensorsRegistered()</div><div class="ttdoc">get the sensor registry for retrieve the sensor names</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:486</div></div>
-<div class="ttc" id="aclassSensors_html_afac2f108c62157d4d63baee21c1d2564"><div class="ttname"><a href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">Sensors::sps30</a></div><div class="ttdeci">SPS30 sps30</div><div class="ttdoc">Sensirion library.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:190</div></div>
+<div class="ttc" id="aclassSensors_html_a4fa0c05a2b225bc8614df73969c30880"><div class="ttname"><a href="classSensors.html#a4fa0c05a2b225bc8614df73969c30880">Sensors::getNO2</a></div><div class="ttdeci">float getNO2()</div><div class="ttdoc">get NO2 value in ppm</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:419</div></div>
+<div class="ttc" id="aclassSensors_html_a515884007d9b5239c2321ec0695f69e8"><div class="ttname"><a href="classSensors.html#a515884007d9b5239c2321ec0695f69e8">Sensors::getPM1</a></div><div class="ttdeci">uint16_t getPM1()</div><div class="ttdoc">get PM1.0 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:268</div></div>
+<div class="ttc" id="aclassSensors_html_a588db8882dba0506b44ee4c0752b404c"><div class="ttname"><a href="classSensors.html#a588db8882dba0506b44ee4c0752b404c">Sensors::getGeigerCPM</a></div><div class="ttdeci">uint32_t getGeigerCPM(void)</div><div class="ttdoc">get Geiger count. Tics in the last 60secs</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1890</div></div>
+<div class="ttc" id="aclassSensors_html_a5af169078d14a1272bdf390109041df0"><div class="ttname"><a href="classSensors.html#a5af169078d14a1272bdf390109041df0">Sensors::bmp280</a></div><div class="ttdeci">Adafruit_BMP280 bmp280</div><div class="ttdoc">BMP280 object (Humidity, Pressure, Altitude and Temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:208</div></div>
+<div class="ttc" id="aclassSensors_html_a5b541f807d8fa5fd77ef92c06c63a45c"><div class="ttname"><a href="classSensors.html#a5b541f807d8fa5fd77ef92c06c63a45c">Sensors::val</a></div><div class="ttdeci">struct sps_values val</div><div class="ttdoc">SPS30 values. Only for Sensirion SPS30 sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:173</div></div>
+<div class="ttc" id="aclassSensors_html_a6051b0aa681611fe040ea0cc7417ef90"><div class="ttname"><a href="classSensors.html#a6051b0aa681611fe040ea0cc7417ef90">Sensors::getGas</a></div><div class="ttdeci">float getGas()</div><div class="ttdoc">get Gas resistance value of BMP680 sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:394</div></div>
+<div class="ttc" id="aclassSensors_html_a63ec661795621129a831a6f837c7f560"><div class="ttname"><a href="classSensors.html#a63ec661795621129a831a6f837c7f560">Sensors::isDataReady</a></div><div class="ttdeci">bool isDataReady()</div><div class="ttdoc">get the sensor status</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:263</div></div>
+<div class="ttc" id="aclassSensors_html_a655dd7b6cd1864ecba724161213b1222"><div class="ttname"><a href="classSensors.html#a655dd7b6cd1864ecba724161213b1222">Sensors::bme280</a></div><div class="ttdeci">Adafruit_BME280 bme280</div><div class="ttdoc">BME280 object (Humidity, Pressure, Altitude and Temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:206</div></div>
+<div class="ttc" id="aclassSensors_html_a6f65f14f397fea4b9f8347f1b92fb061"><div class="ttname"><a href="classSensors.html#a6f65f14f397fea4b9f8347f1b92fb061">Sensors::enableGeigerSensor</a></div><div class="ttdeci">void enableGeigerSensor(int gpio)</div><div class="ttdoc">Enable Geiger sensor on specific pin.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1876</div></div>
+<div class="ttc" id="aclassSensors_html_a729f911e0508cc8814a2276ff519b219"><div class="ttname"><a href="classSensors.html#a729f911e0508cc8814a2276ff519b219">Sensors::setOnDataCallBack</a></div><div class="ttdeci">void setOnDataCallBack(voidCbFn cb)</div><div class="ttdoc">Get sensor data.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:242</div></div>
+<div class="ttc" id="aclassSensors_html_a73f73d13d14526125fa95fd9b29e088d"><div class="ttname"><a href="classSensors.html#a73f73d13d14526125fa95fd9b29e088d">Sensors::getCO</a></div><div class="ttdeci">float getCO()</div><div class="ttdoc">get CO value in ppm</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:414</div></div>
+<div class="ttc" id="aclassSensors_html_a77e8576cefec2ee8ef72f5031a3647fb"><div class="ttname"><a href="classSensors.html#a77e8576cefec2ee8ef72f5031a3647fb">Sensors::getNH3</a></div><div class="ttdeci">float getNH3()</div><div class="ttdoc">get NH3 value in ppm</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:409</div></div>
+<div class="ttc" id="aclassSensors_html_a78c6800deaf6b89fc6719a936345bef5"><div class="ttname"><a href="classSensors.html#a78c6800deaf6b89fc6719a936345bef5">Sensors::am2320</a></div><div class="ttdeci">AM232X am2320</div><div class="ttdoc">AM2320 object (Humidity and temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:204</div></div>
+<div class="ttc" id="aclassSensors_html_a7afb5c201c4e1933c96719e632181f71"><div class="ttname"><a href="classSensors.html#a7afb5c201c4e1933c96719e632181f71">Sensors::getCO2temp</a></div><div class="ttdeci">float getCO2temp()</div><div class="ttdoc">get temperature value from the CO2 sensor device</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:326</div></div>
+<div class="ttc" id="aclassSensors_html_a7b69b0360b3ec5a2a08d2591be8a92b7"><div class="ttname"><a href="classSensors.html#a7b69b0360b3ec5a2a08d2591be8a92b7">Sensors::scd30</a></div><div class="ttdeci">Adafruit_SCD30 scd30</div><div class="ttdoc">SCD30 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:223</div></div>
+<div class="ttc" id="aclassSensors_html_a7bea34fbbe7d0fcc1cdcde8886a1b94c"><div class="ttname"><a href="classSensors.html#a7bea34fbbe7d0fcc1cdcde8886a1b94c">Sensors::getGeigerMicroSievertHour</a></div><div class="ttdeci">float getGeigerMicroSievertHour(void)</div><div class="ttdoc">get Geiger count in uSv/h units</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:1899</div></div>
+<div class="ttc" id="aclassSensors_html_a7e75dd4e3f2e655a9961f57650cbf749"><div class="ttname"><a href="classSensors.html#a7e75dd4e3f2e655a9961f57650cbf749">Sensors::getUnitValue</a></div><div class="ttdeci">float getUnitValue(UNIT unit)</div><div class="ttdoc">get the sensor unit value (float)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:613</div></div>
+<div class="ttc" id="aclassSensors_html_a7fa1fe8f4f3469bce9311be880c243df"><div class="ttname"><a href="classSensors.html#a7fa1fe8f4f3469bce9311be880c243df">Sensors::getCO2humi</a></div><div class="ttdeci">float getCO2humi()</div><div class="ttdoc">get humidity % value of CO2 sensor device</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:293</div></div>
+<div class="ttc" id="aclassSensors_html_a8165734cd6b82243549ba6bd1c7a837a"><div class="ttname"><a href="classSensors.html#a8165734cd6b82243549ba6bd1c7a837a">Sensors::getPM10</a></div><div class="ttdeci">uint16_t getPM10()</div><div class="ttdoc">get PM10 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:283</div></div>
+<div class="ttc" id="aclassSensors_html_a86190ba0e2fce178aaf936d2c926f7fe"><div class="ttname"><a href="classSensors.html#a86190ba0e2fce178aaf936d2c926f7fe">Sensors::resetSensorsRegister</a></div><div class="ttdeci">void resetSensorsRegister()</div><div class="ttdoc">reset the sensor registry.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:588</div></div>
+<div class="ttc" id="aclassSensors_html_a8b00eb1d005ea6634307c236d6a39a70"><div class="ttname"><a href="classSensors.html#a8b00eb1d005ea6634307c236d6a39a70">Sensors::cm1106sensor</a></div><div class="ttdeci">CM1106_sensor cm1106sensor</div><div class="ttdoc">CM1106 UART main variable.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:227</div></div>
+<div class="ttc" id="aclassSensors_html_a8b5bcd2158f4ed4eb1674cc483cfab1d"><div class="ttname"><a href="classSensors.html#a8b5bcd2158f4ed4eb1674cc483cfab1d">Sensors::sht31</a></div><div class="ttdeci">Adafruit_SHT31 sht31</div><div class="ttdoc">SHT31 object (Humidity and temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:214</div></div>
+<div class="ttc" id="aclassSensors_html_a8fe6e43b99919f6c481792f0c0de8c50"><div class="ttname"><a href="classSensors.html#a8fe6e43b99919f6c481792f0c0de8c50">Sensors::setSeaLevelPressure</a></div><div class="ttdeci">void setSeaLevelPressure(float hpa)</div><div class="ttdoc">set the sea level pressure (hPa)</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:227</div></div>
+<div class="ttc" id="aclassSensors_html_a98fa1dc37540b4c3c11609c7840ada8b"><div class="ttname"><a href="classSensors.html#a98fa1dc37540b4c3c11609c7840ada8b">Sensors::pmGCJA5</a></div><div class="ttdeci">SFE_PARTICLE_SENSOR pmGCJA5</div><div class="ttdoc">Panasonic SN-GCJA5 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:231</div></div>
+<div class="ttc" id="aclassSensors_html_a9c16019668f5e0e883211d1259331af3"><div class="ttname"><a href="classSensors.html#a9c16019668f5e0e883211d1259331af3">Sensors::bme680</a></div><div class="ttdeci">Adafruit_BME680 bme680</div><div class="ttdoc">BME680 object (Humidity, Gas, IAQ, Pressure, Altitude and Temperature)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:210</div></div>
+<div class="ttc" id="aclassSensors_html_aa3b812855728867a6e01882abb18fa26"><div class="ttname"><a href="classSensors.html#aa3b812855728867a6e01882abb18fa26">Sensors::dfrNO2</a></div><div class="ttdeci">DFRobot_GAS_I2C dfrNO2</div><div class="ttdoc">DFRobot gravity NO2 object sensor add 0x7B.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:247</div></div>
+<div class="ttc" id="aclassSensors_html_aa7ca70f31838cba52b96f76aa4a0d4a2"><div class="ttname"><a href="classSensors.html#aa7ca70f31838cba52b96f76aa4a0d4a2">Sensors::getSensorName</a></div><div class="ttdeci">String getSensorName(SENSORS sensor)</div><div class="ttdoc">get the sensor name</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:479</div></div>
+<div class="ttc" id="aclassSensors_html_aa99811f9bb9778253e4d0476fab7b86c"><div class="ttname"><a href="classSensors.html#aa99811f9bb9778253e4d0476fab7b86c">Sensors::isUARTSensorConfigured</a></div><div class="ttdeci">bool isUARTSensorConfigured()</div><div class="ttdoc">UART only: check if the UART sensor is registered.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:427</div></div>
+<div class="ttc" id="aclassSensors_html_aaab17888bad6c8c60c5a2f8e2501bfc8"><div class="ttname"><a href="classSensors.html#aaab17888bad6c8c60c5a2f8e2501bfc8">Sensors::pm1006</a></div><div class="ttdeci">PM1006 * pm1006</div><div class="ttdoc">IKEA Vindriktn object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:241</div></div>
+<div class="ttc" id="aclassSensors_html_aaca8ec4ae2c64c366c33622d3332ffb1"><div class="ttname"><a href="classSensors.html#aaca8ec4ae2c64c366c33622d3332ffb1">Sensors::getUARTDeviceTypeSelected</a></div><div class="ttdeci">int getUARTDeviceTypeSelected()</div><div class="ttdoc">UART only: get the UART sensor type. See SENSORS enum. Also getDeviceName()</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:435</div></div>
+<div class="ttc" id="aclassSensors_html_aacc120de64676122893f4d68d8b39ded"><div class="ttname"><a href="classSensors.html#aacc120de64676122893f4d68d8b39ded">Sensors::sealevel</a></div><div class="ttdeci">float sealevel</div><div class="ttdoc">Sea level pressure (hPa)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:188</div></div>
+<div class="ttc" id="aclassSensors_html_ab0b53515ecf64e30e854a27eb0a1399d"><div class="ttname"><a href="classSensors.html#ab0b53515ecf64e30e854a27eb0a1399d">Sensors::init</a></div><div class="ttdeci">void init(u_int pms_type=0, int pms_rx=PMS_RX, int pms_tx=PMS_TX)</div><div class="ttdoc">All sensors init.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:108</div></div>
+<div class="ttc" id="aclassSensors_html_aba1b7a633d1d89514c891220b603351f"><div class="ttname"><a href="classSensors.html#aba1b7a633d1d89514c891220b603351f">Sensors::setOnErrorCallBack</a></div><div class="ttdeci">void setOnErrorCallBack(errorCbFn cb)</div><div class="ttdoc">Optional callback for get the sensors errors.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:250</div></div>
+<div class="ttc" id="aclassSensors_html_abd4b900acd33f41c7fd184e0dad90aeb"><div class="ttname"><a href="classSensors.html#abd4b900acd33f41c7fd184e0dad90aeb">Sensors::getSensorGroup</a></div><div class="ttdeci">SensorGroup getSensorGroup(SENSORS sensor)</div><div class="ttdoc">get the sensor group type</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:492</div></div>
+<div class="ttc" id="aclassSensors_html_ac1acd7bf32bda39fdfde1753af3ceef2"><div class="ttname"><a href="classSensors.html#ac1acd7bf32bda39fdfde1753af3ceef2">Sensors::isUnitRegistered</a></div><div class="ttdeci">bool isUnitRegistered(UNIT unit)</div><div class="ttdoc">get the sensor unit status on the registry</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:512</div></div>
+<div class="ttc" id="aclassSensors_html_ac1cf4e90258eb2fcbdc8cf7c1f75a1c1"><div class="ttname"><a href="classSensors.html#ac1cf4e90258eb2fcbdc8cf7c1f75a1c1">Sensors::isSensorRegistered</a></div><div class="ttdeci">bool isSensorRegistered(SENSORS sensor)</div><div class="ttdoc">Read and check the sensors status on initialization.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:467</div></div>
+<div class="ttc" id="aclassSensors_html_ac4c22766994b94a2a28158ed72dc4a0c"><div class="ttname"><a href="classSensors.html#ac4c22766994b94a2a28158ed72dc4a0c">Sensors::getTemperature</a></div><div class="ttdeci">float getTemperature()</div><div class="ttdoc">get temperature value from environment sensor</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:339</div></div>
+<div class="ttc" id="aclassSensors_html_ac6abfa8f43319f8a98e92952f2e2e105"><div class="ttname"><a href="classSensors.html#ac6abfa8f43319f8a98e92952f2e2e105">Sensors::hpa</a></div><div class="ttdeci">float hpa</div><div class="ttdoc">Altitud hpa calculation.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:191</div></div>
+<div class="ttc" id="aclassSensors_html_ac723c0d9cf5af5daa0fa8d041f41f3d8"><div class="ttname"><a href="classSensors.html#ac723c0d9cf5af5daa0fa8d041f41f3d8">Sensors::setSampleTime</a></div><div class="ttdeci">void setSampleTime(int seconds)</div><div class="ttdoc">set loop time interval for each sensor sample</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:153</div></div>
+<div class="ttc" id="aclassSensors_html_ac749e2c2618a177afa7d72ce68573fa5"><div class="ttname"><a href="classSensors.html#ac749e2c2618a177afa7d72ce68573fa5">Sensors::setDebugMode</a></div><div class="ttdeci">void setDebugMode(bool enable)</div><div class="ttdoc">Optional for increase the debug level.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:258</div></div>
+<div class="ttc" id="aclassSensors_html_aca9b394c691568c7bd3499cba0b67403"><div class="ttname"><a href="classSensors.html#aca9b394c691568c7bd3499cba0b67403">Sensors::getPM4</a></div><div class="ttdeci">uint16_t getPM4()</div><div class="ttdoc">get PM4 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:278</div></div>
+<div class="ttc" id="aclassSensors_html_acaf6032853fd0c97648ca75e32b37f8d"><div class="ttname"><a href="classSensors.html#acaf6032853fd0c97648ca75e32b37f8d">Sensors::toffset</a></div><div class="ttdeci">float toffset</div><div class="ttdoc">Temperature offset (for final temp output)</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:182</div></div>
+<div class="ttc" id="aclassSensors_html_ace9ca82dcea1486bdf395cacdb7d2620"><div class="ttname"><a href="classSensors.html#ace9ca82dcea1486bdf395cacdb7d2620">Sensors::abc</a></div><div class="ttdeci">CM1106_ABC abc</div><div class="ttdoc">CM1106 UART calibration object.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:229</div></div>
+<div class="ttc" id="aclassSensors_html_ad33c76f341c86ac1900c5953fca9c0d1"><div class="ttname"><a href="classSensors.html#ad33c76f341c86ac1900c5953fca9c0d1">Sensors::getNextUnit</a></div><div class="ttdeci">UNIT getNextUnit()</div><div class="ttdoc">get the next sensor unit available</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:558</div></div>
+<div class="ttc" id="aclassSensors_html_ad5b958024787912f4ab413034a3a0a75"><div class="ttname"><a href="classSensors.html#ad5b958024787912f4ab413034a3a0a75">Sensors::s8</a></div><div class="ttdeci">S8_UART * s8</div><div class="ttdoc">SenseAir S8 CO2 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:233</div></div>
+<div class="ttc" id="aclassSensors_html_ad5e013ede87366e54e4ca42e72fb40c0"><div class="ttname"><a href="classSensors.html#ad5e013ede87366e54e4ca42e72fb40c0">Sensors::dfrCO</a></div><div class="ttdeci">DFRobot_GAS_I2C dfrCO</div><div class="ttdoc">DFRobot gravity CO object sensor addr 0x78.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:243</div></div>
+<div class="ttc" id="aclassSensors_html_ad6156b78908fd064761301339e54c8af"><div class="ttname"><a href="classSensors.html#ad6156b78908fd064761301339e54c8af">Sensors::mhz19</a></div><div class="ttdeci">MHZ19 mhz19</div><div class="ttdoc">Mhz19 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:221</div></div>
+<div class="ttc" id="aclassSensors_html_ad804d082e7a5ea663010008dbf5a0e84"><div class="ttname"><a href="classSensors.html#ad804d082e7a5ea663010008dbf5a0e84">Sensors::sample_time</a></div><div class="ttdeci">int sample_time</div><div class="ttdoc">Initial sample time for all sensors.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:179</div></div>
+<div class="ttc" id="aclassSensors_html_ad8395e69cf5dcc68d0a8049ec7372a81"><div class="ttname"><a href="classSensors.html#ad8395e69cf5dcc68d0a8049ec7372a81">Sensors::getSensorsRegisteredCount</a></div><div class="ttdeci">uint8_t getSensorsRegisteredCount()</div><div class="ttdoc">get device sensors detected count</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:458</div></div>
+<div class="ttc" id="aclassSensors_html_ad953d4564cc20d8134cccd962435dd81"><div class="ttname"><a href="classSensors.html#ad953d4564cc20d8134cccd962435dd81">Sensors::getCO2</a></div><div class="ttdeci">uint16_t getCO2()</div><div class="ttdoc">get CO2 ppm value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:288</div></div>
+<div class="ttc" id="aclassSensors_html_adb026d51c7801930b26730371244bb5e"><div class="ttname"><a href="classSensors.html#adb026d51c7801930b26730371244bb5e">Sensors::getLibraryRevision</a></div><div class="ttdeci">int16_t getLibraryRevision()</div><div class="ttdoc">return the current revision code number</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:453</div></div>
+<div class="ttc" id="aclassSensors_html_adc3ad26b8a9be10b2100e3b023fdefc4"><div class="ttname"><a href="classSensors.html#adc3ad26b8a9be10b2100e3b023fdefc4">Sensors::getPM25</a></div><div class="ttdeci">uint16_t getPM25()</div><div class="ttdoc">get PM2.5 ug/m3 value</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:273</div></div>
+<div class="ttc" id="aclassSensors_html_ade9951fe566a8fc38dc4b6f4161361d8"><div class="ttname"><a href="classSensors.html#ade9951fe566a8fc38dc4b6f4161361d8">Sensors::getAltitude</a></div><div class="ttdeci">float getAltitude()</div><div class="ttdoc">get Altitude value in meters</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:399</div></div>
+<div class="ttc" id="aclassSensors_html_adfac0bef57dc49feb0de18a3a8492ca0"><div class="ttname"><a href="classSensors.html#adfac0bef57dc49feb0de18a3a8492ca0">Sensors::s8sensor</a></div><div class="ttdeci">S8_sensor s8sensor</div><div class="ttdoc">SenseAir S8 CO2 object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:235</div></div>
+<div class="ttc" id="aclassSensors_html_ae25465fbd64d3b2b9ae31e2cb5a4b246"><div class="ttname"><a href="classSensors.html#ae25465fbd64d3b2b9ae31e2cb5a4b246">Sensors::detectI2COnly</a></div><div class="ttdeci">void detectI2COnly(bool enable)</div><div class="ttdoc">Forced to enable I2C sensors only. Recommended to use only if you are using a I2C sensor and improve ...</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:443</div></div>
+<div class="ttc" id="aclassSensors_html_ae6ac6080b6ad79ba9cd441646826058d"><div class="ttname"><a href="classSensors.html#ae6ac6080b6ad79ba9cd441646826058d">Sensors::resetNextUnit</a></div><div class="ttdeci">void resetNextUnit()</div><div class="ttdoc">reset the next sensor unit counter.</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:601</div></div>
+<div class="ttc" id="aclassSensors_html_aeb151247ff81fb34992458915c55ed9c"><div class="ttname"><a href="classSensors.html#aeb151247ff81fb34992458915c55ed9c">Sensors::setTemperatureUnit</a></div><div class="ttdeci">void setTemperatureUnit(TEMPUNIT tunit)</div><div class="ttdoc">set the temperature type unit</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:306</div></div>
+<div class="ttc" id="aclassSensors_html_aed05af978baed0801ff4de5f1c367cf0"><div class="ttname"><a href="classSensors.html#aed05af978baed0801ff4de5f1c367cf0">Sensors::printSensorsRegistered</a></div><div class="ttdeci">void printSensorsRegistered(bool debug=false)</div><div class="ttdoc">print the sensor names detected</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:681</div></div>
+<div class="ttc" id="aclassSensors_html_af4f26a60c06c2659d088d778c0468874"><div class="ttname"><a href="classSensors.html#af4f26a60c06c2659d088d778c0468874">Sensors::rad</a></div><div class="ttdeci">GEIGER * rad</div><div class="ttdoc">Geiger CAJOE object sensor.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:249</div></div>
+<div class="ttc" id="aclassSensors_html_af8c24cdf4179bf5bf7e799844e626b43"><div class="ttname"><a href="classSensors.html#af8c24cdf4179bf5bf7e799844e626b43">Sensors::getLibraryVersion</a></div><div class="ttdeci">String getLibraryVersion()</div><div class="ttdoc">returns the CanAirIO Sensorslib version</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:448</div></div>
+<div class="ttc" id="aclassSensors_html_af9ee8f89e81d76a4c2b41ed6dc38f2f3"><div class="ttname"><a href="classSensors.html#af9ee8f89e81d76a4c2b41ed6dc38f2f3">Sensors::getSensorsRegistered</a></div><div class="ttdeci">uint8_t * getSensorsRegistered()</div><div class="ttdoc">get the sensor registry for retrieve the sensor names</div><div class="ttdef"><b>Definition:</b> Sensors.cpp:502</div></div>
+<div class="ttc" id="aclassSensors_html_afac2f108c62157d4d63baee21c1d2564"><div class="ttname"><a href="classSensors.html#afac2f108c62157d4d63baee21c1d2564">Sensors::sps30</a></div><div class="ttdeci">SPS30 sps30</div><div class="ttdoc">Sensirion library.</div><div class="ttdef"><b>Definition:</b> Sensors.hpp:194</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
